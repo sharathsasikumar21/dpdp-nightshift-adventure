@@ -2,8 +2,10 @@
 
 A choice-driven privacy adventure about India's Digital Personal Data Protection Act. Ten linked story arcs, consequence-based decisions, an end-of-run legal debrief, and named scoring levels.
 
-- Live game: https://data-quest-nightshift.higgsfield.app
+- Live 2D game: https://data-quest-nightshift.higgsfield.app
+- 3D mission game source: [3d/](3d/)
+- GitHub Pages 3D path (after Pages is enabled): https://sharathsasikumar21.github.io/dpdp-nightshift-adventure/3d/
 - Source app: `app/`
-- Hosting/build adapter: Higgsfield + Cloudflare Workers
+- 3D game: `3d/index.html` + `3d/scenarios.json`
 
-The game is an educational simulation, not legal advice.
+The 3D edition is a standalone Three.js browser game. It saves completed case arcs and score locally in the player's browser. It is an educational simulation, not legal advice.
