@@ -4,7 +4,7 @@ A choice-driven privacy adventure about India's Digital Personal Data Protection
 
 - Live 2D game: https://data-quest-nightshift.higgsfield.app
 - 3D mission game source: [3d/](3d/)
-- GitHub Pages 3D path (after Pages is enabled): https://sharathsasikumar21.github.io/dpdp-nightshift-adventure/3d/
+- Playable 3D mission game: https://sharathsasikumar21.github.io/dpdp-nightshift-adventure/3d/ https://sharathsasikumar21.github.io/dpdp-nightshift-adventure/3d/
 - Source app: `app/`
 - 3D game: `3d/index.html` + `3d/scenarios.json`
 
