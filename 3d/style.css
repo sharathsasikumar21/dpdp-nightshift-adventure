@@ -7,3 +7,10 @@
 .case-top{position:sticky;top:0;z-index:1;background:#0b1922;padding:8px 0}@media(max-width:1050px){.case-top{top:75px}}
 
 #world{cursor:grab}#world:active{cursor:grabbing}@media(max-width:650px){#mobile{bottom:230px}.objective .row{gap:7px}.objective .small{padding:10px 8px;font-size:9px}}
+
+/* Locally hosted 14-second cinematic films. Native dialog traps keyboard focus. */
+.cinema{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#03090f;color:var(--ink);overflow:hidden}
+.cinema::backdrop{background:#03090f}.cinema-stage{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}
+.cinema video{width:100%;height:100%;object-fit:contain}.cinema-top,.cinema-bottom{position:absolute;left:clamp(16px,4vw,56px);right:clamp(16px,4vw,56px);display:flex;align-items:center;justify-content:space-between;gap:14px;font:10px var(--mono);letter-spacing:.06em;color:var(--green)}
+.cinema-top{top:max(20px,env(safe-area-inset-top))}.cinema-bottom{bottom:max(24px,env(safe-area-inset-bottom))}.cinema .small{background:#07131fee;white-space:nowrap}.cinema-status{line-height:1.6}.cinema-progress{position:absolute;bottom:0;left:0;right:0;height:2px;background:#142933}.cinema-progress i{display:block;height:100%;background:var(--green);transform:scaleX(0);transform-origin:left}
+@media(max-width:650px){.cinema-top{font-size:8px;align-items:flex-start}.cinema-bottom{flex-wrap:wrap;font-size:9px}.cinema-status{max-width:58%}.cinema .small{font-size:9px;padding:12px}.cinema-play:not([hidden])~.cinema-status{max-width:100%;order:3;width:100%}}
