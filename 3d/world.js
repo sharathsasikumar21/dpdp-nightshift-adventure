@@ -1,0 +1,42 @@
+import * as T from './vendor/three.module.js';
+export function createWorld(canvas,onInteract){
+ const scene=new T.Scene();scene.background=new T.Color('#050b12');scene.fog=new T.FogExp2('#08121c',.019);
+ const renderer=new T.WebGLRenderer({canvas,antialias:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.25));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;
+ const camera=new T.PerspectiveCamera(62,innerWidth/innerHeight,.1,140);scene.add(new T.HemisphereLight(0x6fb8d2,0x0a1825,2));const sun=new T.DirectionalLight(0x9cd7ed,2.4);sun.position.set(-8,18,8);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-24,right:24,top:24,bottom:-24});scene.add(sun);
+ const materials={};const mat=(c,e=false)=>materials[c+e]||(materials[c+e]=new T.MeshStandardMaterial({color:c,roughness:.62,metalness:.25,emissive:e?c:0,emissiveIntensity:e?2.1:0}));
+ function box(x,y,z,w,h,d,c,e=false){const m=new T.Mesh(new T.BoxGeometry(w,h,d),mat(c,e));m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;scene.add(m);return m;}
+ function label(text,x,y,z,w=3,color='#99ffd9',rot=0){const c=document.createElement('canvas');c.width=512;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='#091722';ctx.fillRect(0,0,512,128);ctx.strokeStyle=color;ctx.strokeRect(3,3,506,122);ctx.font='bold 30px monospace';ctx.fillStyle=color;ctx.textAlign='center';ctx.fillText(text,256,74);const mesh=new T.Mesh(new T.PlaneGeometry(w,w/4),new T.MeshBasicMaterial({map:new T.CanvasTexture(c),side:T.DoubleSide}));mesh.position.set(x,y,z);mesh.rotation.y=rot;scene.add(mesh);return mesh;}
+ box(0,-.22,0,30,.4,24,'#15232d');const grid=new T.GridHelper(30,30,0x45616b,0x263b46);grid.scale.z=.8;grid.position.y=.01;scene.add(grid);
+ // Exposed steel, glass frontage and a rain-soaked skyline.
+ for(const x of [-15,15]){box(x,2,0,.25,4,24,'#243c4c');for(let z=-10;z<12;z+=5)box(x-.2*Math.sign(x),2.1,z,.06,3.8,.12,'#60b5c6',true);}
+ box(0,2,-12,30,4,.3,'#1a2b36');box(0,.4,12,30,.8,.3,'#273c49');
+ for(let x=-14;x<=14;x+=4){box(x,3.8,0,.16,.22,24,'#30424d');box(x,3.65,-1,.07,.05,18,'#aedce5',true);box(x,2,11.9,.15,4,.15,'#456474');}
+ for(let i=0;i<24;i++){const x=(i%12-5.5)*5.6,z=i<12?27:-30,h=5+(i*7%13);box(x,h/2,z,3.7,h,4,'#102130');for(let y=1;y<h;y+=1.3)for(let dx=-1;dx<=1;dx+=1)if((i+y+dx)%3>.7)box(x+dx,y,z+(z>0?-2.02:2.02),.3,.5,.025,i%3?'#3c858e':'#c99b64',true);}
+ const positions=[[-10,-7],[-5,-7],[0,-7],[5,-7],[10,-7],[-10,5],[-5,5],[0,5],[5,5],[10,5]];const sectors=['SIGNAL','CONSENT','CIVIC','JUNIOR','VENDOR','INCIDENT','RIGHTS','ARCHIVE','BORDER','AUDIT'];const consoles=[];const blocks=[];
+ positions.forEach(([x,z],i)=>{const color=i<5?'#63e8c0':'#efa85c';box(x,.7,z,2.9,1.4,1.25,'#253541');box(x,.73,z+.66,2.95,.14,.4,'#547078');box(x,1.7,z,2.35,1.12,.18,'#101b24');const screen=box(x,1.7,z+.105,2.13,.91,.025,'#234a50',true);consoles.push(screen);for(let k=0;k<5;k++)box(x-.85,1.99-k*.14,z+.125,1.05+(k%2)*.7,.025,.01,color,true);box(x,1.06,z+.56,1.25,.025,.34,'#10232b');for(let a=-.5;a<.6;a+=.15)for(let b=0;b<3;b++)box(x+a,1.09,z+.45+b*.1,.09,.015,.05,'#6c9293');label(String(i+1).padStart(2,'0')+' / '+sectors[i],x,2.7,z,3,color);blocks.push({x,z,w:3.1,d:1.9});
+ // chair and desk clutter
+ box(x+1,.55,z+1.6,.5,.12,.55,'#243c4a');box(x+1,.88,z+1.83,.5,.7,.1,'#2d4d5c');box(x+1,.28,z+1.6,.08,.55,.08,'#728d92');box(x-.95,1.48,z+.6,.16,.2,.16,'#cda97c');
+ });
+ // Server banks with status lamps.
+ for(let x=-12;x<=12;x+=3){box(x,1.5,-10.6,1.6,3,1,'#0c1823');for(let y=.35;y<2.9;y+=.32){box(x,y,-10.07,1.38,.22,.03,'#293a45');for(let k=0;k<3;k++)box(x-.5+k*.18,y,-10.04,.055,.05,.025,k?'#69e4bd':'#eda76a',true);}}
+ label('NIGHTSHIFT / OPERATIONS',0,3.15,-10,7);
+ // Central investigation table and projected city model.
+ box(0,.8,-.4,6,.18,2.5,'#2c4451');for(const x of [-2.6,2.6])box(x,.35,-.4,.18,.8,2,'#1b2d36');blocks.push({x:0,z:-.4,w:6.4,d:3});
+ box(0,.92,-.4,4.8,.03,1.8,'#0d2836');for(let i=0;i<22;i++)box((i%7-3)*.57,1.08+(i%4)*.09,-.95+Math.floor(i/7)*.48,.3,.18+(i%4)*.18,.28,'#287e83',true);
+ label('CITY DATA GRID',0,1.7,-1.8,3,'#7cebc9');
+ // Coffee station: usable during exploration.
+ box(-13,.65,-1,1.8,1.3,2,'#3b4143');box(-13,1.6,-1,.7,.7,.65,'#6e5443');label('03:00 / COFFEE',-13,2.3,-.6,2.4,'#efb876');
+ const beacon=new T.Mesh(new T.OctahedronGeometry(.3,0),mat('#8dffd3',true));scene.add(beacon);const ring=new T.Mesh(new T.RingGeometry(.7,.8,32),new T.MeshBasicMaterial({color:0x88ffca,side:T.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=.04;scene.add(ring);
+ // Rain beyond the window; reduced motion disables it.
+ const rainArray=new Float32Array(900);for(let i=0;i<900;i+=3){rainArray[i]=(Math.random()-.5)*80;rainArray[i+1]=Math.random()*25;rainArray[i+2]=15+Math.random()*18;}const geo=new T.BufferGeometry();geo.setAttribute('position',new T.BufferAttribute(rainArray,3));const rain=new T.Points(geo,new T.PointsMaterial({color:0x77b9d0,size:.055,transparent:true,opacity:.5}));scene.add(rain);
+ let mode='home',active=0,yaw=0,pitch=0,drag=false,lastX=0,lastY=0,enabled=true,near=false;const keys={},player=new T.Vector3(0,1.68,9);let tour=0,walk=0;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function setTarget(i,teleport=false){active=i;const [x,z]=positions[i];beacon.position.set(x,3.15,z);ring.position.set(x,.04,z+2);if(teleport){player.set(x,1.68,z+3.4);yaw=0;pitch=0;}}
+ canvas.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId);canvas.focus();});canvas.addEventListener('pointermove',e=>{if(!drag)return;yaw-=(e.clientX-lastX)*.005;pitch=T.MathUtils.clamp(pitch-(e.clientY-lastY)*.004,-1.15,1.15);lastX=e.clientX;lastY=e.clientY;});canvas.addEventListener('pointerup',()=>drag=false);
+ addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;keys[e.key.toLowerCase()]=true;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault();if(e.key.toLowerCase()==='e'&&enabled&&mode==='play')onInteract(near?'case':Math.hypot(player.x+13,player.z+1)<3?'coffee':'far');});addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);addEventListener('blur',()=>Object.keys(keys).forEach(k=>keys[k]=false));
+ let last=performance.now();function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last)/1000);last=now;if(!reduced){beacon.rotation.y+=dt;beacon.position.y=3.15+Math.sin(now*.002)*.1;for(let i=1;i<900;i+=3){rainArray[i]-=dt*9;if(rainArray[i]<0)rainArray[i]=25;}geo.attributes.position.needsUpdate=true;}
+ if(mode==='home'){tour+=reduced?0:dt*.022;camera.position.set(18+Math.sin(tour)*2,12,20);camera.lookAt(0,.8,-2);}else{if(enabled){if(keys.q)yaw+=dt*1.5;if(keys.r)yaw-=dt*1.5;let f=Number(!!(keys.w||keys.arrowup))-Number(!!(keys.s||keys.arrowdown)),side=Number(!!(keys.d||keys.arrowright))-Number(!!(keys.a||keys.arrowleft));if(f||side){const old=player.clone(),v=new T.Vector3(side,0,-f).normalize().applyAxisAngle(new T.Vector3(0,1,0),yaw);player.addScaledVector(v,dt*4);player.x=T.MathUtils.clamp(player.x,-14.2,14.2);player.z=T.MathUtils.clamp(player.z,-9,11);if(blocks.some(b=>Math.abs(player.x-b.x)<b.w/2+.25&&Math.abs(player.z-b.z)<b.d/2+.25))player.copy(old);walk+=dt*9;}}camera.position.copy(player);camera.position.y+=reduced?0:Math.sin(walk)*.022;camera.rotation.order='YXZ';camera.rotation.set(pitch,yaw,0);}
+ const [tx,tz]=positions[active];near=Math.hypot(player.x-tx,player.z-tz)<3.8;canvas.dataset.near=String(near);const bearing=document.querySelector('#bearing');if(bearing)bearing.textContent=near?'TERMINAL IN RANGE · E TO INSPECT':Math.round(Math.hypot(player.x-tx,player.z-tz))+'m TO ACTIVE TERMINAL';renderer.render(scene,camera);}
+ requestAnimationFrame(frame);addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});setTarget(0);
+ return {setTarget,setMode:m=>mode=m,setEnabled:e=>{enabled=e;if(!e)Object.keys(keys).forEach(k=>keys[k]=false);},move:(k,on)=>keys[k]=on,interact:()=>onInteract(near?'case':'far'),guide:()=>setTarget(active,true),status:()=>({near,position:player.toArray(),yaw}),setQuality:low=>{renderer.setPixelRatio(low?.65:Math.min(devicePixelRatio,1.25));renderer.setSize(innerWidth,innerHeight);}};
+}

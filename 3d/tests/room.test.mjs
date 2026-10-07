@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {Room} from '../online.js';
+function host(){const r=new Room({},'host',()=>{},()=>{},()=>{});r.host=true;r.crew=[{id:'host',alias:'Host'}];r.send=()=>{};return r;}
+test('admission never exceeds three and refuses late joins',()=>{const r=host();for(const id of ['b','c','d'])r.receive({type:'join',from:id,player:{id,alias:id,seen:[]}});assert.equal(r.crew.length,3);r.state={phase:'decision'};r.receive({type:'join',from:'late',player:{id:'late',alias:'Late'}});assert.equal(r.crew.length,3);});
+test('presence propagation does not evict a newly admitted player',()=>{const r=host();r.present=new Set(['host']);r.receive({type:'join',from:'b',player:{id:'b',alias:'B'}});r.tick();assert.equal(r.crew.length,2);r.present.add('b');r.tick();assert.equal(r.crew.length,2);assert.equal(r.missingSince.size,0);});
+test('closing clears names, room snapshots and local timers',async()=>{const r=host();r.me={alias:'Host'};r.state={players:[{alias:'Host'}]};await r.close();assert.equal(r.me,null);assert.equal(r.state,null);assert.deepEqual(r.crew,[]);});
