@@ -12,6 +12,10 @@ Solo: decisions and reviews are untimed. Each story has a manual coffee break. O
 
 Online: enter a temporary username, create or join a six-character Supabase room, then the host starts. At most three players are admitted. All players answer the same question, and each response locks once. The host resolves immediately after all answers arrive, or at the 60-second wall-clock deadline. Missing players receive a wrong-answer penalty. An eight-second result display follows each decision (all players ready advances sooner). There are **no multiplayer mission breaks**. Every result remains available in the final review.
 
+## Interactive floor
+
+Two maintenance drones patrol the room; tapping one makes it hover and reverse direction. Click or tap a nearby workstation to inspect it, the city hologram to send a radar pulse, or the coffee machine for a steam response. E interacts with the object at the centre of your view. The Scan room control also works with keyboard and touch. Moving data packets, terminal sweeps, a rotating hologram and street traffic animate the background. Correct and wrong decisions briefly change the active terminal’s glow and scan colour. Reduced-motion preferences stop ambient movement; Low FX cuts particle density and rotor animation. These effects do not change scores or multiplayer timers.
+
 ## Scores and username privacy
 
 Correct: +100 points, with +25 from the third consecutive correct answer. Wrong/timeout: -40 points, floored at zero. Integrity starts at 70 and moves +8/-14, bounded to 0–100. Streak resets on a miss. Five named levels span Desk Rookie to Nightshift Legend. The live and final room leaderboard ranks points, integrity, then correct decisions.

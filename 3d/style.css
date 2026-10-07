@@ -5,3 +5,5 @@
 @media(prefers-reduced-motion:reduce){*{transition:none!important}.grain{display:none}}
 #toast{pointer-events:none}@media(max-width:650px){.home h1{font-size:68px}.header-right #exit{padding:8px 5px}.phase-decision #help,.phase-review #help{display:none}}
 .case-top{position:sticky;top:0;z-index:1;background:#0b1922;padding:8px 0}@media(max-width:1050px){.case-top{top:75px}}
+
+#world{cursor:grab}#world:active{cursor:grabbing}@media(max-width:650px){#mobile{bottom:230px}.objective .row{gap:7px}.objective .small{padding:10px 8px;font-size:9px}}
