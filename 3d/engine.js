@@ -19,9 +19,11 @@ export function submit(s,id,choice,now){
 export function resolve(s,stories,now){
   if(s.phase!=='decision'||(now<s.deadline&&s.players.some(p=>!Object.hasOwn(s.locks,p.id))))return false;
   const scene=sceneFor(s,stories),results=s.players.map(p=>{
+    const before={points:p.points,integrity:p.integrity,streak:p.streak};
     const choice=s.locks[p.id]??-1,good=choice===0,delta=good?100+(p.streak>=2?25:0):-40;
     p.points=Math.max(0,p.points+delta);p.integrity=Math.max(0,Math.min(100,p.integrity+(good?8:-14)));p.streak=good?p.streak+1:0;p.best=Math.max(p.best,p.streak);p.correct+=Number(good);
-    return {id:p.id,alias:p.alias,choice,good,delta,timeout:choice===-1};
+    const after={points:p.points,integrity:p.integrity,streak:p.streak};
+    return {id:p.id,alias:p.alias,choice,good,delta,timeout:choice===-1,before,after};
   });
   s.log.push({turn:s.turn,story:s.route[Math.floor(s.turn/3)],scene:s.turn%3,results});s.phase='review';s.ready=[];s.rev++;return true;
 }

@@ -1,7 +1,7 @@
 """Reproducible original motion graphics and synth score. Requires Pillow, numpy,
 and imageio-ffmpeg. Run from repository root; no downloaded artwork or music."""
 from pathlib import Path
-import math, random, subprocess, wave, tempfile
+import math, random, subprocess, wave, tempfile, sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import imageio_ffmpeg
@@ -23,7 +23,7 @@ def label(layer, text, y, size, color=WHITE, alpha=1, bold=False):
     if alpha <= .001: return
     d=ImageDraw.Draw(layer); f=font(size,bold); box=d.textbbox((0,0),text,font=f)
     d.text(((W-box[2])/2,y), text, font=f, fill=(*color,int(255*alpha)))
-def frame(t, credits=False):
+def frame(t, credits=False, ending=None):
     dawn=smooth(t/12) if credits else 0
     yy=np.linspace(0,1,H)[:,None,None]
     top=np.array([5,13,24]); bottom=np.array([14+38*dawn,43+14*dawn,49+4*dawn])
@@ -74,11 +74,38 @@ def frame(t, credits=False):
     od.rectangle((0,152,W,368),fill=(3,11,18,145))
     od.line((62,77,124,77),fill=(*GREEN,190),width=2)
     od.text((62,90),'N / OPERATIONS FILM',font=font(12),fill=(*GREEN,180))
-    od.text((W-200,H-38),'06:00 / HANDOVER' if credits else '01:17 / INCOMING',font=font(12),fill=(*GREEN,180))
-    if credits:
+    od.text((W-200,H-38),'06:00 / HANDOVER' if credits or ending else '01:17 / INCOMING',font=font(12),fill=(*GREEN,180))
+    if ending:
+        # A wide shield at dawn versus a looming red surveillance eye in blackout.
+        if ending=='bad-ending':
+            red=Image.new('RGBA',(W,H),(45,0,4,135))
+            im=Image.alpha_composite(im,red)
+            color=(255,104,96)
+            od.rectangle((0,135,W,385),fill=(15,2,8,215))
+            eye_y=112; radius=20+5*math.sin(t*.5)
+            od.arc((W/2-92,eye_y-44,W/2+92,eye_y+44),180,360,fill=(*color,160),width=2)
+            od.arc((W/2-92,eye_y-44,W/2+92,eye_y+44),0,180,fill=(*color,160),width=2)
+            od.ellipse((W/2-radius,eye_y-radius,W/2+radius,eye_y+radius),outline=(*color,210),width=3)
+            od.line((W/2,72,W/2,151),fill=(*color,180),width=2)
+            for j in range(8):
+                y=400+j*9; x=80+(j*139+t*18)%800
+                od.line((x,y,x+50,y),fill=(*color,80),width=1)
+            cards=[(0,4.5,'THE LEAK DID NOT STOP.','THE CITY REMEMBERS EVERY SHORTCUT.'),(4.3,9,'TRUST WENT DARK.','RECORDS EXPOSED. PEOPLE LEFT AT RISK.'),(8.8,14,'THE NIGHT IS NOT OVER.','REVIEW YOUR CALLS. COME BACK READY.')]
+        else:
+            color=GREEN
+            od.polygon([(W/2,70),(W/2+38,84),(W/2+32,121),(W/2,146),(W/2-32,121),(W/2-38,84)],fill=(25,63,54,220),outline=(*GREEN,255),width=3)
+            od.line((W/2-16,106,W/2-4,117,W/2+20,91),fill=(*GREEN,255),width=4)
+            for j in range(18):
+                x=(j*97+t*13)%W;y=H-(j*31+t*30)%H
+                od.ellipse((x,y,x+2,y+8),fill=(*AMBER,90))
+            cards=[(0,4.5,'YOU HELD THE LINE.','YOUR JUDGEMENT PROTECTED THE CITY.'),(4.3,9,'THE CITY WAKES SAFER.','EVERY CAREFUL CALL MADE A DIFFERENCE.'),(8.8,14,'PRIVACY SENTINEL','NIGHTSHIFT COMPLETE. TRUST DEFENDED.')]
+        for a,b,line,sub in cards:
+            e=envelope(t,a,b);label(overlay,line,205,44,color,e,True);label(overlay,sub,272,17,WHITE,e)
+        label(overlay,'SIGNAL LOST / UNRESOLVED RISK' if ending=='bad-ending' else 'SIGNAL RESTORED / CITY PROTECTED',335,12,color,.8)
+    elif credits:
         a=envelope(t,0,3.1)
-        label(overlay,'THE CITY CAN BREATHE.',207,43,alpha=a,bold=True)
-        label(overlay,'FOR NOW.',269,18,GREEN,a)
+        label(overlay,'THE SHIFT HAS ENDED.',207,43,alpha=a,bold=True)
+        label(overlay,'THE STORY STAYS WITH YOU.',269,18,GREEN,a)
         a=envelope(t,3,10.6)
         label(overlay,'THE TEAM BEHIND THE NIGHTSHIFT',171,15,GREEN,a)
         for name,y,delay in [('Rips',205,3),('Niks',254,3.7),('SharkBytes',303,4.4)]:
@@ -98,28 +125,36 @@ def frame(t, credits=False):
     fade=smooth(t/.6)*smooth((DURATION-t)/.7)
     return Image.blend(Image.new('RGB',(W,H),(3,9,15)),im,fade)
 
-def score(path, credits):
+def score(path, credits, ending=None):
     rate=44100; t=np.arange(rate*DURATION)/rate; signal=np.zeros_like(t)
     notes=[55,82.4069,110,164.8138] if not credits else [65.4064,98,130.8128,164.8138]
+    if ending=='bad-ending': notes=[41.2034,43.6535,61.7354,87.3071]
+    if ending=='good-ending': notes=[65.4064,98,130.8128,196]
     for i,f in enumerate(notes): signal+=.036*np.sin(2*np.pi*f*t+.35*np.sin(t*.55+i))
     for beat in np.arange(.6,13.4,.75):
         dt=np.maximum(t-beat,0); signal+=.12*np.sin(2*np.pi*(47*dt+2*(1-np.exp(-dt*22))))*np.exp(-dt*13)*(t>=beat)
     for i,at in enumerate([1,4,7.9,10.6]):
         dt=np.maximum(t-at,0); signal+=.045*np.sin(2*np.pi*notes[i%4]*4*dt)*np.exp(-dt*1.2)*(t>=at)
+    if ending=='good-ending':
+        for i,at in enumerate(np.arange(1,13,.65)):
+            dt=np.maximum(t-at,0); f=[261.63,329.63,392,523.25][i%4]
+            signal+=.06*(np.sin(2*np.pi*f*dt)+.22*np.sin(4*np.pi*f*dt))*np.exp(-dt*2)*(t>=at)
+    if ending=='bad-ending':
+        signal+=.032*np.sin(2*np.pi*(170*t-2*t*t))*(.5+.5*np.sin(t*.8))
     signal*=np.minimum(t/.8,1)*np.clip((DURATION-t)/1.4,0,1)
     stereo=np.column_stack([signal,signal*.96]).clip(-.8,.8)
     with wave.open(str(path),'wb') as f:
         f.setnchannels(2);f.setsampwidth(2);f.setframerate(rate);f.writeframes((stereo*32767).astype('<i2').tobytes())
 
 if __name__=='__main__':
-    for kind in ['opening','credits']:
-        credits=kind=='credits'
+    for kind in (sys.argv[1:] or ['opening','credits','good-ending','bad-ending']):
+        credits=kind in ['credits','good-ending']; ending=kind if kind.endswith('-ending') else None
         with tempfile.TemporaryDirectory() as tmp:
-            wav=Path(tmp)/'score.wav'; score(wav,credits)
+            wav=Path(tmp)/'score.wav'; score(wav,credits,ending)
             args=[imageio_ffmpeg.get_ffmpeg_exe(),'-y','-f','rawvideo','-vcodec','rawvideo','-s',f'{W}x{H}','-pix_fmt','rgb24','-r',str(FPS),'-i','-','-i',str(wav),'-t',str(DURATION),'-c:v','libx264','-preset','slow','-crf','27','-pix_fmt','yuv420p','-c:a','aac','-b:a','80k','-movflags','+faststart',str(OUT/f'{kind}.mp4')]
             p=subprocess.Popen(args,stdin=subprocess.PIPE,stderr=subprocess.DEVNULL)
-            for n in range(FPS*DURATION):p.stdin.write(frame(n/FPS,credits).tobytes())
+            for n in range(FPS*DURATION):p.stdin.write(frame(n/FPS,credits,ending).tobytes())
             p.stdin.close()
             if p.wait():raise RuntimeError('Video encoding failed')
-        frame(9 if not credits else 7,credits).save(OUT/f'{kind}-poster.jpg',quality=88)
+        frame(7 if ending or credits else 9,credits,ending).save(OUT/f'{kind}-poster.jpg',quality=88)
         print(kind,(OUT/f'{kind}.mp4').stat().st_size,'bytes; 14.000s',flush=True)
