@@ -69,3 +69,9 @@ Each player receives their own 14-second ending at shift completion: at least 80
 Ten case-specific ten-second camera cutscenes introduce intercepted transmissions, three narrative beats and thirty collectable evidence exhibits. Evidence remains available during decisions without pausing their clock. Thirty scenario questions use plausible distractors and choice-specific explanations. Solo timed play progresses through 90, 75 and 60 second deadlines; untimed play remains available. Multiplayer briefings finish before the full 60-second clock starts.
 
 Original procedural textures, reflections, cyan/magenta lighting and furnished workstations build the cyberpunk environment. The Web Audio score changes with briefings, urgency, integrity and outcomes, respects Sound off, and suspends while hidden. Low FX and reduced motion remain supported.
+
+## First-person environment rebuild
+
+The operations floor now uses human-scale wooden desks, rounded monitors and task chairs, fabric partitions, printed evidence documents, recessed ceiling fixtures, glass dividers, rain and a night skyline. Original procedural colour/bump textures, physical material roughness, environment reflections, dynamic shadows and contact shadows replace the oversized neon scene.
+
+Walk with WASD/arrows, turn with Q/R or drag, interact with E, toggle crouch with C, hurry with Shift and toggle the flashlight with F. Mouse look requests pointer lock where the browser allows it; Escape releases it. Drag and touch controls remain available. UI panels release mouse capture automatically. Collision uses small movement steps and slides along furniture. Reduced motion disables head bob and movement FOV changes. There are no weapons or shooting mechanics.

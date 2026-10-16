@@ -1,7 +1,7 @@
 import * as T from './vendor/three.module.js';
 
 // Ambient movement and object responses are visual only: they never change answers or timers.
-export function createEffects(scene, positions, screens) {
+export function createEffects(scene, positions, screens, {realistic=false}={}) {
   const root = new T.Group();
   scene.add(root);
   const targets = [];
@@ -24,7 +24,7 @@ export function createEffects(scene, positions, screens) {
     screens[i].material = screens[i].material.clone();
     target(screens[i], 'terminal', i);
     const bar = cube(2.03, .035, .012, i < 5 ? green : amber);
-    bar.position.set(x, 1.7, z + .145);
+    bar.position.set(x, 1.7, z + .145);bar.visible=!realistic;
     return bar;
   });
 
@@ -39,7 +39,7 @@ export function createEffects(scene, positions, screens) {
   });
   const packets = [];
   paths.forEach((path, i) => {
-    root.add(new T.Line(new T.BufferGeometry().setFromPoints(path.getPoints(24)), new T.LineBasicMaterial({ color: '#285861', transparent: true, opacity: .6 })));
+    if(!realistic)root.add(new T.Line(new T.BufferGeometry().setFromPoints(path.getPoints(24)), new T.LineBasicMaterial({ color: '#285861', transparent: true, opacity: .6 })));
     for (let j = 0; j < 3; j++) {
       const p = mesh(new T.SphereGeometry(.07, 5, 4), i < 5 ? green : amber);
       packets.push({ p, path, offset: j / 3, lane: i });
@@ -58,7 +58,7 @@ export function createEffects(scene, positions, screens) {
       const pod = mesh(new T.CylinderGeometry(.15, .15, .07, 8), dark, group); pod.position.set(x, .02, z);
       const rotor = cube(.4, .015, .055, hull, group); rotor.position.set(x, .07, z); rotors.push(rotor);
     }
-    const lamp = new T.PointLight(i ? 0xffb67d : 0x7affe0, 2, 3); lamp.position.y = -.2; group.add(lamp);
+    const lamp = new T.PointLight(i ? 0xffb67d : 0x7affe0, 2, 3); lamp.position.y = -.2; group.add(lamp);if(realistic){group.scale.setScalar(.45);lamp.intensity=0;}
     group.traverse(o => { if (o.isMesh) target(o, 'drone', i); });
     return { group, rotors, paused: 0, t: i * Math.PI, direction: i ? -1 : 1 };
   });
@@ -69,9 +69,9 @@ export function createEffects(scene, positions, screens) {
   radarRing.rotation.x = -Math.PI / 2;
   const needle = cube(1.45, .012, .025, green, radar); needle.position.x = .725;
   const mapHit = cube(4.8, .12, 1.8, new T.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
-  mapHit.position.set(0, 1.3, -.4); target(mapHit, 'map');
+  mapHit.position.set(0, realistic?.82:1.3, -.4); target(mapHit, 'map');
   const coffeeHit = cube(.72, .72, .67, new T.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
-  coffeeHit.position.set(-13, 1.6, -1); target(coffeeHit, 'coffee');
+  coffeeHit.position.set(-13, realistic?1.23:1.6, -1); target(coffeeHit, 'coffee');
   const steam = [];
   for (let i = 0; i < 10; i++) {
     const material = new T.MeshBasicMaterial({ color: '#c2dae2', transparent: true, opacity: .2, depthWrite: false });
@@ -94,11 +94,11 @@ export function createEffects(scene, positions, screens) {
     scanAge += dt; responseAge += dt; coffeeAge += dt;
     sweeps.forEach((s, i) => {
       s.position.y = reduced ? 1.7 : 1.32 + ((time * .17 + i * .13) % 1) * .75;
-      screens[i].material.emissiveIntensity = i === active ? 1.2 : .7;
+      screens[i].material.emissiveIntensity = realistic?(i===active?.75:.45):(i === active ? 1.2 : .7);
       if (responseAge < 2.5 && i === active) screens[i].material.emissive.set(responseGood ? '#306c53' : '#814529');
       else screens[i].material.emissive.set('#aacbdc');
     });
-    packets.forEach(({ p, path, offset, lane }, i) => { p.visible = !low || i % 3 === 0; p.position.copy(path.getPoint((time * .12 + offset + lane * .09) % 1)); });
+    packets.forEach(({ p, path, offset, lane }, i) => { p.visible = !realistic && (!low || i % 3 === 0); p.position.copy(path.getPoint((time * .12 + offset + lane * .09) % 1)); });
     drones.forEach((d, i) => {
       d.paused = Math.max(0, d.paused - dt);
       if (!reduced && !d.paused) d.t += dt * .22 * d.direction;
@@ -106,14 +106,14 @@ export function createEffects(scene, positions, screens) {
       d.group.rotation.y = Math.cos(d.t) * d.direction > 0 ? Math.PI / 2 : -Math.PI / 2;
       if (!reduced && !low) d.rotors.forEach(r => r.rotation.y += dt * 22);
     });
-    radar.rotation.y = reduced ? 0 : -time * .55;
+    radar.visible=!realistic;radar.rotation.y = reduced ? 0 : -time * .55;
     steam.forEach((p, i) => {
       const a = (time * .45 + i / 10) % 1;
-      p.position.set(-13 + Math.sin(a * 8 + i) * .07, 1.94 + a * (coffeeAge < 3 ? .8 : .45), -.9);
+      p.position.set(-13 + Math.sin(a * 8 + i) * .07, (realistic?1.19:1.94) + a * (coffeeAge < 3 ? .8 : .45), -.9);
       p.scale.setScalar(.6 + a * 1.5); p.material.opacity = reduced ? 0 : (1 - a) * (coffeeAge < 3 ? .3 : .14);
       p.visible = !low || i % 2 === 0;
     });
-    if (scanAge < 2) {
+    if (!realistic && scanAge < 2) {
       pulse.scale.setScalar(reduced ? 3 : 1 + scanAge * 8);
       pulse.material.opacity = Math.max(0, (1 - scanAge / 2) * .65);
     } else pulse.material.opacity = 0;
