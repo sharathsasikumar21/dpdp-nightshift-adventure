@@ -11,7 +11,9 @@ export function createRun(stories,route,players,id){
   return {id,rev:0,phase:'explore',route,turn:0,deadline:0,locks:{},ready:[],players:players.map(p=>({...p,points:0,integrity:70,streak:0,best:0,correct:0})),log:[]};
 }
 export const sceneFor=(s,stories)=>stories[s.route[Math.floor(s.turn/3)]].scenes[s.turn%3];
-export function openTurn(s,now){if(s.phase!=='explore')return false;s.phase='decision';s.deadline=now+60000;s.locks={};s.rev++;return true;}
+export function openTurn(s,now,duration=60000){if(s.phase!=='explore')return false;s.phase='decision';s.limitSeconds=duration/1000;s.deadline=now+duration;s.locks={};s.rev++;return true;}
+export function startBriefing(s,now){if(s.phase!=='explore')return false;s.phase='briefing';s.briefingUntil=now+10000;s.deadline=0;s.rev++;return true;}
+export function finishBriefing(s,now){if(s.phase!=='briefing'||now<s.briefingUntil)return false;s.phase='explore';return openTurn(s,now);}
 export function submit(s,id,choice,now){
   if(s.phase!=='decision'||now>=s.deadline||!s.players.some(p=>p.id===id)||Object.hasOwn(s.locks,id)||!Number.isInteger(choice)||choice<0||choice>3)return false;
   s.locks[id]=choice;s.rev++;return true;
@@ -23,7 +25,7 @@ export function resolve(s,stories,now){
     const choice=s.locks[p.id]??-1,good=choice===0,delta=good?100+(p.streak>=2?25:0):-40;
     p.points=Math.max(0,p.points+delta);p.integrity=Math.max(0,Math.min(100,p.integrity+(good?8:-14)));p.streak=good?p.streak+1:0;p.best=Math.max(p.best,p.streak);p.correct+=Number(good);
     const after={points:p.points,integrity:p.integrity,streak:p.streak};
-    return {id:p.id,alias:p.alias,choice,good,delta,timeout:choice===-1,before,after};
+    return {id:p.id,alias:p.alias,choice,good,delta,timeout:choice===-1,before,after,limitSeconds:s.limitSeconds||60};
   });
   s.log.push({turn:s.turn,story:s.route[Math.floor(s.turn/3)],scene:s.turn%3,results});s.phase='review';s.ready=[];s.rev++;return true;
 }

@@ -63,3 +63,9 @@ Unsafe decisions and timeouts show a prominent consequence alert, the safer resp
 ## Accuracy-based endings
 
 Each player receives their own 14-second ending at shift completion: at least 80% correct earns the heroic dawn / shield film and rising score; below 80% gets the dark surveillance / trust-lost film and ominous score. The threshold uses the exact fraction, not rounded percentages or points; timeouts count as incorrect. Minimum correct counts are 5/6, 8/9 and 12/15. Team credits follow either ending, then the debrief remains available. Replay your ending replays the earned outcome only. Both films support Skip, sound controls, reduced-motion still posters, and playback failure fallback.
+
+## Cyberpunk investigation update
+
+Ten case-specific ten-second camera cutscenes introduce intercepted transmissions, three narrative beats and thirty collectable evidence exhibits. Evidence remains available during decisions without pausing their clock. Thirty scenario questions use plausible distractors and choice-specific explanations. Solo timed play progresses through 90, 75 and 60 second deadlines; untimed play remains available. Multiplayer briefings finish before the full 60-second clock starts.
+
+Original procedural textures, reflections, cyan/magenta lighting and furnished workstations build the cyberpunk environment. The Web Audio score changes with briefings, urgency, integrity and outcomes, respects Sound off, and suspends while hidden. Low FX and reduced motion remain supported.

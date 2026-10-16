@@ -94,9 +94,9 @@ export function createEffects(scene, positions, screens) {
     scanAge += dt; responseAge += dt; coffeeAge += dt;
     sweeps.forEach((s, i) => {
       s.position.y = reduced ? 1.7 : 1.32 + ((time * .17 + i * .13) % 1) * .75;
-      screens[i].material.emissiveIntensity = i === active ? 2.5 : 1.1;
+      screens[i].material.emissiveIntensity = i === active ? 1.2 : .7;
       if (responseAge < 2.5 && i === active) screens[i].material.emissive.set(responseGood ? '#306c53' : '#814529');
-      else screens[i].material.emissive.set('#234a50');
+      else screens[i].material.emissive.set('#aacbdc');
     });
     packets.forEach(({ p, path, offset, lane }, i) => { p.visible = !low || i % 3 === 0; p.position.copy(path.getPoint((time * .12 + offset + lane * .09) % 1)); });
     drones.forEach((d, i) => {
