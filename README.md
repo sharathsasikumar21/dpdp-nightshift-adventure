@@ -75,3 +75,11 @@ Original procedural textures, reflections, cyan/magenta lighting and furnished w
 The operations floor now uses human-scale wooden desks, rounded monitors and task chairs, fabric partitions, printed evidence documents, recessed ceiling fixtures, glass dividers, rain and a night skyline. Original procedural colour/bump textures, physical material roughness, environment reflections, dynamic shadows and contact shadows replace the oversized neon scene.
 
 Walk with WASD/arrows, turn with Q/R or drag, interact with E, toggle crouch with C, hurry with Shift and toggle the flashlight with F. Mouse look requests pointer lock where the browser allows it; Escape releases it. Drag and touch controls remain available. UI panels release mouse capture automatically. Collision uses small movement steps and slides along furniture. Reduced motion disables head bob and movement FOV changes. There are no weapons or shooting mechanics.
+
+### FPV interaction completion
+
+Scan Room outlines the assigned monitor for eight seconds; a yaw-aware bearing and distance guide players through the office. Mobile players can crouch/stand and switch graphics quality. Evidence targeting resolves printed surfaces and clips to the parent document and ignores hidden ancestors after collection. Closing the evidence board restores focus to its opener.
+
+### SharkBytes elevator arrival
+
+An original fourteen-second real-time elevator opening introduces SharkBytes, the Data Protection Officer, on the way to the operations floor. The floor counter reaches 27, doors open before the camera moves through the entrance, and the first incident is teased in three caption beats. Skip and Escape enter the office immediately. Optional gesture-enabled original elevator hum and arrival chime have a separate mute control. Reduced-motion users see a stationary viewpoint. The introduction does not use any question time. Existing outcome films and team credits remain available.

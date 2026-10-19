@@ -41,8 +41,8 @@ export function buildOffice(scene,renderer){
  const key=new T.SpotLight('#ffe8cf',130,24,.95,.7,1.6);key.position.set(2,3.25,2);key.target.position.set(0,0,-3);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.bias=-.00015;key.shadow.normalBias=.025;scene.add(key,key.target);
  for(const x of [-12,12]){box(x,3.37,0,.6,.04,1.4,white);for(let i=0;i<10;i++)box(x,3.34,-.55+i*.12,.48,.01,.035,black);}
  // Full-height glazing with slim mullions, blinds, rain streaks and night city.
- for(let x=-13.5;x<15;x+=3){box(x,1.8,11.85,2.94,3.3,.025,glass).castShadow=false;box(x-1.5,1.75,11.8,.06,3.5,.12,metal);box(x,3.3,11.65,2.96,.12,.14,white);for(let j=0;j<4;j++)box(x,3.17-j*.07,11.62,2.88,.018,.12,white);}
- box(0,.25,11.82,30,.5,.2,plaster);
+ for(let x=-13.5;x<15;x+=3){if(Math.abs(x)<2)continue;box(x,1.8,11.85,2.94,3.3,.025,glass).castShadow=false;box(x-1.5,1.75,11.8,.06,3.5,.12,metal);box(x,3.3,11.65,2.96,.12,.14,white);for(let j=0;j<4;j++)box(x,3.17-j*.07,11.62,2.88,.018,.12,white);}
+ for(const x of [-8.3,8.3])box(x,.25,11.82,13.4,.5,.2,plaster);for(const x of [-2.3,2.3])box(x,1.8,11.85,1.4,3.3,.025,glass).castShadow=false;
  const city=new T.MeshStandardMaterial({map:cityFacade(),emissiveMap:cityFacade(),emissive:'#b1bac2',emissiveIntensity:.8,roughness:.85});
  for(let i=0;i<30;i++){const h=6+rnd()*23;box((i%15-7)*5,h/2-3,26+Math.floor(i/15)*15,3+rnd()*2,h,4,city).castShadow=false;}
  const positions=[[-10,-6],[-5,-6],[0,-6],[5,-6],[10,-6],[-10,5],[-5,5],[0,5],[5,5],[10,5]];
