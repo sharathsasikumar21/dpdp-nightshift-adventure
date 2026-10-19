@@ -11,6 +11,17 @@ test('all 30 scenario questions retain a unique correct choice and explain close
 test('difficulty increases across the whole shift, including case boundaries',()=>{
  for(const total of [6,9,15]){const levels=Array.from({length:total},(_,i)=>difficultyFor(i,total));assert.deepEqual([...new Set(levels)],[0,1,2]);assert.deepEqual(levels,[...levels].sort());}
 });
+
+test('every answer has equal word length and early rounds retain the close distractors',()=>{
+ for(const sc of stories.flatMap(s=>s.scenes)){
+  for(const turn of [0,5,10]){
+   const options=answerOptions(sc,turn,15);
+   assert.deepEqual(options.map(t=>t.trim().split(/\s+/).length),[16,16,16,16],sc.id);
+   assert.deepEqual(options,[sc.a,...sc.bad],sc.id);
+   for(let i=1;i<4;i++)assert.equal(wrongReason(sc,i,turn,15),closeChoices[sc.id][i-1][1]);
+  }
+ }
+});
 test('shared story briefing never consumes the 60-second response clock',()=>{
  const s=createRun(stories,[0],[{id:'a'}],'room');assert.ok(startBriefing(s,1000));assert.equal(s.deadline,0);assert.equal(submit(s,'a',0,2000),false);assert.equal(finishBriefing(s,10999),false);assert.ok(finishBriefing(s,13000));assert.equal(s.deadline,73000);assert.equal(s.limitSeconds,60);assert.equal(finishBriefing(s,14000),false);assert.ok(submit(s,'a',0,72999));assert.ok(resolve(s,stories,72999));
 });

@@ -7,13 +7,13 @@
         "id": "notice",
         "tag": "Notice & consent",
         "q": "Mira can stop the location stream before release, but the manager wants to ship now. Which launch plan properly addresses the missing permission?",
-        "a": "Give a clear, standalone notice describing the location data and the specific purpose, then obtain valid consent unless a lawful exception applies.",
+        "a": "Explain location collection and its purpose, then obtain affirmative consent before enabling the new location stream.",
         "why": "Consent must be free, specific, informed, unconditional and unambiguous, signified by clear affirmative action. The notice must describe the personal data and purpose.",
         "law": "DPDP Act, 2023, s. 6(1)–(2); DPDP Rules, 2025, r. 3",
         "bad": [
-          "Collect it silently because location improves the service.",
-          "Bundle it into broad terms and make consent mandatory for unrelated features.",
-          "Ask for permission only after the data has been collected."
+          "Explain location collection and its purpose, then interpret continued browsing as consent to the location stream.",
+          "Obtain device location permission before collection, then provide the service purpose when users open account settings.",
+          "Explain location collection and partner promotions, then require one combined approval before enabling the location stream."
         ],
         "sourceId": "notice",
         "plot": "PulseStep’s new nearby-classes feature requests location the moment the app opens. A tester flags that the permission appears before anyone sees what the location is for.",
@@ -25,13 +25,13 @@
         "id": "purpose",
         "tag": "Purpose limitation",
         "q": "Marketing has the class-alert numbers and a campaign ready to send. No new consent or specific lawful use has been established. Which instruction should you approve?",
-        "a": "Do not repurpose the numbers automatically; provide an appropriate notice and obtain consent for the new purpose, unless a specific lawful use applies.",
+        "a": "Hold the campaign until customers receive the new purpose notice and provide consent for promotional messages.",
         "why": "Personal data may be processed for a lawful purpose for which consent was given or for certain legitimate uses set out in the Act. A delivery notice does not itself authorize promotional use.",
         "law": "DPDP Act, 2023, ss. 4–6",
         "bad": [
-          "Use the list because marketing benefits the company.",
-          "Assume delivery consent covers all future communications.",
-          "Share the list with an ad partner and let it decide what is allowed."
+          "Send the new purpose notice before launch, then include customers who leave their existing preferences unchanged.",
+          "Keep the campaign within the company, then use class-alert consent to authorize messages about premium memberships.",
+          "Approve a restricted partner contract before launch, then use existing class-alert numbers for the promotional campaign."
         ],
         "sourceId": "purpose",
         "plot": "At 01:42, marketing asks to reuse the phone numbers collected for class alerts to sell premium memberships. Same customers, new purpose, same deadline.",
@@ -43,13 +43,13 @@
         "id": "consentseparate",
         "tag": "Specific consent",
         "q": "The partner will fund the release only if safety alerts and promotions share a checkbox. Which redesign preserves a meaningful choice?",
-        "a": "Separate the purposes and let the person make a specific, informed choice about each purpose.",
+        "a": "Describe each purpose with separate controls, allowing customers to approve safety alerts while declining partner promotions.",
         "why": "Consent must be specific and informed, and the notice should clearly describe the purpose. Combining unrelated purposes undermines meaningful choice.",
         "law": "DPDP Act, 2023, s. 6(1); DPDP Rules, 2025, r. 3",
         "bad": [
-          "Keep one checkbox because both uses involve trip data.",
-          "Treat accepting the ride-share terms as consent to all partner use.",
-          "Let advertising partners decide whether consent was specific."
+          "Describe each purpose with separate headings, requiring customers to approve safety alerts together with partner promotions.",
+          "Describe each purpose with separate controls, enabling both initially and allowing customers to change preferences afterward.",
+          "Describe each purpose with separate explanations, treating approval of safety alerts as authorization for partner promotions."
         ],
         "sourceId": "consentseparate",
         "plot": "An ad partner offers to fund the feature if safety alerts and promotions share one checkbox. Product says separate choices will lower conversions.",
@@ -71,13 +71,13 @@
         "id": "withdraw",
         "tag": "Consent withdrawal",
         "q": "Mira still needs her account, but her identifier remains in the offers export after withdrawal. Which fix respects the choice she actually made?",
-        "a": "Stop processing for personalized offers and make withdrawal as easy as giving consent; continue any separately justified core processing.",
+        "a": "Stop offer processing through an equally easy withdrawal route, while continuing core services with independent justification.",
         "why": "A Data Principal may withdraw consent at any time, with ease comparable to giving it. The Act does not require withdrawal from one purpose to end unrelated processing that has its own lawful basis.",
         "law": "DPDP Act, 2023, s. 6(4)–(6); DPDP Rules, 2025, r. 3(c)",
         "bad": [
-          "Keep using the data because the customer accepted terms originally.",
-          "Delete the entire account immediately, even if the person wants to keep using it.",
-          "Require a signed paper letter when consent was given with one tap."
+          "Stop collecting new offer data through immediate withdrawal, while retaining existing profiles until the campaign expires.",
+          "Remove the offer preference immediately, while requiring closure of the core account before stopping offer processing.",
+          "Keep core services active and stop offer processing once support validates the signed withdrawal form manually."
         ],
         "sourceId": "withdraw",
         "plot": "Mira withdraws permission for personalized offers but wants to keep using her account. A retention dashboard marks her as a churn risk.",
@@ -89,13 +89,13 @@
         "id": "noticewithdraw",
         "tag": "Notice clarity",
         "q": "Support can simplify only one withdrawal release tonight. Which plan fixes both the unclear notice and the nine-screen barrier?",
-        "a": "Make the notice clear and provide a practical communication link or means for withdrawing consent and exercising rights.",
+        "a": "Clarify the notice and introduce a straightforward withdrawal control, with verification proportionate to the actual request.",
         "why": "The Rules require notice in clear and plain language, independently understandable, with links or means to withdraw consent, exercise rights and make complaints.",
         "law": "DPDP Rules, 2025, r. 3(a)–(c)",
         "bad": [
-          "Leave the flow as-is if the legal team approved the terms.",
-          "Make withdrawal harder than sign-up to reduce churn.",
-          "Replace the notice with a vague “we value privacy” statement."
+          "Clarify the notice and retain the existing withdrawal sequence, with verification repeated across its nine screens.",
+          "Clarify the notice and publish a support address, with withdrawal accepted after the existing sequence finishes.",
+          "Clarify the notice and introduce direct withdrawal for subscribers, with other users following the support-assisted route."
         ],
         "sourceId": "noticewithdraw",
         "plot": "The settings team reveals that withdrawal takes nine screens, while giving permission took one tap. Support has already received complaints.",
@@ -107,13 +107,13 @@
         "id": "consentmanager",
         "tag": "Consent manager",
         "q": "Mira needs to manage choices across several providers. Which service model satisfies that role without substituting its own purposes?",
-        "a": "A registered Consent Manager, acting as a single point of contact through an accessible, transparent and interoperable platform.",
+        "a": "Choose a registered manager offering accessible, transparent, interoperable consent controls, acting on behalf of its users.",
         "why": "The Act defines a Consent Manager as a person registered with the Board who acts as a single point of contact to enable a Data Principal to give, manage, review and withdraw consent through an accessible, transparent and interoperable platform.",
         "law": "DPDP Act, 2023, s. 2(g); s. 6(7)–(9)",
         "bad": [
-          "An unregistered advertising network that trades consent records.",
-          "A Data Processor that can change purposes without permission.",
-          "A company help desk that silently opts users into marketing."
+          "Choose an interoperable manager offering accessible, transparent consent controls, completing Board registration after the service launches.",
+          "Choose a registered manager offering accessible consent controls, using customer choices to build its advertising profiles.",
+          "Choose a registered manager offering transparent consent controls, limiting customer choices to its own affiliated providers."
         ],
         "sourceId": "consentmanager",
         "plot": "Mira asks for one place to review permissions she gave to several services. A partner offers a consent dashboard but wants to use it for ad targeting too.",
@@ -135,13 +135,13 @@
         "id": "minimum",
         "tag": "Data minimisation",
         "q": "The grant deadline is near and the vendor offers encryption for every extra field. Which collection plan fits the application’s stated purpose?",
-        "a": "Collect only personal data needed for the stated eligibility and service purposes, and remove unrelated fields.",
+        "a": "Retain fields necessary for stated eligibility checks, and remove unrelated collection before opening the application portal.",
         "why": "The Act requires processing for a lawful purpose and its consent framework requires a specific purpose. Data collection should match that purpose; unrelated data is not justified by convenience.",
         "law": "DPDP Act, 2023, ss. 4 and 6(1); DPDP Rules, 2025, r. 3",
         "bad": [
-          "Collect everything now in case another department needs it later.",
-          "Keep the fields but label them optional while making submission impossible without them.",
-          "Collect unrelated data because users can ask for deletion later."
+          "Encrypt fields collected beyond eligibility checks, and reserve them for departmental requests after opening the portal.",
+          "Retain mandatory contact uploads alongside eligibility checks, and defer inspection until a departmental need becomes clearer.",
+          "Retain browsing history under fraud-prevention consent, and define its specific eligibility role after the application launch."
         ],
         "sourceId": "minimum",
         "plot": "A city grant portal asks applicants for eligibility documents, full contact lists, and unrelated browsing history. The vendor says extra fields will make future fraud checks easier.",
@@ -153,13 +153,13 @@
         "id": "lawfulbasis",
         "tag": "Lawful purpose",
         "q": "Another department might use the extra records next year, but nobody can specify why today. What must you require before approving collection?",
-        "a": "Identify a lawful, specific purpose and ensure the processing fits a permitted basis before collection.",
+        "a": "Require a specific lawful purpose and a permitted processing basis before approving collection of additional records.",
         "why": "The Act permits processing for a lawful purpose, based on consent or a certain legitimate use. A vague possible future use is not itself a stated purpose.",
         "law": "DPDP Act, 2023, s. 4",
         "bad": [
-          "Collect now and decide on a purpose later.",
-          "Treat possession of the data as permission to use it.",
-          "Let each department invent a purpose after collection."
+          "Require a documented future benefit and provisional departmental approval before approving collection of the additional records.",
+          "Require encryption and restricted departmental access before approving collection, with the processing purpose finalized after launch.",
+          "Require broad applicant agreement to departmental use before approving collection, with specific purposes assigned during review."
         ],
         "sourceId": "lawfulbasis",
         "plot": "A new analyst proposes keeping every field because another department may someday find it useful. No present purpose is written in the launch brief.",
@@ -171,13 +171,13 @@
         "id": "legitimate",
         "tag": "Lawful processing",
         "q": "The official requester has been authenticated, but the legal function and needed fields remain unclear. Which response should the team make?",
-        "a": "Check whether the specific processing falls within a lawful ground, such as a use permitted under section 7, and observe applicable requirements.",
+        "a": "Confirm the applicable legal ground, statutory function and necessary fields before approving the authenticated office request.",
         "why": "The Act permits processing for certain legitimate uses, including specified functions under law, subject to statutory conditions. A public authority should identify the applicable ground rather than assume every government use is automatically permitted.",
         "law": "DPDP Act, 2023, ss. 4 and 7",
         "bad": [
-          "Assume government status removes every privacy obligation.",
-          "Collect any data that might be useful someday.",
-          "Treat the request itself as blanket consent."
+          "Confirm the requesting office and secure transfer route before approving all fields in its authenticated request.",
+          "Confirm the sharing agreement and recipient safeguards before treating government status as sufficient grounds for disclosure.",
+          "Confirm the original grant consent and requester identity before applying that consent to subsequent departmental requests."
         ],
         "sourceId": "legitimate",
         "plot": "A public office sends a request for records needed to perform a function imposed by law. The request is broad and cites no specific function.",
@@ -199,13 +199,13 @@
         "id": "child",
         "tag": "Children’s data",
         "q": "The ad module profiles children and no applicable exemption has been established. Which plan addresses both consent and the separate restrictions?",
-        "a": "Obtain verifiable consent from a parent or lawful guardian and do not undertake tracking, behavioral monitoring or targeted advertising directed at children, subject to applicable exemptions.",
+        "a": "Verify parental consent before processing, and disable child tracking, behavioral monitoring and targeted advertising before release.",
         "why": "The Act defines a child as a person under 18. Before processing a child’s personal data, verifiable parental consent is required; tracking, behavioral monitoring and targeted advertising directed at children are restricted, subject to prescribed exceptions.",
         "law": "DPDP Act, 2023, s. 9(1)–(3)",
         "bad": [
-          "Treat the child’s click as sufficient adult consent.",
-          "Run behavioral ads if the game is free.",
-          "Collect first and ask a parent only if an issue arises."
+          "Verify parental consent before processing, and retain child behavioral profiling within the advertising settings parents approve.",
+          "Disable targeted advertising before release, and accept the child’s own agreement for the remaining personal-data collection.",
+          "Replace names with persistent identifiers before release, and retain child tracking within the protected advertising module."
         ],
         "sourceId": "child",
         "plot": "A learning game’s new ad module tracks how children pause, replay, and abandon lessons. The growth team calls it ordinary product analytics.",
@@ -217,13 +217,13 @@
         "id": "childconsent",
         "tag": "Children’s data",
         "q": "The sixteen-year-old clicked Accept, but no verified guardian consent or applicable exemption is recorded. Which instruction should you approve?",
-        "a": "Obtain verifiable consent of the parent or lawful guardian before processing the child’s personal data, subject to applicable exemptions.",
+        "a": "Pause processing until verifiable parental or guardian consent is obtained for the sixteen-year-old’s personal data collection.",
         "why": "A child is an individual under 18, and section 9 generally requires verifiable parental or guardian consent before processing a child’s personal data.",
         "law": "DPDP Act, 2023, s. 2(f), s. 9(1)",
         "bad": [
-          "Accept the minor’s confirmation as adult consent.",
-          "Ask for parental consent only if the child requests deletion.",
-          "Assume every educational purpose is automatically exempt."
+          "Record the sixteen-year-old’s declaration of parental approval before enabling processing under the service’s standard consent procedure.",
+          "Notify the parent about intended collection before enabling processing, with a subsequent opportunity to object provided.",
+          "Document the educational purpose before enabling processing, treating the learning context as sufficient grounds for exemption."
         ],
         "sourceId": "childconsent",
         "plot": "A sixteen-year-old accepts the new terms on a tablet. The account profile lists no parent or guardian contact.",
@@ -235,13 +235,13 @@
         "id": "requestchannel",
         "tag": "Rights requests",
         "q": "The guardian cannot use the only accepted form with a keyboard. Which support change actually allows the rights request to proceed?",
-        "a": "An accessible means for the Data Principal to exercise rights and make a grievance, with required information about how to do so.",
+        "a": "Provide an accessible private submission route with clear guidance, allowing the guardian’s rights request to proceed.",
         "why": "The Act provides rights including access, correction, erasure and grievance redressal. The Rules require the notice to describe means to exercise those rights and make complaints.",
         "law": "DPDP Act, 2023, ss. 11–13; DPDP Rules, 2025, r. 3(c)",
         "bad": [
-          "Only accept requests through an inaccessible app flow.",
-          "Require a person to publicly disclose sensitive details.",
-          "Hide the request method in a lengthy policy document."
+          "Provide detailed submission instructions with clear guidance, retaining the existing form as the required completion route.",
+          "Provide a public support thread with staff assistance, allowing the guardian to submit verification documents there.",
+          "Provide private email assistance with form completion, accepting the request once the existing form is submitted."
         ],
         "sourceId": "requestchannel",
         "plot": "A guardian asks to correct a child’s profile, but the only request form is unreadable with assistive technology and rejects keyboard navigation.",
@@ -263,13 +263,13 @@
         "id": "processor",
         "tag": "Data processors",
         "q": "The reminder vendor offers an NDA but also asks to keep a research copy. Which approval package should the startup require?",
-        "a": "Use a valid contract with the processor and ensure appropriate safeguards and compliance for processing done on its behalf.",
+        "a": "Require a processing contract and safeguards for reminders, withholding research-copy approval until its separate basis exists.",
         "why": "A Data Fiduciary may engage a Data Processor under a valid contract, but remains responsible for compliance with the Act in respect of processing undertaken by it or on its behalf.",
         "law": "DPDP Act, 2023, s. 8(1)–(2)",
         "bad": [
-          "Send the data without a contract because the vendor is reputable.",
-          "Assume the vendor becomes the only responsible party.",
-          "Allow the vendor to use the numbers for its own unrelated advertising."
+          "Require a confidentiality agreement and safeguards for reminders, allowing the research copy within the confidentiality restrictions.",
+          "Require a restricted initial transfer and safeguards for reminders, completing the processing contract after access begins.",
+          "Require a processing contract and safeguards for reminders, assigning the company’s statutory responsibility exclusively to vendors."
         ],
         "sourceId": "processor",
         "plot": "A reminder vendor needs names and phone numbers to send appointment messages. Its sales lead asks to keep a copy for unrelated product research.",
@@ -281,13 +281,13 @@
         "id": "securityvendor",
         "tag": "Vendor oversight",
         "q": "The primary processor vouches for a new subcontractor, but its identifiable-event access has not been reviewed. What should happen before access begins?",
-        "a": "Assess the proposed processing, ensure it is covered by the contract and safeguards, and authorize access only when it serves the stated purpose.",
+        "a": "Review purpose, contractual coverage and safeguards before authorizing subcontractor access to the identifiable customer event stream.",
         "why": "The Data Fiduciary remains responsible for processing on its behalf and must use reasonable security safeguards. Vendor access should be governed by a valid contract and the purpose disclosed to the Data Principal.",
         "law": "DPDP Act, 2023, s. 8(1), (2), (5)",
         "bad": [
-          "Allow access because the processor chose the vendor.",
-          "Permit unrestricted reuse if the subcontractor signs an NDA.",
-          "Treat hashed or pseudonymous data as automatically outside all obligations."
+          "Approve confidential subcontractor access under an NDA, reviewing contractual coverage after the planned service release completes.",
+          "Approve subcontractor access following the primary processor’s recommendation, treating its selection as confirmation of authorized processing.",
+          "Approve subcontractor access after hashing customer identifiers, treating pseudonymisation as sufficient grounds to waive further review."
         ],
         "sourceId": "securityvendor",
         "plot": "The analytics processor proposes a subcontractor that will see identifiable events. The release is already scheduled and the contract owner is offline.",
@@ -299,13 +299,13 @@
         "id": "fiduciary",
         "tag": "Accountability",
         "q": "The vendor caused the incident and signed an indemnity. Who must still ensure the company’s Data Fiduciary duties are met?",
-        "a": "The company remains responsible for compliance for processing carried out on its behalf, including through the vendor.",
+        "a": "The company retains responsibility for processing on its behalf, while the vendor performs agreed operational duties.",
         "why": "Section 8(1) places responsibility on the Data Fiduciary for compliance with the Act in respect of processing undertaken by it or on its behalf, including through a processor.",
         "law": "DPDP Act, 2023, s. 8(1)",
         "bad": [
-          "Yes, a vendor contract transfers every statutory obligation.",
-          "Yes, unless the Data Principal has paid for the service.",
-          "Yes, if the vendor is located in another country."
+          "The company retains responsibility for incident notices, while the vendor assumes all remaining statutory processing duties.",
+          "The company assumes responsibility after a customer complaint, while the vendor manages compliance until that point.",
+          "The company transfers responsibility through the indemnity clause, while the vendor manages compliance for outsourced processing."
         ],
         "sourceId": "fiduciary",
         "plot": "After a vendor incident, executives say the processor caused it, so the company has no responsibility. The response channel is waiting for an owner.",
@@ -327,13 +327,13 @@
         "id": "security",
         "tag": "Security safeguards",
         "q": "The personal drive is still syncing and the extent is unknown. Which response covers the immediate exposure and the duties that follow?",
-        "a": "Contain the exposure, investigate, restore appropriate safeguards, and follow applicable breach notification requirements.",
+        "a": "Stop the sync, investigate affected copies, restore safeguards and initiate the applicable breach notification response process.",
         "why": "Data Fiduciaries must take reasonable security safeguards to prevent personal data breaches. If a breach occurs, they must notify the Board and affected Data Principals in the prescribed manner.",
         "law": "DPDP Act, 2023, s. 8(5)–(6); DPDP Rules, 2025, r. 7",
         "bad": [
-          "Wait to see whether anyone complains before securing the files.",
-          "Delete the audit logs so the incident cannot be misunderstood.",
-          "Notify only the employee who exported the data."
+          "Stop the sync, delete the local copy, restore safeguards and close the incident following containment actions.",
+          "Secure the account, investigate affected copies, restore safeguards and defer notices until complete forensic findings arrive.",
+          "Refer containment to the provider, restore account access and accept its standard communications as completing notifications."
         ],
         "sourceId": "security",
         "plot": "An employee exported customer records to a personal drive. The drive is still syncing, and nobody can confirm how many copies exist.",
@@ -345,13 +345,13 @@
         "id": "breach",
         "tag": "Breach response",
         "q": "The provider says it will handle notices but offers no completion evidence. Which responsibility should your incident owner retain?",
-        "a": "The Data Fiduciary remains responsible for complying with the Act, including notifying the Board and affected Data Principals as prescribed.",
+        "a": "Retain oversight of required Board and affected-person notices, verifying that delegated delivery meets the prescribed requirements.",
         "why": "A Data Fiduciary remains responsible for processing undertaken by it or on its behalf, including by a Data Processor. Section 8(6) requires notice of a personal data breach to the Board and each affected Data Principal.",
         "law": "DPDP Act, 2023, s. 8(1), (6)",
         "bad": [
-          "The cloud vendor alone, because it hosted the information.",
-          "The affected individuals, because they should monitor their accounts.",
-          "No one, if the provider promises to fix its security."
+          "Delegate required notices to the provider’s incident team, recording its assurance as completion of notification duties.",
+          "Verify delivery of required Board notices, allowing the provider to decide whether affected people need notification.",
+          "Verify restoration of the provider’s security safeguards, treating completed remediation as sufficient grounds to close notifications."
         ],
         "sourceId": "breach",
         "plot": "A cloud provider reports that records held for the company were exposed. Its support agent says the vendor will handle every notice.",
@@ -363,13 +363,13 @@
         "id": "breachnotice",
         "tag": "Breach notifications",
         "q": "Communications wants certainty before speaking; forensics is incomplete. Which notification plan should you authorize now?",
-        "a": "The statutory and prescribed notification requirements—not reputational preference—govern notice to the Board and affected Data Principals.",
+        "a": "Issue required initial notices without delay, sharing available facts and supplying further details through prescribed updates.",
         "why": "Rule 7 requires initial notice to the Board and each affected person without delay. Updated details go to the Board within 72 hours of awareness, or a longer period it allows on written request. Reputational discomfort is not an exception.",
         "law": "DPDP Act, 2023, s. 8(6); DPDP Rules, 2025, r. 7",
         "bad": [
-          "Notify only if a user discovers the breach.",
-          "Notify only the regulator, never affected people.",
-          "Wait until every detail is certain before taking required steps."
+          "Issue initial notices within the later update window, using that interval to gather the outstanding facts.",
+          "Issue the initial Board notice without delay, contacting affected people after forensic analysis confirms complete details.",
+          "Issue affected-person notices without delay, contacting the Board after the final assessment establishes substantial resulting harm."
         ],
         "sourceId": "breachnotice",
         "plot": "The incident commander wants to wait until every detail is certain; communications worries that a notice will damage trust.",
@@ -391,13 +391,13 @@
         "id": "rights",
         "tag": "Data Principal rights",
         "q": "Identity checks are complete. The user asked for their processing summary, not the general policy. Which response satisfies the request?",
-        "a": "Provide the information the user is entitled to under the Act, following a reasonable identity and request-handling process.",
+        "a": "Provide the required account-specific processing information, using the completed identity checks to progress the access request.",
         "why": "A Data Principal has a right to obtain a summary of personal data being processed and the processing activities, subject to the Act and prescribed manner.",
         "law": "DPDP Act, 2023, s. 11",
         "bad": [
-          "Reject the request because the data belongs to the company.",
-          "Demand a court order for every rights request.",
-          "Send another person’s data too to prove the system is complete."
+          "Provide the current privacy policy describing processing, using the completed identity checks to close the request.",
+          "Provide the stored profile fields without processing details, using the completed identity checks to complete responses.",
+          "Provide instructions for obtaining judicial authorization, using the completed identity checks to prepare the eventual disclosure."
         ],
         "sourceId": "rights",
         "plot": "A user asks for a summary of the personal data and the processing activities tied to their account. The support script offers only a privacy-policy link.",
@@ -409,13 +409,13 @@
         "id": "correction",
         "tag": "Correction & erasure",
         "q": "The misspelling is verified and the record remains in use. Which action resolves the request instead of merely recording a ticket?",
-        "a": "Provide a way to request correction and take appropriate steps to correct inaccurate personal data.",
+        "a": "Update the verified name in active processing records, recording the correction and confirming resolution with customers.",
         "why": "The Act grants the Data Principal a right to correction, completion and updating of personal data, in accordance with applicable requirements.",
         "law": "DPDP Act, 2023, s. 12(1)",
         "bad": [
-          "Refuse because the user entered the name initially.",
-          "Correct it only if the user withdraws all consent.",
-          "Leave it wrong but mark the profile as disputed."
+          "Record the verified name in the correction queue, retaining existing processing records until the annual review.",
+          "Update the verified name in the customer interface, retaining existing names in the operational processing records.",
+          "Prepare the verified name correction for processing, applying it once the customer withdraws unrelated service consent."
         ],
         "sourceId": "correction",
         "plot": "A customer shows that their profile misspells their name. A support agent says profile changes are locked until the next annual review.",
@@ -427,13 +427,13 @@
         "id": "grievance",
         "tag": "Grievance redressal",
         "q": "The deletion ticket went unanswered. Which grievance route should the service provide before sending the customer elsewhere?",
-        "a": "An accessible grievance redressal mechanism and a timely response process, with the option to approach the Board after exhausting it.",
+        "a": "Provide accessible internal redress with an assigned owner, timely responses and Board escalation after internal exhaustion.",
         "why": "Data Fiduciaries must establish an effective mechanism to redress grievances. Data Principals must exhaust the opportunity to raise a grievance with the Data Fiduciary or Consent Manager before approaching the Board.",
         "law": "DPDP Act, 2023, ss. 8(10), 13(1)–(2)",
         "bad": [
-          "Hide the contact details until the customer closes the account.",
-          "Require the customer to post publicly on social media.",
-          "Tell the customer only a court can handle privacy complaints."
+          "Provide an accessible complaint address with receipt tracking, allowing individual teams to decide ownership after submission.",
+          "Provide direct Board referral with supporting ticket details, routing unresolved requests externally before offering internal redress.",
+          "Provide internal redress with an assigned owner, activating the grievance process after the customer closes accounts."
         ],
         "sourceId": "grievance",
         "plot": "A deletion request went unanswered. The customer now wants to file a grievance, but the product team cannot find a complaint owner.",
@@ -455,13 +455,13 @@
         "id": "retention",
         "tag": "Storage limitation",
         "q": "The event purpose has ended and extra profiles remain in staging and processor systems. Which cleanup plan accounts for the remaining copies?",
-        "a": "Erase the data when its purpose is no longer served, unless retention is required by law, and cause processors to erase it too.",
+        "a": "Erase unnecessary company and processor copies, retaining only records covered by an identified legal retention requirement.",
         "why": "The Data Fiduciary must erase personal data when consent is withdrawn or the specified purpose is no longer served, unless retention is required by law. Check applicable minimum retention rules before erasing processing records.",
         "law": "DPDP Act, 2023, s. 8(7); DPDP Rules, 2025, r. 8(3)",
         "bad": [
-          "Keep all profiles forever for possible future analytics.",
-          "Keep copies with processors after deleting the main database.",
-          "Erase only when the individual files a formal complaint."
+          "Erase unnecessary company copies and document completion, leaving processor copies available under their existing storage arrangements.",
+          "Archive company and processor copies under legal hold, identifying the specific retention requirement during subsequent review.",
+          "Remove account identifiers from company and processor copies, retaining other identifiable profile details for operational reference."
         ],
         "sourceId": "retention",
         "plot": "The ticketing service finished an event months ago. Extra attendee profile data remains in a staging bucket with no owner.",
@@ -473,13 +473,13 @@
         "id": "purposeend",
         "tag": "Purpose completed",
         "q": "No law requires these dietary preferences, although some processing records have retention requirements. Which deletion decision is justified?",
-        "a": "Erase the data once the purpose is no longer served, while retaining only information required by law.",
+        "a": "Erase the dietary preferences after purpose completion, preserving separately required records within their applicable retention periods.",
         "why": "Section 8(7) requires erasure when the specified purpose is no longer served unless retention is necessary for compliance with law. Rule 8 also sets specified erasure periods and requires at least one year of certain processing data and logs for purposes in the Seventh Schedule.",
         "law": "DPDP Act, 2023, s. 8(7); DPDP Rules, 2025, r. 8(1)–(3)",
         "bad": [
-          "Keep it for future events without telling attendees.",
-          "Move it to an archive and consider that deletion.",
-          "Share it with sponsors to recover event costs."
+          "Encrypt the dietary preferences after purpose completion, preserving them for potential reuse during a future event.",
+          "Retain the dietary preferences with processing logs, applying the log-retention requirement across the complete attendee profile.",
+          "Archive the dietary preferences under restricted access, treating removal from the active database as completed erasure."
         ],
         "sourceId": "purposeend",
         "plot": "A one-time event is over and no law requires keeping dietary preferences. Operations wants to retain them in case the event returns.",
@@ -491,13 +491,13 @@
         "id": "accuracy",
         "tag": "Data quality",
         "q": "Two credible records conflict and the lender’s decision job is about to run. Which plan addresses the unresolved accuracy risk before it affects the person?",
-        "a": "Take reasonable steps to ensure the data is complete, accurate and consistent before using it for a decision affecting the person.",
+        "a": "Pause the decision and reconcile conflicting records, checking completeness, accuracy and consistency before resuming the assessment.",
         "why": "Where personal data is likely to be used to make a decision affecting a Data Principal or disclosed to another Data Fiduciary, the Data Fiduciary must ensure completeness, accuracy and consistency.",
         "law": "DPDP Act, 2023, s. 8(3)",
         "bad": [
-          "Use whichever record gives the fastest result.",
-          "Ignore the conflict because the data came from a vendor.",
-          "Publish both records and ask the customer to choose publicly."
+          "Run the decision and flag conflicting records, initiating reconciliation if the customer subsequently challenges the assessment.",
+          "Select the newer timestamped record, treating its recency as sufficient resolution of the conflicting customer information.",
+          "Ask the vendor to reconcile conflicting records, allowing queued decisions to proceed while confirmation remains outstanding."
         ],
         "sourceId": "accuracy",
         "plot": "A lender finds contradictory profile records just before using them for a decision that affects a customer. The scoring job is queued.",
@@ -519,13 +519,13 @@
         "id": "foreign",
         "tag": "Cross-border processing",
         "q": "The migration approver must decide whether an overseas region can be used. Which checks are necessary before treating the transfer as permitted?",
-        "a": "Check notified country restrictions, applicable Rule 15 requirements and stricter sector laws; the DPDP Act does not impose a universal overseas-transfer ban.",
+        "a": "Check destination restrictions, applicable transfer directions and stricter sector requirements before approving the proposed overseas migration.",
         "why": "The Act authorizes transfer of personal data outside India subject to restrictions the Central Government may specify, and does not override stricter restrictions under other Indian laws.",
         "law": "DPDP Act, 2023, s. 16; DPDP Rules 2025, r. 15",
         "bad": [
-          "All transfers outside India are automatically prohibited.",
-          "Any overseas provider can receive data with no conditions.",
-          "The Act means sector-specific transfer rules no longer matter."
+          "Check destination restrictions and provider safeguards before approving migration, treating sector requirements as covered by checks.",
+          "Obtain specific customer consent and provider safeguards before approving migration, treating consent as overriding destination restrictions.",
+          "Review provider reputation and contractual safeguards before approving migration, treating those assurances as establishing transfer eligibility."
         ],
         "sourceId": "foreign",
         "plot": "A service wants to move account data to a cloud region outside India. The engineer says the Act bans every overseas transfer.",
@@ -537,13 +537,13 @@
         "id": "publicdata",
         "tag": "Scope & source",
         "q": "The vendor found a public page but cannot establish who posted it. Which assessment is needed before combining those profiles with the account copy?",
-        "a": "Whether the Act’s scope or a specific exemption applies; public availability alone should not be treated as a blanket permission.",
+        "a": "Establish who published the data and whether exclusion applies before determining a basis for combining profiles.",
         "why": "The Act excludes certain personal data made or caused to be made publicly available by the Data Principal or under a legal obligation, but the facts and statutory conditions matter.",
         "law": "DPDP Act, 2023, s. 3(c)(ii)",
         "bad": [
-          "Assume anything viewable online can be used for any purpose.",
-          "Assume the Act always applies identically to every public record.",
-          "Sell the data because it was found without a login."
+          "Establish that the page requires no login before treating its visible contents as excluded personal data.",
+          "Obtain the vendor’s confirmation of public accessibility before treating the discovered profile as meeting exclusion conditions.",
+          "Verify consent for the existing private account before treating that agreement as authorization for public-profile combination."
         ],
         "sourceId": "publicdata",
         "plot": "A vendor finds profile details on a public page and proposes combining them with the overseas account copy. The source and the person who posted it are unclear.",
@@ -555,13 +555,13 @@
         "id": "contact",
         "tag": "Public contact",
         "q": "The cloud help desk cannot answer for your service’s processing. Which contact arrangement should replace the incomplete help page?",
-        "a": "Business contact information for a person able to answer questions about processing and rights requests.",
+        "a": "Publish business contact details for someone authorized to answer the service’s processing questions and rights requests.",
         "why": "The Act requires a Data Fiduciary to publish the business contact information of its Data Protection Officer, if applicable, or another person able to answer questions on its behalf.",
         "law": "DPDP Act, 2023, s. 8(9)",
         "bad": [
-          "Only the name of the cloud provider.",
-          "A private employee directory with no relevant contact.",
-          "No contact information unless a breach occurs."
+          "Publish the cloud provider’s support details for processing questions, relying on its infrastructure expertise when responding.",
+          "Assign an internal privacy owner for processing questions, maintaining contact details within the service’s internal directory.",
+          "Publish the sales team’s contact details for processing questions, relying on its existing customer communication role."
         ],
         "sourceId": "contact",
         "plot": "A user asks who can explain the processing and how to raise a concern. The help page lists the cloud vendor but no responsible contact.",
@@ -583,13 +583,13 @@
         "id": "consentproof",
         "tag": "Consent records",
         "q": "The export contains only a timestamp. Which evidence should the reviewer be able to connect to the specific purpose and user action?",
-        "a": "Keep records that can demonstrate the notice presented and the affirmative consent action for that purpose.",
+        "a": "Link the actual notice version, stated purpose and affirmative consent action to the recorded interaction timestamp.",
         "why": "The Data Fiduciary bears the burden of proving that notice was given and consent was obtained in accordance with the Act when consent is relied upon.",
         "law": "DPDP Act, 2023, s. 6(10)",
         "bad": [
-          "Rely only on a general statement that users accepted the terms.",
-          "Recreate a consent record after the request arrives.",
-          "Use one consent record for purposes added years later."
+          "Link the current notice version, stated purpose and recorded timestamp as evidence of earlier consent interaction.",
+          "Link the general terms acceptance and recorded timestamp as evidence of consent for the processing purpose.",
+          "Link a reconstructed notice screen and recorded timestamp, presenting the reconstruction as evidence of original interaction."
         ],
         "sourceId": "consentproof",
         "plot": "A reviewer asks how one user agreed to a specific data use. The team can find a timestamp but not the notice or action shown at the time.",
@@ -601,13 +601,13 @@
         "id": "complaint",
         "tag": "Data Principal duties",
         "q": "The correction documents appear to belong to another person. Which handling approach addresses authenticity without creating another disclosure?",
-        "a": "Verify the request using authentic information, guard against impersonation, and handle the supplied documents with appropriate confidentiality.",
+        "a": "Resolve the identity mismatch using authentic information, restricting document access while checking the requested correction privately.",
         "why": "Data Principals have duties under section 15, including furnishing only verifiably authentic information when exercising rights and not impersonating another person.",
         "law": "DPDP Act 2023, s. 15(b), (e); secure verification supports rights handling",
         "bad": [
-          "The company must accept every request without verification.",
-          "Users have no duties under the Act.",
-          "The company may publish the documents to expose the user."
+          "Accept the correction using supplied documents, treating further identity checks as an obstacle to exercising rights.",
+          "Classify the mismatch as established impersonation, distributing the supplied documents across operational teams for immediate awareness.",
+          "Confirm the account exists using internal records, treating that confirmation as sufficient verification of correction requests."
         ],
         "sourceId": "complaint",
         "plot": "A correction request arrives with documents that appear to belong to someone else. A manager wants to publish them in the team chat to expose the fraud.",
@@ -619,13 +619,13 @@
         "id": "accesscontrol",
         "tag": "Safeguards",
         "q": "The intern needs ticket status, but both the UI and API permit full customer exports. Which access change actually reduces the unnecessary authorization?",
-        "a": "Restrict access to the information necessary for the intern’s role and maintain appropriate safeguards.",
+        "a": "Revoke unnecessary UI and API export permissions, retaining ticket-status access and appropriate safeguards for intern duties.",
         "why": "Reasonable security safeguards are required to protect personal data. Limiting unnecessary access reduces the likelihood and impact of unauthorized disclosure.",
         "law": "DPDP Act, 2023, s. 8(5)",
         "bad": [
-          "Keep broad access because the intern is an employee.",
-          "Allow downloads to personal devices for convenience.",
-          "Wait until a data breach occurs before adjusting permissions."
+          "Retain UI and API export permissions with monitoring, adding usage restrictions and alerts for unusual activity.",
+          "Disable customer exports within the user interface, retaining API export permission for continuity of operational integrations.",
+          "Require stronger authentication for UI and API access, retaining existing export permissions within the assigned role."
         ],
         "sourceId": "accesscontrol",
         "plot": "The audit finds that a support intern can download every customer record, though the role needs only ticket status. The access review is overdue.",
