@@ -1,4 +1,4 @@
-import {createLiftRadio,LIFT_CALL} from './lift-radio.js?v=release1';
+import {createLiftRadio,LIFT_CALL} from './lift-radio.js?v=ghost1025';
 export const ARRIVAL_SECONDS=14;
 export function arrivalState(seconds){
  const t=Math.max(0,Math.min(ARRIVAL_SECONDS,seconds));
@@ -8,7 +8,7 @@ export function arrivalState(seconds){
 
 // Original real-time introduction: the player is the appointed DPO, arriving for a night shift.
 export function playArrival({world,onFinish=()=>{}}={}){
- const el=document.createElement('dialog');el.className='arrival';el.setAttribute('aria-label','Elevator arrival — DPO introduction');
+ const el=document.createElement('dialog');el.className='arrival';el.setAttribute('aria-label','Elevator arrival — Ghost introduction');
  el.innerHTML=`<section class="opening-title" aria-label="Ghost Shift: Midnight Breach opening credits"><span class="eyebrow">SHA/020 · Niks/141 · Rip/911 PRESENT</span><h2>GHOST SHIFT</h2><p>MIDNIGHT BREACH</p><small>POWERED BY THREE.JS · SUPABASE<br>Google Fonts · Hosted on GitHub Pages</small></section><div class="arrival-top"><span>CYBERLIFE · NARIMAN POINT, MUMBAI · 02:17 AM</span><button class="small arrival-skip">SKIP · ENTER OFFICE →</button></div><div class="arrival-floor"><span>OPERATIONS</span><b>29</b><span class="arrival-direction">↑ ASCENDING</span></div><div class="arrival-caption"><span class="eyebrow">CYBERLIFE · TASKFORCE 141 / CODENAME</span><h1>SIMON &apos;GHOST&apos; RILEY</h1><p class="arrival-line" role="status"></p><p class="arrival-radio" role="status" hidden></p><div class="arrival-track"><i></i></div><div class="arrival-bottom"><span class="arrival-count"></span><button class="small arrival-audio">ENABLE SOUND · RECEIVE CALL</button></div></div>`;
  const lines=['Data Protection Officer · Night duty','Identity verified. Destination: Incident Operations.','Floor 47. Doors opening.'];
  let finished=false,briefing=false,lastBeat=-1,chimed=false,ctx=null,gain=null,oscillators=[],soundOn=false;

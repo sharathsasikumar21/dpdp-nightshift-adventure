@@ -1,11 +1,11 @@
-import {buildMumbaiSkyline} from './mumbai-skyline.js?v=night4';
-import {addNightExtras} from './night-extras.js?v=night4';
+import {buildMumbaiSkyline} from './mumbai-skyline.js?v=ghost1025';
+import {addNightExtras} from './night-extras.js?v=ghost1025';
 import * as T from './vendor/three.module.js';
-import {finishOffice} from './art-direction.js?v=night4';
-import {buildElevator} from './elevator.js?v=night4';
+import {finishOffice} from './art-direction.js?v=ghost1025';
+import {buildElevator} from './elevator.js?v=ghost1025';
 import {visibleInScene,interactionOwner,bearingTo} from './fpv-interaction.js?v=finish1';
-import {buildOffice} from './realistic-office.js?v=night4';
-import {createEffects} from './world-effects.js?v=night4';
+import {buildOffice} from './realistic-office.js?v=ghost1025';
+import {createEffects} from './world-effects.js?v=ghost1025';
 import {walkPosition,desiredVelocity} from './fpv-motion.js?v=fpv1';
 
 export function createWorld(canvas,onInteract){

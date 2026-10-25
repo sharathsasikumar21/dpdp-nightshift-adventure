@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {arrivalState} from './arrival.js?v=night4';
+import {arrivalState} from './arrival.js?v=ghost1025';
 
 export function buildElevator(scene,office){
  const {box,rounded,metal,black,textPlate}=office;
