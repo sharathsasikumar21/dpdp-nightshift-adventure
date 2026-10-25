@@ -11,9 +11,9 @@ export function buildOffice(scene,renderer){
   if(kind==='stone'){d.strokeStyle='#858682';d.lineWidth=1;d.strokeRect(0,0,512,512);for(let i=0;i<120;i++){d.fillStyle='rgba(40,40,38,.12)';d.beginPath();d.ellipse(rnd()*512,rnd()*512,1+rnd()*2,1+rnd()*3,rnd()*3,0,7);d.fill();}}
   const map=new T.CanvasTexture(c);map.colorSpace=T.SRGBColorSpace;map.wrapS=map.wrapT=T.RepeatWrapping;map.repeat.set(...repeat);map.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
   const bump=map.clone();bump.colorSpace=T.NoColorSpace;
-  return new T.MeshStandardMaterial({map,bumpMap:bump,bumpScale:kind==='fabric'?.006:.012,roughness:kind==='wood'?.48:kind==='stone'?.42:.86,metalness:0});
+  return new T.MeshStandardMaterial({map,bumpMap:bump,bumpScale:kind==='fabric'?.006:.012,roughness:kind==='wood'?.48:kind==='stone'?.3:.86,metalness:0});
  }
- const stone=surface('stone','#777a77',[15,12]),wood=surface('wood','#806247',[2,1]),plaster=surface('plaster','#b7b5ab',[8,2]),fabric=surface('fabric','#434a4c',[3,3]);
+ const stone=surface('stone','#646a69',[20,16]),wood=surface('wood','#75604c',[2,1]),plaster=surface('plaster','#b7b5ab',[8,2]),fabric=surface('fabric','#353f43',[3,3]);
  const metal=new T.MeshStandardMaterial({color:'#777d7d',metalness:.85,roughness:.29});
  const black=new T.MeshStandardMaterial({color:'#1c2022',metalness:.18,roughness:.48});
  const white=new T.MeshStandardMaterial({color:'#c6c8c3',roughness:.72});
@@ -35,23 +35,22 @@ export function buildOffice(scene,renderer){
  box(0,1.75,-12,30,3.5,.2,plaster);for(const side of [-1,1]){box(side*15,1.75,0,.2,3.5,24,plaster);box(side*14.87,.07,0,.04,.14,24,metal);}
  // Acoustic ceiling tiles, recessed light panels and vents at credible scale.
  for(let x=-14;x<=14;x+=2){box(x,3.405,0,.024,.015,24,metal);}for(let z=-11;z<=11;z+=2)box(0,3.405,z,30,.015,.024,metal);
- const diffuser=new T.MeshStandardMaterial({color:'#f5ebd7',emissive:'#fff1d6',emissiveIntensity:2,roughness:.8});
+ const diffuser=new T.MeshStandardMaterial({color:'#f5ebd7',emissive:'#fff1d6',emissiveIntensity:1.3,roughness:.8});
  for(const x of [-10,-5,0,5,10])for(const z of [-6,0,6]){box(x,3.36,z,1.24,.07,.64,metal);box(x,3.315,z,1.14,.012,.54,diffuser);}
- for(const x of [-10,0,10])for(const z of [-6,6]){const l=new T.PointLight('#ffe6c4',24,11,2);l.position.set(x,3.12,z);scene.add(l);lamps.push(l);}
- const key=new T.SpotLight('#ffe8cf',130,24,.95,.7,1.6);key.position.set(2,3.25,2);key.target.position.set(0,0,-3);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.bias=-.00015;key.shadow.normalBias=.025;scene.add(key,key.target);
+ for(const x of [-10,0,10])for(const z of [-6,6]){const l=new T.PointLight('#ffdcaa',24,11,2);l.position.set(x,3.12,z);scene.add(l);lamps.push(l);}
+ const key=new T.SpotLight('#ffe1b5',115,24,.95,.7,1.6);key.position.set(2,3.25,2);key.target.position.set(0,0,-3);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.bias=-.00015;key.shadow.normalBias=.025;scene.add(key,key.target);
  for(const x of [-12,12]){box(x,3.37,0,.6,.04,1.4,white);for(let i=0;i<10;i++)box(x,3.34,-.55+i*.12,.48,.01,.035,black);}
  // Full-height glazing with slim mullions, blinds, rain streaks and night city.
  for(let x=-13.5;x<15;x+=3){if(Math.abs(x)<2)continue;box(x,1.8,11.85,2.94,3.3,.025,glass).castShadow=false;box(x-1.5,1.75,11.8,.06,3.5,.12,metal);box(x,3.3,11.65,2.96,.12,.14,white);for(let j=0;j<4;j++)box(x,3.17-j*.07,11.62,2.88,.018,.12,white);}
  for(const x of [-8.3,8.3])box(x,.25,11.82,13.4,.5,.2,plaster);for(const x of [-2.3,2.3])box(x,1.8,11.85,1.4,3.3,.025,glass).castShadow=false;
- const city=new T.MeshStandardMaterial({map:cityFacade(),emissiveMap:cityFacade(),emissive:'#b1bac2',emissiveIntensity:.8,roughness:.85});
- for(let i=0;i<30;i++){const h=6+rnd()*23;box((i%15-7)*5,h/2-3,26+Math.floor(i/15)*15,3+rnd()*2,h,4,city).castShadow=false;}
  const positions=[[-10,-6],[-5,-6],[0,-6],[5,-6],[10,-6],[-10,5],[-5,5],[0,5],[5,5],[10,5]];
  const sectors=['SIGNAL','CONSENT','CIVIC','JUNIOR','VENDOR','INCIDENT','RIGHTS','ARCHIVE','BORDER','AUDIT'];
  positions.forEach(([x,z],i)=>{
   rounded(x,.76,z,2.6,.06,1.1,wood,.018);for(const dx of [-1.12,1.12]){box(x+dx,.38,z,.055,.7,.07,metal);box(x+dx,.045,z,.18,.04,.85,metal);}box(x,.48,z-.32,2.25,.04,.06,metal);
   box(x,.88,z-.16,.045,.25,.06,metal);rounded(x,.8,z-.16,.42,.025,.26,black,.008);
   rounded(x,1.16,z-.2,1.12,.65,.045,black,.018);const tex=monitorTexture(i,sectors[i]);const screen=add(new T.PlaneGeometry(1.055,.59),new T.MeshStandardMaterial({map:tex,emissiveMap:tex,emissive:'#ffffff',emissiveIntensity:.65,roughness:.25}),x,1.16,z-.173);screens.push(screen);
-  rounded(x-.08,.811,z+.28,.6,.022,.21,black,.008);for(let row=0;row<4;row++)for(let col=0;col<14;col++)box(x-.35+col*.039,.827,z+.21+row*.041,.031,.008,.029,col===13?white:rubber);
+  rounded(x-.08,.811,z+.28,.6,.022,.21,black,.008);const keyGeo=new T.BoxGeometry(.031,.008,.029),keyMatrix=new T.Matrix4();
+  for(const [mat,columns] of [[rubber,13],[white,1]]){const keys=new T.InstancedMesh(keyGeo,mat,columns*4);let n=0;for(let row=0;row<4;row++)for(let col=0;col<columns;col++){keyMatrix.makeTranslation(x-.35+(columns===1?13:col)*.039,.827,z+.21+row*.041);keys.setMatrixAt(n++,keyMatrix);}keys.castShadow=true;keys.receiveShadow=true;scene.add(keys);}
   const mouse=add(new T.SphereGeometry(1,12,8),black,x+.49,.83,z+.28);mouse.scale.set(.035,.02,.055);box(x+.49,.796,z+.3,.26,.003,.3,rubber);
   // Fabric task chairs, curved backs, five-star bases and castor wheels.
   const cx=x+.9,cz=z+1.2;rounded(cx,.46,cz,.49,.09,.47,fabric,.035);const back=rounded(cx,.78,cz+.22,.47,.55,.06,fabric,.025);back.rotation.x=-.09;cylinder(cx,.24,cz,.025,.4,metal);
@@ -66,7 +65,7 @@ export function buildOffice(scene,renderer){
  });
  // Rear archive cabinets: rack doors, mesh vents, handles and small activity LEDs.
  for(let x=-12;x<=12;x+=2.4){box(x,1.1,-10.7,1.1,2.2,.8,black);box(x,1.1,-10.28,.99,2.06,.025,metal);for(let y=.25;y<2;y+=.17){box(x,y,-10.25,.9,.11,.015,black);for(let j=0;j<4;j++)box(x-.32+j*.018,y,-10.235,.007,.07,.008,metal);box(x+.35,y,-10.23,.015,.015,.008,new T.MeshBasicMaterial({color:y>1?'#90c8a0':'#bba875'}));}box(x+.39,1.1,-10.19,.025,.22,.035,black);contact(x,-10.7,1.8,1.4);}
- textPlate('NIGHTSHIFT  /  INCIDENT OPERATIONS',0,2.85,-11.86,5,.38,'#b7b5ab','#353e3e');
+ // Rear signage is provided by the architectural detail pass.
  // Collaboration table with a flat incident display instead of floating holograms.
  rounded(0,.76,-.4,5,.09,2.1,wood,.025);for(const x of [-2,2])box(x,.37,-.4,.08,.7,1.55,metal);blocks.push({x:0,z:-.4,w:5,d:2.1});contact(0,-.4,6,3.2);
  const display=add(new T.PlaneGeometry(3.8,1.45),new T.MeshStandardMaterial({map:monitorTexture(3,'INCIDENT OVERVIEW'),emissive:'#ffffff',emissiveMap:monitorTexture(3,'INCIDENT OVERVIEW'),emissiveIntensity:.4,roughness:.2}),0,.811,-.4);display.rotation.x=-Math.PI/2;
@@ -76,6 +75,6 @@ export function buildOffice(scene,renderer){
  for(const x of [-7.5,7.5]){box(x,1.5,8.9,.018,3,3.8,glass).castShadow=false;for(const z of [7,10.8])box(x,1.5,z,.035,3,.035,metal);blocks.push({x,z:8.9,w:.04,d:3.8});}
  const leaf=new T.MeshStandardMaterial({color:'#314d32',roughness:.8,side:T.DoubleSide});for(const x of [-14,14]){cylinder(x,.25,10,.25,.5,white);for(let i=0;i<14;i++){const a=i*2.4;const stem=cylinder(x+Math.sin(a)*.08,.65,10+Math.cos(a)*.08,.005,.8,black);const l=add(new T.SphereGeometry(1,10,8),leaf,x+Math.sin(a)*.2,.65+i%4*.16,10+Math.cos(a)*.2);l.scale.set(.09,.31,.025);l.rotation.z=Math.sin(a)*.8;}contact(x,10,1,1);}
  // Reflection capture with neutral practical lights, not coloured neon strips.
- const env=document.createElement('canvas');env.width=512;env.height=256;const ed=env.getContext('2d');const grad=ed.createLinearGradient(0,0,0,256);grad.addColorStop(0,'#a3a6a0');grad.addColorStop(.48,'#555d62');grad.addColorStop(1,'#242a2d');ed.fillStyle=grad;ed.fillRect(0,0,512,256);ed.fillStyle='#fff2d9';for(let x=16;x<512;x+=95)ed.fillRect(x,34,42,14);ed.fillStyle='#6b8caa';ed.fillRect(210,110,120,42);const et=new T.CanvasTexture(env);et.colorSpace=T.SRGBColorSpace;et.mapping=T.EquirectangularReflectionMapping;const pm=new T.PMREMGenerator(renderer);scene.environment=pm.fromEquirectangular(et).texture;scene.environmentIntensity=.42;pm.dispose();et.dispose();
+ const env=document.createElement('canvas');env.width=512;env.height=256;const ed=env.getContext('2d');const grad=ed.createLinearGradient(0,0,0,256);grad.addColorStop(0,'#303b50');grad.addColorStop(.48,'#182334');grad.addColorStop(1,'#242a2d');ed.fillStyle=grad;ed.fillRect(0,0,512,256);ed.fillStyle='#fff2d9';for(let x=16;x<512;x+=95)ed.fillRect(x,34,42,14);ed.fillStyle='#6b8caa';ed.fillRect(210,110,120,42);const et=new T.CanvasTexture(env);et.colorSpace=T.SRGBColorSpace;et.mapping=T.EquirectangularReflectionMapping;const pm=new T.PMREMGenerator(renderer);scene.environment=pm.fromEquirectangular(et).texture;scene.environmentIntensity=.22;pm.dispose();et.dispose();
  return {positions,screens,blocks,meshes,key,lamps,box,rounded,metal,black,paper,textPlate};
 }

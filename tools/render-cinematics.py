@@ -19,6 +19,53 @@ nodes = [(rng.randrange(70, W-70), rng.randrange(130, 370)) for _ in range(12)]
 def smooth(x):
     x=max(0,min(1,x)); return x*x*(3-2*x)
 def envelope(t,a,b): return smooth((t-a)/.65)*smooth((b-t)/.65)
+
+def creator_figure(layer, x, t, index):
+    """Original brick-style toy portraits with moulded plastic and a gentle wave."""
+    d=ImageDraw.Draw(layer); y=202+math.sin(t*1.7+index)*2
+    skin=(226,181,109,255); edge=(125,90,48,255)
+    coats=[(59,111,126,255),(137,82,104,255),(78,118,99,255)]
+    coat=coats[index]; hair=[(41,34,30,255),(48,29,28,255),(77,43,28,255)][index]
+    # Floor shadow, two separate block legs and bevel highlights.
+    d.ellipse((x-69,356,x+69,373),fill=(0,0,0,100))
+    for dx in [-22,22]:
+        d.rounded_rectangle((x+dx-19,302,x+dx+18,360),radius=5,fill=(31,43,54,255),outline=(17,24,32,255),width=2)
+        d.rectangle((x+dx-15,307,x+dx-11,349),fill=(77,91,99,255))
+        d.rounded_rectangle((x+dx-21,347,x+dx+20,365),radius=4,fill=(24,34,45,255))
+        d.line((x+dx-17,350,x+dx+16,350),fill=(91,102,107,255),width=2)
+    # Long hair is drawn behind the head and shoulders for the two female creators.
+    if index:
+        d.rounded_rectangle((x-41,y-19,x+41,y+88),radius=24,fill=hair)
+        for dx in [-32,-24,27,34]:d.line((x+dx,y+11,x+dx,y+79),fill=(108,69,44,255),width=2)
+    d.rounded_rectangle((x-46,253,x+46,310),radius=7,fill=coat,outline=(17,27,32,255),width=2)
+    d.polygon([(x-31,256),(x-9,278),(x,261),(x+9,278),(x+31,256)],fill=(223,224,211,255))
+    d.line((x,278,x,306),fill=(25,41,47,255),width=3)
+    d.rounded_rectangle((x+18,282,x+35,299),radius=2,fill=(204,196,157,255))
+    d.line((x-38,264,x-38,298),fill=tuple(min(255,v+35) for v in coat[:3])+(255,),width=3)
+    # Capsule arms and unmistakable C-shaped toy hands.
+    wave=math.sin(t*2+index)*7
+    d.line((x-43,267,x-58,307),fill=coat,width=21)
+    d.line((x+43,266,x+62,242+wave),fill=coat,width=21)
+    for hx,hy in [(x-60,320),(x+66,230+wave)]:
+        d.arc((hx-12,hy-12,hx+12,hy+12),35,325,fill=edge,width=9)
+        d.arc((hx-11,hy-11,hx+11,hy+11),35,325,fill=skin,width=7)
+    d.rectangle((x-13,y+42,x+13,257),fill=skin)
+    d.rounded_rectangle((x-33,y-10,x+33,y+51),radius=13,fill=skin,outline=edge,width=2)
+    d.rounded_rectangle((x-14,y-20,x+14,y-8),radius=3,fill=(231,191,124,255))
+    d.line((x-27,y+1,x-27,y+34),fill=(248,217,164,255),width=3)
+    if index==0:
+        d.pieslice((x-34,y-19,x+34,y+23),180,355,fill=hair)
+        d.polygon([(x-30,y),(x-19,y+10),(x-9,y-4),(x+26,y+5),(x+31,y-7)],fill=hair)
+    else:
+        d.pieslice((x-36,y-20,x+36,y+22),180,360,fill=hair)
+        d.polygon([(x-31,y-3),(x-17,y+14),(x+8,y-5),(x+31,y+8),(x+31,y-9)],fill=hair)
+    for dx in [-12,12]:
+        d.ellipse((x+dx-3,y+19,x+dx+3,y+25),fill=(35,30,28,255))
+        d.point((x+dx-1,y+20),fill=(255,255,240,255))
+    d.arc((x-11,y+26,x+11,y+39),10,170,fill=(77,47,34,255),width=2)
+    name=['SHA/020','Niks/141','Rip/911'][index]
+    f=font(27,True); bounds=d.textbbox((0,0),name,font=f)
+    d.text((x-bounds[2]/2,390),name,font=f,fill=WHITE)
 def label(layer, text, y, size, color=WHITE, alpha=1, bold=False):
     if alpha <= .001: return
     d=ImageDraw.Draw(layer); f=font(size,bold); box=d.textbbox((0,0),text,font=f)
@@ -107,9 +154,12 @@ def frame(t, credits=False, ending=None):
         label(overlay,'THE SHIFT HAS ENDED.',207,43,alpha=a,bold=True)
         label(overlay,'THE STORY STAYS WITH YOU.',269,18,GREEN,a)
         a=envelope(t,3,10.6)
-        label(overlay,'THE TEAM BEHIND THE NIGHTSHIFT',171,15,GREEN,a)
-        for name,y,delay in [('Rips',205,3),('Niks',254,3.7),('SharkBytes',303,4.4)]:
-            label(overlay,name,y,40,alpha=envelope(t,delay,10.6),bold=True)
+        label(overlay,'THE TEAM BEHIND GHOST SHIFT',137,16,GREEN,a)
+        for i,x in enumerate([230,480,730]):
+            figure=Image.new('RGBA',(W,H));creator_figure(figure,x,t,i)
+            fade=envelope(t,3+i*.2,10.6)
+            figure.putalpha(figure.getchannel('A').point(lambda v:int(v*fade)))
+            overlay=Image.alpha_composite(overlay,figure)
         a=envelope(t,10.3,14)
         label(overlay,'THANK YOU FOR PLAYING',209,38,alpha=a,bold=True)
         label(overlay,'EVERY BETTER MORNING STARTS WITH A CALL.',270,16,GREEN,a)
@@ -117,8 +167,8 @@ def frame(t, credits=False, ending=None):
         for a,b,line,sub in [(0,4.1,'THE CITY NEVER STOPS.','NEITHER DOES ITS DATA.'),(3.9,8.1,'ONE SHORTCUT. A THOUSAND LIVES.','TONIGHT, THE NEXT CALL IS YOURS.')]:
             e=envelope(t,a,b); label(overlay,line,211,36,alpha=e,bold=True);label(overlay,sub,269,17,GREEN,e)
         e=envelope(t,7.9,14)
-        label(overlay,'DPDP',174,24,GREEN,e)
-        label(overlay,'NIGHTSHIFT',209,78,alpha=e,bold=True)
+        label(overlay,'MIDNIGHT BREACH',174,24,GREEN,e)
+        label(overlay,'GHOST SHIFT',209,78,alpha=e,bold=True)
         label(overlay,'FOLLOW THE DATA. PROTECT THE PEOPLE.',308,16,GREEN,e)
     # Restrained fades, with no strobe or flashing cuts.
     im=Image.alpha_composite(im,overlay).convert('RGB')

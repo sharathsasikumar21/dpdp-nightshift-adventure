@@ -79,7 +79,7 @@ export function createEffects(scene, positions, screens, {realistic=false}={}) {
   }
   const pulse = mesh(new T.RingGeometry(.95, 1, 64), new T.MeshBasicMaterial({ color: '#91ffda', transparent: true, opacity: 0, side: T.DoubleSide, depthWrite: false }));
   pulse.rotation.x = -Math.PI / 2; pulse.position.set(0, .07, -.4);
-  const traffic = Array.from({ length: 8 }, (_, i) => {
+  const traffic = Array.from({ length: realistic?0:8 }, (_, i) => {
     const car = cube(.55, .12, .12, i % 2 ? amber : green); car.position.set(i * 7 - 28, .7 + i % 2, 18 + i % 2 * 2); return car;
   });
 
