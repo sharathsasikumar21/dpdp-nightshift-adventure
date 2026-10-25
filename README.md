@@ -109,3 +109,8 @@ Simon 'Ghost' Riley remains the protagonist tribute. The fictional employer is n
 Collected case sources appear beside the relevant question. Unsafe calls raise a per-player security level (0–3); at level 2 the case locator and coffee service are restricted. A defensible call lowers it one level. Amber office lighting and colleague dialogue reflect this state. Essential evidence, manual navigation and questions remain available.
 
 Colleagues have restrained idle movement and nearby eye contact; reduced-motion settings suppress idle animation. Original stereo footsteps, distant phone and rain textures accompany exploration. Evidence discovery briefly ducks the score. These sounds use Web Audio with the existing mute, hidden-tab and film controls; no generation credits are used.
+
+### Separate music cues and technology footer
+The 32-second Midnight Breach gameplay loop uses low toms, pulsing bass and bowed synth harmonics. The separate 14-second elevator/title cue builds from a title swell to the arrival. The intro waits for Start with sound or Play silently so the title cue is not lost to autoplay restrictions. Intro music stays quiet beneath the radio, and stops on mute, skip or exit. Both tracks are original local synthesis, rendered by tools/render-score.py; no paid generation service is used.
+
+The home-page footer shows Powered By: with locally hosted Simple Icons logos linking to Three.js, Supabase, Google Fonts, GitHub Pages and ElevenLabs. Logos sourced from https://github.com/simple-icons/simple-icons (CC0); brand marks belong to their respective owners. No Cloudflare credit is shown because the /3d/ deployment does not use it.

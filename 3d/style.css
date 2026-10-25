@@ -84,3 +84,5 @@ header{background:linear-gradient(180deg,#0b141eea,#111d27c4);border-bottom:1px 
 
 /* Investigation and operational feedback */
 .operations-status,.evidence-analysis{padding:14px 18px;border-left:3px solid #c7a56a;background:rgba(199,165,106,.08);margin:14px 0;font-size:14px;line-height:1.65}.operations-status strong,.evidence-analysis strong{letter-spacing:.12em;font-size:11px;color:#d6ba87}.office-card [data-lead]{display:block;width:100%;text-align:left;margin:10px 0}.office-card p{white-space:pre-line}
+
+.powered-footer{position:relative;margin:0 5.2vw 36px;padding:26px 0 12px;border-top:1px solid #9baeb044;max-width:1040px}.powered-footer h2{font:12px var(--mono);letter-spacing:.14em;color:#d2b881;margin:0 0 22px}.powered-logos{display:flex;gap:18px 28px;flex-wrap:wrap}.powered-logos a{display:flex;align-items:center;gap:12px;color:#d9dfdf;text-decoration:none;font-size:12px}.powered-logos a:hover{color:#e5c98e}.powered-logos img{object-fit:contain}.powered-logos small{display:block;font:9px var(--mono);color:#92a4ab;margin-top:5px}.powered-footer p{font:9px var(--mono);color:#92a4ab;margin-top:24px}.arrival-bottom{flex-wrap:wrap;gap:12px}
