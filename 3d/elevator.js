@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {arrivalState} from './arrival.js?v=ghost1025';
+import {arrivalState} from './arrival.js?v=depth1';
 
 export function buildElevator(scene,office){
  const {box,rounded,metal,black,textPlate}=office;
@@ -14,7 +14,7 @@ export function buildElevator(scene,office){
  for(const x of [-1.48,1.48])box(x,1.4,11.98,.22,2.8,.25,metal);box(0,2.68,11.98,3,.24,.25,metal);
  const left=rounded(-.7,1.24,12.03,1.39,2.48,.055,panel,.008),right=rounded(.7,1.24,12.03,1.39,2.48,.055,panel,.008);
  for(const door of [left,right]){const strip=new T.Mesh(new T.BoxGeometry(.012,2.38,.008),metal);strip.position.z=.034;door.add(strip);}
- textPlate('47  /  CYBERLIFE',0,2.47,12.08,1.8,.13,'#20292d','#e4d3ac');
+ textPlate('47  /  MERIDIAN DATAWORKS',0,2.47,12.08,1.8,.13,'#20292d','#e4d3ac');
  box(1.15,1.4,12.13,.23,.7,.04,black);for(let i=0;i<4;i++){const b=new T.Mesh(new T.CylinderGeometry(.035,.035,.012,20),i===3?glow:metal);b.rotation.x=Math.PI/2;b.position.set(1.15,1.63-i*.15,12.16);scene.add(b);}
  textPlate("SIMON 'GHOST' RILEY",-1.1,1.35,12.11,.36,.11,'#162321','#aad4b2');
  // Closed doors remain as an architectural exit when the introduction finishes.

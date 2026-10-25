@@ -81,3 +81,6 @@ header{background:linear-gradient(180deg,#0b141eea,#111d27c4);border-bottom:1px 
 .office-card{border:1px solid #b9a77c66;background:#0b1420;color:#eee7da;padding:0;max-width:min(620px,92vw);max-height:85dvh;overflow:auto}.office-card::backdrop{background:#02060bd9}.office-card p{white-space:pre-line}.arrival-caption h1{font-size:clamp(32px,6vw,70px)}.arrival-top>span{max-width:65%;line-height:1.7}
 
 .opening-title{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#040a12ed;text-align:center;padding:24px;pointer-events:none}.opening-title[hidden]{display:none}.opening-title h2{font:700 clamp(38px,9vw,100px)/1 var(--title);margin:20px 0 5px;letter-spacing:.08em}.opening-title p{letter-spacing:.3em;color:#e6c995}.opening-title small{font:11px/2 var(--mono);color:#b2bdc9;margin-top:24px}.opening-title .eyebrow{font-size:10px}
+
+/* Investigation and operational feedback */
+.operations-status,.evidence-analysis{padding:14px 18px;border-left:3px solid #c7a56a;background:rgba(199,165,106,.08);margin:14px 0;font-size:14px;line-height:1.65}.operations-status strong,.evidence-analysis strong{letter-spacing:.12em;font-size:11px;color:#d6ba87}.office-card [data-lead]{display:block;width:100%;text-align:left;margin:10px 0}.office-card p{white-space:pre-line}

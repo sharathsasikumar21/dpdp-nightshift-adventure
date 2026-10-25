@@ -13,7 +13,7 @@ export function playCinematic(kind, {muted=true, onStart=()=>{}, onFinish=()=>{}
     dialog.className='cinema';
     dialog.setAttribute('aria-label',film.title);
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    dialog.innerHTML=`<div class="cinema-stage"><video playsinline preload="auto" poster="media/${kind}-poster.jpg?v=ghost1025" aria-label="${film.description}"></video><div class="cinema-top"><span>N / ${film.heading} · 14 SECONDS</span><button class="small cinema-skip">SKIP ${film.skip} →</button></div><div class="cinema-bottom"><button class="small cinema-play">PLAY FILM</button><span class="cinema-status" role="status">${reduced?'Reduced motion is on. Play this film or skip to continue.':'Loading film…'}</span><button class="small cinema-sound">${muted?'ENABLE SOUND':'MUTE FILM'}</button></div><div class="cinema-progress" aria-hidden="true"><i></i></div></div>`;
+    dialog.innerHTML=`<div class="cinema-stage"><video playsinline preload="auto" poster="media/${kind}-poster.jpg?v=depth1" aria-label="${film.description}"></video><div class="cinema-top"><span>N / ${film.heading} · 14 SECONDS</span><button class="small cinema-skip">SKIP ${film.skip} →</button></div><div class="cinema-bottom"><button class="small cinema-play">PLAY FILM</button><span class="cinema-status" role="status">${reduced?'Reduced motion is on. Play this film or skip to continue.':'Loading film…'}</span><button class="small cinema-sound">${muted?'ENABLE SOUND':'MUTE FILM'}</button></div><div class="cinema-progress" aria-hidden="true"><i></i></div></div>`;
     const video=dialog.querySelector('video'), play=dialog.querySelector('.cinema-play'), status=dialog.querySelector('.cinema-status'), audio=dialog.querySelector('.cinema-sound');
     let done=false, watchdog;
     function finish(){
@@ -30,7 +30,7 @@ export function playCinematic(kind, {muted=true, onStart=()=>{}, onFinish=()=>{}
     dialog.addEventListener('cancel',e=>{e.preventDefault();finish();});
     play.onclick=start;
     audio.onclick=()=>{video.muted=!video.muted;audio.textContent=video.muted?'ENABLE SOUND':'MUTE FILM';};
-    video.muted=muted;video.src=`media/${kind}.mp4?v=ghost1025`;
+    video.muted=muted;video.src=`media/${kind}.mp4?v=depth1`;
     video.onended=finish;
     video.onerror=finish;
     video.ontimeupdate=()=>{dialog.querySelector('.cinema-progress i').style.transform=`scaleX(${Math.min(1,video.currentTime/14)})`;if(video.currentTime>=14)finish();};

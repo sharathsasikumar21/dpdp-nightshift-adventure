@@ -92,7 +92,7 @@ A unified slate, ivory and brass interface covers menus, decisions, evidence and
 The lift now receives a priority Control transmission for Simon 'Ghost' Riley, summoning the DPO to Incident Operations on floor 47. Its transcript appears during the ride. Enable sound / Receive call plays dispatch tones, a brief radio squelch and the call using an available browser speech voice. Muting, skipping or completing the lift stops the voice. Speech availability and voice quality depend on the browser/device; the transcript remains available without speech.
 
 ## Nighttime identity and tributes
-The current local 3D version introduces Simon 'Ghost' Riley of TaskForce 141 at CyberLife, floor 47, Nariman Point, Mumbai, at 02:17 AM. The waterfront and mixed-height skyline are fictional Mumbai-inspired geometry, with apartments, balconies, stepped roofs, tanks, and glass offices. Airliners and a helicopter follow slow sky routes; the previous floating car effects are disabled. Reduced-motion preferences freeze aircraft animation.
+The current local 3D version introduces Simon 'Ghost' Riley of TaskForce 141 at Meridian Dataworks, floor 47, Nariman Point, Mumbai, at 02:17 AM. The waterfront and mixed-height skyline are fictional Mumbai-inspired geometry, with apartments, balconies, stepped roofs, tanks, and glass offices. Airliners and a helicopter follow slow sky routes; the previous floating car effects are disabled. Reduced-motion preferences freeze aircraft animation.
 
 Five original typographic wall posters acknowledge Watch Dogs 2, Red Dead Redemption 2, Detroit: Become Human, Cyberpunk 2077 and Call of Duty: Modern Warfare. Approach and click or press E; Game Tributes also provides accessible text. Three colleagues provide randomized investigation hints, also available through Ask a Colleague. Reading these cards does not pause decision deadlines.
 
@@ -101,3 +101,11 @@ Opening credits acknowledge Three.js, Supabase Realtime, Google Fonts and GitHub
 All scenarios explicitly assume every phase of the DPDP Act and 2025 Rules is in force in the fictional game setting. This is a simulation assumption, not a statement about today's commencement status. Existing fact-specific exceptions remain in the case answers.
 
 The radio uses a locally hosted ElevenLabs Sarah recording (v4 Turbo, final generation: 46 credits) with a stern delivery. Ghost is summoned to the Incident Operations Room. Playback never calls ElevenLabs or consumes generation credits. Browser speech is retained as a load-failure fallback. Music uses an original locally rendered 32-second suspense loop with adaptive Web Audio accents. It pauses in hidden tabs, mutes during films, and follows the sound toggle. Generate the MP3 with tools/render-score.py (NumPy and imageio-ffmpeg). No external generation credits or runtime API calls are required.
+
+### Desktop investigation update
+
+Simon 'Ghost' Riley remains the protagonist tribute. The fictional employer is now Meridian Dataworks. Solo shifts begin with three arrival leads: an expired visitor badge, a conflicting door log, and Mira’s account. Inspect them in the office or through Arrival leads; no question time is consumed. Multiplayer keeps its existing shared briefing and 60-second decisions.
+
+Collected case sources appear beside the relevant question. Unsafe calls raise a per-player security level (0–3); at level 2 the case locator and coffee service are restricted. A defensible call lowers it one level. Amber office lighting and colleague dialogue reflect this state. Essential evidence, manual navigation and questions remain available.
+
+Colleagues have restrained idle movement and nearby eye contact; reduced-motion settings suppress idle animation. Original stereo footsteps, distant phone and rain textures accompany exploration. Evidence discovery briefly ducks the score. These sounds use Web Audio with the existing mute, hidden-tab and film controls; no generation credits are used.
