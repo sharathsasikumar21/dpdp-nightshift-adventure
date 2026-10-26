@@ -120,3 +120,6 @@ The active gameplay score is now gameplay-renith.m4a, extracted losslessly from 
 
 ### Soundtrack starts at the opening
 The supplied Renith track starts from its beginning on the first sound-enabled gesture during the title/lift scene. The same audio source continues through the home screen and gameplay without restarting. Arrival volume is reduced beneath the Control call. The previous separate elevator music is no longer played. Ending films still mute the background score.
+
+### Louder elevator music, no Control voice
+The supplied soundtrack now plays at 0.8 gain in the elevator and gameplay (previously 0.09 and 0.18); briefings and breaks use 0.4 gain. Playback begins at track time zero on the initial sound-enabled gesture in the elevator. The Control voice, radio tones and transcript have been removed from the active arrival scene; the elevator hum and door chime remain. ElevenLabs is removed from the active technology footer.
