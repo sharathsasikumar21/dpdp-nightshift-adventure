@@ -7,7 +7,7 @@ test('suspense score follows mute, film and hidden-tab state and ducks for brief
  const gain=()=>({gain:{value:0,setTargetAtTime(value){this.value=value;}}});
  sound.ambient=gain();sound.music=gain();sound.scoreGain=gain();sound.score={};
  sound.applyVolume();assert.equal(sound.scoreGain.gain.value,.18);
- sound.setSituation({phase:'briefing'});assert.equal(sound.scoreGain.gain.value,.09);
+ const source=sound.score;sound.setSituation({phase:'arrival'});assert.equal(sound.scoreGain.gain.value,.09);sound.setSituation({phase:'home'});assert.equal(sound.score,source);assert.equal(sound.scoreGain.gain.value,.18);sound.setSituation({phase:'briefing'});assert.equal(sound.scoreGain.gain.value,.09);
  sound.toggle();assert.equal(sound.scoreGain.gain.value,0);
  sound.toggle();sound.setSituation({phase:'film'});assert.equal(sound.scoreGain.gain.value,0);
  sound.setSituation({phase:'decision'});globalThis.document.hidden=true;sound.applyVolume();assert.equal(sound.scoreGain.gain.value,0);

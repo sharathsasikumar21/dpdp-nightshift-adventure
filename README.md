@@ -117,3 +117,6 @@ The home-page footer shows Powered By: with locally hosted Simple Icons logos li
 
 ### Supplied gameplay soundtrack
 The active gameplay score is now gameplay-renith.m4a, extracted losslessly from the supplied background renith.mp4 (approximately 28.7 seconds, stereo AAC). The complete decoded track loops; the old 32-second loop limit is removed. The separate elevator-title.mp3 and Control recording remain. Procedural musical notes and drone are fallback-only when the supplied track cannot load; urgent cues and environmental effects remain active. The original render-score.py does not overwrite the supplied file.
+
+### Soundtrack starts at the opening
+The supplied Renith track starts from its beginning on the first sound-enabled gesture during the title/lift scene. The same audio source continues through the home screen and gameplay without restarting. Arrival volume is reduced beneath the Control call. The previous separate elevator music is no longer played. Ending films still mute the background score.
