@@ -130,3 +130,12 @@ A bright yellow downward arrow and ACTIVE CASE label mark the assigned desk when
 Evidence detail now has Back to All Evidence, which returns to the three-exhibit board without closing it. Collected documents can be reopened with Review. Return to Game is available on the board; Escape from a detail returns to the board first.
 
 Arrival evidence now uses the same two-level navigation: opening badge, terminal and witness details return to all three leads. Completing the last lead does not close the board; Continue to Case is explicit. The desk pickup and colleague interaction use this same arrival board.
+
+### Windowed Mumbai office and official wall art
+The front wall is now full-height glazing with slim mullions and an open central sightline; server racks occupy the edges. A small leather lounge, carpeted work areas, task lamps, cable trays, paperwork, plants and ceiling fixtures give the office more physical detail. The Mumbai-inspired skyline contains 42 varied building masses, a waterfront, rain and overhead aircraft; it is fictional rather than a geographic reconstruction.
+
+Five original text tribute panels have been replaced by locally hosted official publisher key art from their Steam store assets. Each portrait image has a dark metal frame, picture light, clickable / E interaction, large preview. Provenance is recorded in 3d/media/posters/SOURCES.md.
+
+The in-game poster previews show the artwork, title and inspiration notes without external game-page links or endorsement disclaimers. Publisher ownership and download provenance remain recorded in the asset source file. Posters are accessed directly on the walls; the Game Tributes button and gallery menu have been removed.
+
+Company signage is mounted above the elevator entrance, facing the office. It no longer overlaps the front glazing or clips across the skyline view.

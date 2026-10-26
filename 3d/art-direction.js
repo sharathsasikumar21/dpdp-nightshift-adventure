@@ -26,8 +26,8 @@ export function finishOffice(scene,office){
   box(side*14.8,.16,0,.1,.035,23.6,brass);
  }
  // Wall-mounted wayfinding: a readable destination at both ends of the room.
- textPlate('47  /  MERIDIAN DATAWORKS',0,2.99,-11.72,5.6,.3,'#20282b','#ddd6bf');
- textPlate('MERIDIAN DATAWORKS  ·  INCIDENT OPERATIONS',0,2.62,-11.71,3,.16,'#20282b','#a4b8b5');
+ const company=textPlate('47 / MERIDIAN DATAWORKS',0,3.06,11.68,3.4,.22,'#20282b','#ddd6bf');company.rotation.y=Math.PI;
+ const department=textPlate('INCIDENT OPERATIONS',0,2.84,11.67,2,.12,'#20282b','#a4b8b5');department.rotation.y=Math.PI;
  for(const x of [-10,10])textPlate(x<0?'01—05  /  REVIEW':'06—10  /  RESPONSE',x,2.8,-11.7,2.8,.17,'#20282b','#c5c6b9');
  // Inset corridor markings, not floating navigation geometry.
  for(const z of [-3.4,2.4])for(const x of [-10,-5,0,5,10]){

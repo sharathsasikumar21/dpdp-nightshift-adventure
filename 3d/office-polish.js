@@ -1,0 +1,16 @@
+import * as T from './vendor/three.module.js';
+export function polishOffice(scene,office){
+ const {box,rounded,positions,blocks,metal,black,paper,textPlate}=office;
+ const textile=new T.MeshStandardMaterial({color:'#303d46',roughness:.96}),leather=new T.MeshStandardMaterial({color:'#5c4032',roughness:.64}),warm=new T.MeshBasicMaterial({color:'#ffe3b2',toneMapped:false}),details=[];
+ const c=document.createElement('canvas');c.width=c.height=256;const d=c.getContext('2d');d.fillStyle='#34414a';d.fillRect(0,0,256,256);let seed=861;const random=()=>((seed=seed*16807%2147483647)/2147483647);for(let i=0;i<16000;i++){d.fillStyle=random()>.5?'#45505a':'#2b3740';d.fillRect(random()*256,random()*256,1,2);}d.strokeStyle='#222e36';d.lineWidth=2;d.strokeRect(0,0,256,256);
+ const carpet=new T.CanvasTexture(c);carpet.colorSpace=T.SRGBColorSpace;carpet.wrapS=carpet.wrapT=T.RepeatWrapping;carpet.repeat.set(8,4);carpet.anisotropy=8;
+ for(const z of [-5.8,5.7]){const rug=new T.Mesh(new T.PlaneGeometry(27,4),new T.MeshStandardMaterial({map:carpet,roughness:.99}));rug.rotation.x=-Math.PI/2;rug.position.set(0,.019,z);scene.add(rug);}
+ positions.forEach(([x,z],i)=>{
+ box(x,.59,z-.25,1.8,.055,.15,black);const cable=new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3([new T.Vector3(x+.3,.83,z-.3),new T.Vector3(x+.55,.7,z-.44),new T.Vector3(x+.6,.4,z-.45)]),10,.008,5,false),black);scene.add(cable);details.push(cable);
+ rounded(x-1.02,.8,z-.26,.22,.025,.2,black,.01);box(x-1.02,1.02,z-.26,.025,.42,.025,metal);const shade=box(x-.9,1.23,z-.24,.35,.045,.16,black);shade.rotation.z=-.12;box(x-.9,1.205,z-.24,.28,.008,.13,warm);const task=new T.PointLight('#ffdbac',1.2,2,2);task.position.set(x-.9,1.16,z);scene.add(task);details.push(task);
+ const stack=rounded(x+.95,.81,z+.12,.22,.045,.3,paper,.005);stack.rotation.y=.08;box(x+.96,.84,z+.1,.008,.012,.18,metal);rounded(x-.6,.82,z+.3,.11,.018,.21,black,.008);
+ if(i%2===0){const pot=new T.Mesh(new T.CylinderGeometry(.055,.04,.095,10),new T.MeshStandardMaterial({color:'#b9b5a5',roughness:.85}));pot.position.set(x+1.05,.86,z-.25);scene.add(pot);for(let j=0;j<5;j++){const leaf=new T.Mesh(new T.SphereGeometry(1,6,5),new T.MeshStandardMaterial({color:'#536c49',roughness:.9}));leaf.scale.set(.017,.08,.018);leaf.position.set(x+1.05+Math.sin(j*2.4)*.025,.95,z-.25+Math.cos(j*2.4)*.025);leaf.rotation.z=Math.sin(j)*.5;scene.add(leaf);}}
+ });
+ for(const x of [-4.2,4.2]){rounded(x,.31,-10.25,2.1,.4,.73,leather,.08);rounded(x,.66,-10.52,2.1,.7,.18,leather,.06);for(const side of [-1,1]){rounded(x+side*.99,.52,-10.23,.15,.45,.76,leather,.04);box(x+side*.78,.1,-10.25,.06,.18,.45,metal);}for(const dx of [-.46,.46])rounded(x+dx,.54,-10.22,.87,.08,.58,textile,.025);rounded(x,.42,-9.05,1.2,.045,.55,black,.025);for(const side of [-1,1])box(x+side*.45,.2,-9.05,.035,.4,.4,metal);blocks.push({x,z:-10.25,w:2.2,d:.9},{x,z:-9.05,w:1.2,d:.55});}
+ for(const x of [-7.5,7.5]){box(x,3.32,-.5,.07,.06,6.2,black);box(x,3.278,-.5,.035,.008,6,warm);}for(const x of [-5,5]){const detector=new T.Mesh(new T.CylinderGeometry(.075,.075,.035,12),new T.MeshStandardMaterial({color:'#cacbc4',roughness:.8}));detector.position.set(x,3.39,1.8);scene.add(detector);}return {setQuality(low){details.forEach(o=>o.visible=!low);}};
+}

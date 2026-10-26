@@ -1,22 +1,23 @@
-import {buildMumbaiSkyline} from './mumbai-skyline.js?v=depth1';
-import {addNightExtras} from './night-extras.js?v=depth1';
+import {polishOffice} from './office-polish.js?v=office2';
+import {buildMumbaiSkyline} from './mumbai-skyline.js?v=office1';
+import {addNightExtras} from './night-extras.js?v=office1';
 import * as T from './vendor/three.module.js';
-import {finishOffice} from './art-direction.js?v=depth1';
+import {finishOffice} from './art-direction.js?v=office2';
 import {buildElevator} from './elevator.js?v=depth1';
 import {visibleInScene,interactionOwner,bearingTo} from './fpv-interaction.js?v=finish1';
-import {buildOffice} from './realistic-office.js?v=depth1';
+import {buildOffice} from './realistic-office.js?v=office1';
 import {createEffects} from './world-effects.js?v=depth1';
 import {walkPosition,desiredVelocity} from './fpv-motion.js?v=fpv1';
 
 export function createWorld(canvas,onInteract){
  const renderer=new T.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
- renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.88;
- const scene=new T.Scene();scene.background=new T.Color('#020711');scene.fog=new T.FogExp2('#081323',.006);
- const camera=new T.PerspectiveCamera(68,innerWidth/innerHeight,.055,160);camera.rotation.order='YXZ';scene.add(camera);
- scene.add(new T.HemisphereLight('#8eacd4','#20212a',.42));
+ renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.98;
+ const scene=new T.Scene();scene.background=new T.Color('#020711');scene.fog=new T.FogExp2('#081323',.003);
+ const camera=new T.PerspectiveCamera(68,innerWidth/innerHeight,.055,300);camera.rotation.order='YXZ';scene.add(camera);
+ scene.add(new T.HemisphereLight('#8eacd4','#20212a',.58));
  const moon=new T.DirectionalLight('#91b9ef',.72);moon.position.set(4,8,20);scene.add(moon);
  const office=buildOffice(scene,renderer),{positions,screens,blocks}=office;
- const art=finishOffice(scene,office);
+ const art=finishOffice(scene,office),polish=polishOffice(scene,office);
  const alertLight=new T.PointLight('#e5a14c',0,24,1.4);alertLight.position.set(0,2.8,2);scene.add(alertLight);const extras=addNightExtras(scene,office);const skyline=buildMumbaiSkyline(scene);
  const elevator=buildElevator(scene,office);let arrivalTime=0,lowFX=false;
  const fx=createEffects(scene,positions,screens,{realistic:true});
@@ -35,7 +36,7 @@ export function createWorld(canvas,onInteract){
  let torch=false;const toggleTorch=()=>{torch=!torch;flashlight.intensity=torch?12:0;const b=document.querySelector('#flashlight');if(b){b.textContent=torch?'LIGHT ON [F]':'FLASHLIGHT [F]';b.setAttribute('aria-pressed',String(torch));}};
  // Documents sit on the desk and have printed surfaces, binder clips and paper edges.
  const evidence=[];for(let i=0;i<3;i++){const tablet=office.rounded(0,.82,0,.23,.018,.31,office.paper,.006);const clip=office.box(0,0,0,.075,.012,.025,office.metal);scene.remove(clip);tablet.add(clip);clip.position.set(0,.025,-.13);const page=document.createElement('canvas');page.width=256;page.height=384;const d=page.getContext('2d');d.fillStyle='#e1ddcc';d.fillRect(0,0,256,384);d.fillStyle='#343f44';d.font='bold 19px monospace';d.fillText('EXHIBIT 0'+(i+1),20,55);d.fillStyle='#77817e';for(let row=0;row<15;row++)d.fillRect(20,80+row*16,130+(row*17)%85,2);d.fillStyle='#9f5544';d.strokeStyle='#9f5544';d.strokeRect(110,315,120,36);d.font='16px monospace';d.fillText('RESTRICTED',118,339);const texture=new T.CanvasTexture(page);texture.colorSpace=T.SRGBColorSpace;const face=new T.Mesh(new T.PlaneGeometry(.215,.29),new T.MeshStandardMaterial({map:texture,roughness:.9}));face.rotation.x=-Math.PI/2;face.position.y=.023;tablet.add(face);tablet.userData.evidence=i;evidence.push(tablet);}
- const weatherArray=new Float32Array(960);for(let i=0;i<weatherArray.length;i+=6){const x=(Math.random()-.5)*45,y=Math.random()*18,z=12.2+Math.random()*7;weatherArray.set([x,y,z,x-.018,y-.35,z],i);}const weatherGeo=new T.BufferGeometry();weatherGeo.setAttribute('position',new T.BufferAttribute(weatherArray,3));const rain=new T.LineSegments(weatherGeo,new T.LineBasicMaterial({color:'#aac7d8',transparent:true,opacity:.22}));scene.add(rain);
+ const weatherArray=new Float32Array(960);for(let i=0;i<weatherArray.length;i+=6){const x=(Math.random()-.5)*45,y=Math.random()*18,z=-12.2-Math.random()*7;weatherArray.set([x,y,z,x-.018,y-.35,z],i);}const weatherGeo=new T.BufferGeometry();weatherGeo.setAttribute('position',new T.BufferAttribute(weatherArray,3));const rain=new T.LineSegments(weatherGeo,new T.LineBasicMaterial({color:'#aac7d8',transparent:true,opacity:.22}));scene.add(rain);
  const preference=matchMedia('(prefers-reduced-motion: reduce)');let reduced=preference.matches;fx.setReduced(reduced);preference.addEventListener('change',e=>{reduced=e.matches;fx.setReduced(reduced);});
  let arrivalInvestigation=false;let mode='home',active=0,enabled=false,near=false,yaw=0,pitch=-.08,drag=false,lastX=0,lastY=0,moved=0,walk=0,shot=0,shotIndex=0,locked=false,crouched=false;
  const keys={},player=new T.Vector3(0,1.66,9),velocity=new T.Vector2();
@@ -73,5 +74,5 @@ export function createWorld(canvas,onInteract){
   renderer.render(scene,camera);
  }
  requestAnimationFrame(frame);addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});setTarget(0);
- return {setArrivalInvestigation:value=>arrivalInvestigation=value,setSecurity:pressure=>{securityPressure=pressure;alertLight.intensity=pressure*7;if(pressure>=2){scanUntil=0;scanOutline.visible=false;}},enterLobby:()=>{player.set(-2,1.66,10.7);yaw=0;pitch=-.1;mode='play';},cityView:()=>{player.set(-4.5,1.66,10.7);yaw=Math.PI;pitch=-.3;mode='play';velocity.set(0,0);},startArrival:()=>{release();enabled=false;arrivalTime=0;mode='arrival';},arrivalProgress:t=>arrivalTime=t,endArrival:()=>{elevator.update(14);mode='arrival-exit';rain.visible=!lowFX;},setTarget,cinematic:i=>{release();shotIndex=i;shot=0;mode='cutscene';enabled=false;},setEvidence:collected=>{const found=new Set(collected);evidence.forEach((o,i)=>o.visible=!found.has(i));},setMode:m=>{mode=m;if(m!=='play')release();},setEnabled,move:(k,on)=>keys[k]=on,interact:inspect,scan,respond:good=>fx.respond(good),guide:()=>setTarget(active,true),toggleTorch,toggleCrouch,status:()=>({near,position:player.toArray(),yaw}),setQuality:low=>{lowFX=low;art.setQuality(low);fx.setQuality(low);renderer.shadowMap.enabled=!low;renderer.setPixelRatio(low?1:Math.min(devicePixelRatio,1.75));renderer.setSize(innerWidth,innerHeight);rain.visible=!low;}};
+ return {setArrivalInvestigation:value=>arrivalInvestigation=value,setSecurity:pressure=>{securityPressure=pressure;alertLight.intensity=pressure*7;if(pressure>=2){scanUntil=0;scanOutline.visible=false;}},enterLobby:()=>{player.set(-2,1.66,10.7);yaw=0;pitch=-.1;mode='play';},cityView:()=>{player.set(0,1.66,-9.8);yaw=0;pitch=-.08;mode='play';velocity.set(0,0);},startArrival:()=>{release();enabled=false;arrivalTime=0;mode='arrival';},arrivalProgress:t=>arrivalTime=t,endArrival:()=>{elevator.update(14);mode='arrival-exit';rain.visible=!lowFX;},setTarget,cinematic:i=>{release();shotIndex=i;shot=0;mode='cutscene';enabled=false;},setEvidence:collected=>{const found=new Set(collected);evidence.forEach((o,i)=>o.visible=!found.has(i));},setMode:m=>{mode=m;if(m!=='play')release();},setEnabled,move:(k,on)=>keys[k]=on,interact:inspect,scan,respond:good=>fx.respond(good),guide:()=>setTarget(active,true),toggleTorch,toggleCrouch,status:()=>({near,position:player.toArray(),yaw}),setQuality:low=>{lowFX=low;art.setQuality(low);polish.setQuality(low);fx.setQuality(low);renderer.shadowMap.enabled=!low;renderer.setPixelRatio(low?1:Math.min(devicePixelRatio,1.75));renderer.setSize(innerWidth,innerHeight);rain.visible=!low;}};
 }

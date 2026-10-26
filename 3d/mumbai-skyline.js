@@ -3,18 +3,18 @@ import * as T from './vendor/three.module.js';
 // A fictional Mumbai-inspired coast, not a geographic reconstruction.
 export function buildMumbaiSkyline(scene){
  let seed=14147;const random=()=>((seed=seed*16807%2147483647)/2147483647);
- const root=new T.Group();scene.add(root);
+ const root=new T.Group();root.scale.z=-1;scene.add(root);
  const concrete=['#4d4940','#3b4247','#565049','#313e49','#484942'].map(color=>new T.MeshStandardMaterial({color,roughness:.85}));
  const box=(x,y,z,w,h,d,mat,parent=root)=>{const o=new T.Mesh(new T.BoxGeometry(w,h,d),mat);o.position.set(x,y,z);parent.add(o);return o;};
  function facade(style,floors){
-  const c=document.createElement('canvas');c.width=128;c.height=floors*12;const d=c.getContext('2d');d.fillStyle=['#252930','#263441','#3e3931'][style];d.fillRect(0,0,c.width,c.height);
-  for(let row=0;row<floors;row++){d.fillStyle='#111a22';d.fillRect(0,row*12,128,2);for(let col=0;col<6;col++){const lit=random()>.68;d.fillStyle=lit?(random()>.28?'#b2a079':'#8598a5'):'#111d29';d.fillRect(8+col*20,row*12+3,style===1?16:9,7);if(style===2){d.fillStyle='#656057';d.fillRect(col*20+5,row*12+10,15,1);}}}
+  const c=document.createElement('canvas');c.width=256;c.height=floors*16;const d=c.getContext('2d');d.fillStyle=['#252930','#263441','#3e3931'][style];d.fillRect(0,0,c.width,c.height);
+  for(let row=0;row<floors;row++){d.fillStyle='#111a22';d.fillRect(0,row*16,128,2);for(let col=0;col<12;col++){const lit=random()>.68;d.fillStyle=lit?(random()>.28?'#b2a079':'#8598a5'):'#111d29';d.fillRect(8+col*20,row*16+3,style===1?14:9,9);if(style===2){d.fillStyle='#656057';d.fillRect(col*20+5,row*16+10,15,1);}}}
   const map=new T.CanvasTexture(c);map.colorSpace=T.SRGBColorSpace;
-  return new T.MeshStandardMaterial({map,emissiveMap:map,emissive:'#c5c2b6',emissiveIntensity:.48,roughness:style===1?.3:.85,metalness:style===1?.35:0});
+  return new T.MeshStandardMaterial({map,emissiveMap:map,emissive:'#c5c2b6',emissiveIntensity:.65,roughness:style===1?.3:.85,metalness:style===1?.35:0});
  }
  for(const x of [-65,65])box(x,-38.6,80,65,1,110,concrete[1]);
- for(let i=0;i<24;i++){
-  const side=i%2?-1:1,rank=Math.floor(i/2),x=side*(35+(rank%4)*12),z=44+Math.floor(rank/4)*28+random()*8;
+ for(let i=0;i<42;i++){
+  const side=i%2?-1:1,rank=Math.floor(i/2),x=side*(22+(rank%7)*12)+random()*4,z=80+Math.floor(rank/7)*30+random()*8;
   const style=i%3,floors=style===2?7+Math.floor(random()*8):16+Math.floor(random()*17),h=floors*2.3,w=style===1?6:8+random()*4,base=-38;
   const mat=facade(style,floors),trim=concrete[i%concrete.length];
   box(x,base+h/2,z,w,h,7+style*2,mat);
