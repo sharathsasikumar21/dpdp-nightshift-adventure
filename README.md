@@ -123,3 +123,8 @@ The supplied Renith track starts from its beginning on the first sound-enabled g
 
 ### Louder elevator music, no Control voice
 The supplied soundtrack now plays at 0.8 gain in the elevator and gameplay (previously 0.09 and 0.18); briefings and breaks use 0.4 gain. Playback begins at track time zero on the initial sound-enabled gesture in the elevator. The Control voice, radio tones and transcript have been removed from the active arrival scene; the elevator hum and door chime remain. ElevenLabs is removed from the active technology footer.
+
+### Persistent case marker
+A bright yellow downward arrow and ACTIVE CASE label mark the assigned desk whenever exploration is enabled. It follows case changes, remains visible through furniture and during auxiliary-system restrictions, and scales up at a distance. During the solo opening it marks ARRIVAL CLUES instead. Reduced motion disables its gentle bob. It hides during dialogs, films and menus.
+
+Evidence detail now has Back to All Evidence, which returns to the three-exhibit board without closing it. Collected documents can be reopened with Review. Return to Game is available on the board; Escape from a detail returns to the board first.

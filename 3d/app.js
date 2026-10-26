@@ -2,10 +2,10 @@ import {OPENING_LEADS,openingComplete,operationalState} from './office-story.js?
 import {TRIBUTES,COLLEAGUES} from './night-extras.js?v=music2';
 import {playArrival} from './arrival.js?v=loud1';
 import {dossiers,answerOptions,orderedChoices,wrongReason,difficultyFor,difficultyNames} from './case-content.js?v=balanced1';
-import {showEvidence,storyCutscene} from './investigation.js?v=music2';
+import {showEvidence,storyCutscene} from './investigation.js?v=evidence2';
 import {riskFor,endingFor} from './consequences.js?v=alert1';
 import {playCinematic} from './cinematics.js?v=music2';
-import {createWorld} from './world.js?v=music2';
+import {createWorld} from './world.js?v=marker1';
 import {Sound} from './adaptive-audio.js?v=loud1';
 import {Room} from './online.js';
 import {selectStories,createRun,sceneFor,openTurn,startBriefing,finishBriefing,submit,resolve,advance,levelFor} from './engine.js?v=cyber1';

@@ -20,6 +20,15 @@ export function createWorld(canvas,onInteract){
  const alertLight=new T.PointLight('#e5a14c',0,24,1.4);alertLight.position.set(0,2.8,2);scene.add(alertLight);const extras=addNightExtras(scene,office);const skyline=buildMumbaiSkyline(scene);
  const elevator=buildElevator(scene,office);let arrivalTime=0,lowFX=false;
  const fx=createEffects(scene,positions,screens,{realistic:true});
+ // Persistent navigation marker, rendered above geometry so furniture cannot hide it.
+ const caseMarker=new T.Group();scene.add(caseMarker);
+ const markerMaterial=new T.MeshBasicMaterial({color:'#ffe12b',depthTest:false,depthWrite:false,toneMapped:false});
+ const arrowStem=new T.Mesh(new T.CylinderGeometry(.085,.085,.46,12),markerMaterial);arrowStem.position.y=.27;
+ const arrowTip=new T.Mesh(new T.ConeGeometry(.27,.38,16),markerMaterial);arrowTip.rotation.z=Math.PI;arrowTip.position.y=-.12;
+ for(const mesh of [arrowStem,arrowTip]){mesh.renderOrder=1000;caseMarker.add(mesh);}
+ function markerLabel(title){const c=document.createElement('canvas');c.width=512;c.height=112;const d=c.getContext('2d');d.fillStyle='#101820';d.fillRect(0,0,512,112);d.strokeStyle='#ffe12b';d.lineWidth=8;d.strokeRect(4,4,504,104);d.fillStyle='#ffe12b';d.font='bold 42px sans-serif';d.textAlign='center';d.textBaseline='middle';d.fillText(title,256,56);const texture=new T.CanvasTexture(c);texture.colorSpace=T.SRGBColorSpace;return texture;}
+ const caseLabel=markerLabel('ACTIVE CASE'),arrivalLabel=markerLabel('ARRIVAL CLUES');
+ const markerCaption=new T.Sprite(new T.SpriteMaterial({map:caseLabel,depthTest:false,depthWrite:false,toneMapped:false}));markerCaption.scale.set(1.65,.36,1);markerCaption.position.y=.8;markerCaption.renderOrder=1001;caseMarker.add(markerCaption);caseMarker.visible=false;
  const scanOutline=new T.Box3Helper(new T.Box3(),0xe0bb78);scanOutline.material.transparent=true;scanOutline.material.opacity=.8;scanOutline.visible=false;scene.add(scanOutline);let scanUntil=0,securityPressure=0;
  function scan(){if(securityPressure>=2){onInteract('map');return;}scanUntil=performance.now()+8000;scanOutline.box.setFromObject(screens[active]).expandByScalar(.035);scanOutline.visible=true;fx.scan();onInteract('map');}
  const flashlight=new T.SpotLight('#fff0d5',0,18,.38,.72,1.3);flashlight.position.set(.16,-.14,-.12);flashlight.target.position.set(0,0,-8);camera.add(flashlight,flashlight.target);
@@ -60,6 +69,7 @@ export function createWorld(canvas,onInteract){
    player.y=T.MathUtils.lerp(player.y,crouched?1.12:1.66,1-Math.exp(-dt*10));camera.position.copy(player);camera.position.y+=!reduced&&enabled&&(f||s)?Math.sin(walk)*.012:0;camera.rotation.set(pitch,yaw,0);const goal=keys.shift&&enabled&&!crouched&&!reduced?72:68;if(Math.abs(camera.fov-goal)>.01){camera.fov=T.MathUtils.lerp(camera.fov,goal,1-Math.exp(-dt*5));camera.updateProjectionMatrix();}}
   const nav=bearingTo(player,arrivalInvestigation?[-2,8.5]:positions[active],yaw);near=nav.distance<3.25;canvas.dataset.near=String(near);const bearing=document.querySelector('#bearing');if(bearing)bearing.textContent=nav.label+' · '+nav.distance.toFixed(1)+(arrivalInvestigation?' m TO ARRIVAL DESK':' m TO CASE')+(near?' · E TO INSPECT':'');scanOutline.visible=enabled&&mode==='play'&&now<scanUntil;
   if(enabled&&mode==='play'&&now>=nextPick){nextPick=now+100;const target=pick();if(target!==lookAt){lookAt=target;reticle?.classList.toggle('focused',!!target);if(hint)hint.textContent=target?Number.isInteger(target.userData.evidence)?'E · COLLECT EXHIBIT 0'+(target.userData.evidence+1):'E · '+({terminal:'INSPECT WORKSTATION',opening:'INSPECT ARRIVAL CLUE',colleague:'TALK TO COLLEAGUE',tribute:'VIEW GAME TRIBUTE',coffee:'MAKE COFFEE',map:'INSPECT INCIDENT TABLE',drone:'INSPECT MAINTENANCE DRONE'}[target.userData.interaction?.type]||'INSPECT'):'LOOK AT AN OBJECT · E TO INTERACT';}}
+  caseMarker.visible=enabled&&mode==='play';if(caseMarker.visible){const target=arrivalInvestigation?[-2,8.5]:positions[active];caseMarker.position.set(target[0],2.05+(reduced?0:Math.sin(now*.003)*.065),target[1]);const distance=camera.position.distanceTo(caseMarker.position);caseMarker.scale.setScalar(T.MathUtils.clamp(distance/9,1,1.65));const map=arrivalInvestigation?arrivalLabel:caseLabel;if(markerCaption.material.map!==map){markerCaption.material.map=map;markerCaption.material.needsUpdate=true;}}
   renderer.render(scene,camera);
  }
  requestAnimationFrame(frame);addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});setTarget(0);
