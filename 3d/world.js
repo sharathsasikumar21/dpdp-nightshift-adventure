@@ -1,5 +1,5 @@
 import {polishOffice} from './office-polish.js?v=office2';
-import {buildMumbaiSkyline} from './mumbai-skyline.js?v=office1';
+import {buildMumbaiSkyline} from './mumbai-skyline.js?v=thread1';
 import {addNightExtras} from './night-extras.js?v=office1';
 import * as T from './vendor/three.module.js';
 import {finishOffice} from './art-direction.js?v=office2';

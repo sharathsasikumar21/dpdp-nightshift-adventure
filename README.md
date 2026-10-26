@@ -139,3 +139,12 @@ Five original text tribute panels have been replaced by locally hosted official 
 The in-game poster previews show the artwork, title and inspiration notes without external game-page links or endorsement disclaimers. Publisher ownership and download provenance remain recorded in the asset source file. Posters are accessed directly on the walls; the Game Tributes button and gallery menu have been removed.
 
 Company signage is mounted above the elevator entrance, facing the office. It no longer overlaps the front glazing or clips across the skyline view.
+
+### Blue Lantern: one connected midnight mystery
+Each selected case now identifies a source or control failure in the same BL-0116 export route. Case completions unlock a Case Thread journal across all 2-, 3- and 5-case routes. The timestamp discrepancy around V-017 is resolved through the controller record; the final signed release identifies fictional operations lead Veda Menon. A shared account or physical badge alone is never treated as proof against a person.
+
+The crew selector opens conversations with Mira, Arjun and Leena. Evidence inspection unlocks challenges; completing cases unlocks questions about authorisation. Dialogue closes on phase transitions so multiplayer keeps its 60-second deadlines. No volume sliders are added.
+
+A twelve-second final findings scene precedes the existing outcome film. At least 80% correct yields containment and preserved approval evidence; below 80% the same authorisation is established but uncontrolled copies remain. Findings are also readable in the end-of-shift report.
+
+Signal House, waterfront Art Deco-inspired blocks and ground-level coastal traffic make the window view part of the setting. Window Observation connects the view to the people affected while explicitly separating scenery from proof of a data transfer. All skyline architecture is fictional Mumbai-inspired geometry.
