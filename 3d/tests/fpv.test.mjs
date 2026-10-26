@@ -21,3 +21,6 @@ test('crouch takes precedence over hurry and zero input does not drift',()=>{
  assert.equal(Math.hypot(...Object.values(desiredVelocity(1,0,0,true,true))),1.15);
  assert.equal(Math.hypot(...Object.values(desiredVelocity(1,0,0,true))),3.7);
 });
+
+
+test('the front window viewpoint can walk back into the office',()=>{const start={x:0,z:-9.8};const next=walkPosition(start,0,.4,[]);assert.ok(next.z>start.z);const left=walkPosition(start,-.4,0,[]);assert.ok(left.x<0);assert.ok(walkPosition(start,0,-10,[]).z>=-11.25);});

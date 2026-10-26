@@ -64,7 +64,7 @@ export function buildOffice(scene,renderer){
   box(x,1.05,z-.53,2.6,.5,.04,fabric);
  });
  // Rear archive cabinets: rack doors, mesh vents, handles and small activity LEDs.
- for(const x of [-12,-9.6,9.6,12]){box(x,1.1,-10.7,1.1,2.2,.8,black);box(x,1.1,-10.28,.99,2.06,.025,metal);for(let y=.25;y<2;y+=.17){box(x,y,-10.25,.9,.11,.015,black);for(let j=0;j<4;j++)box(x-.32+j*.018,y,-10.235,.007,.07,.008,metal);box(x+.35,y,-10.23,.015,.015,.008,new T.MeshBasicMaterial({color:y>1?'#90c8a0':'#bba875'}));}box(x+.39,1.1,-10.19,.025,.22,.035,black);contact(x,-10.7,1.8,1.4);}
+ for(const x of [-12,-9.6,9.6,12]){box(x,1.1,-10.7,1.1,2.2,.8,black);box(x,1.1,-10.28,.99,2.06,.025,metal);for(let y=.25;y<2;y+=.17){box(x,y,-10.25,.9,.11,.015,black);for(let j=0;j<4;j++)box(x-.32+j*.018,y,-10.235,.007,.07,.008,metal);box(x+.35,y,-10.23,.015,.015,.008,new T.MeshBasicMaterial({color:y>1?'#90c8a0':'#bba875'}));}box(x+.39,1.1,-10.19,.025,.22,.035,black);blocks.push({x,z:-10.7,w:1.1,d:.8});contact(x,-10.7,1.8,1.4);}
  // Rear signage is provided by the architectural detail pass.
  // Collaboration table with a flat incident display instead of floating holograms.
  rounded(0,.76,-.4,5,.09,2.1,wood,.025);for(const x of [-2,2])box(x,.37,-.4,.08,.7,1.55,metal);blocks.push({x:0,z:-.4,w:5,d:2.1});contact(0,-.4,6,3.2);

@@ -148,3 +148,8 @@ The crew selector opens conversations with Mira, Arjun and Leena. Evidence inspe
 A twelve-second final findings scene precedes the existing outcome film. At least 80% correct yields containment and preserved approval evidence; below 80% the same authorisation is established but uncontrolled copies remain. Findings are also readable in the end-of-shift report.
 
 Signal House, waterfront Art Deco-inspired blocks and ground-level coastal traffic make the window view part of the setting. Window Observation connects the view to the people affected while explicitly separating scenery from proof of a data transfer. All skyline architecture is fictional Mumbai-inspired geometry.
+
+### Regression and live multiplayer audit
+The October 26 audit fixed the old front-wall movement boundary, rejection/leave handling, presence-loss shutdown, pending-connection cancellation, cancellation UI races, immediate session-name cleanup, film cancellation on exit, and keyboard focus restoration for story dialogs.
+
+Automated regression coverage includes full solo and three-player shifts across 2-, 3- and 5-case routes with correct, wrong, mixed and missing answers. Run node --test 3d/tests/*.test.mjs. tools/test-multiplayer-live.mjs uses the existing bundled Supabase client and publishable configuration to create disposable Realtime rooms. The full live audit verifies three-client admission, fourth and late join rejection, the shared briefing, immediate resolution, a real 60-second timeout, host closure and cleanup. --quick repeats connection and cleanup checks without the extra 60-second timeout. It writes no database records.

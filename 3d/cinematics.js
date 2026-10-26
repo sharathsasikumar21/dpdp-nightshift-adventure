@@ -1,12 +1,12 @@
 // Self-contained films: never own game state, multiplayer clocks or player data.
-export function playCinematic(kind, {muted=true, onStart=()=>{}, onFinish=()=>{}}={}) {
+export function playCinematic(kind, {muted=true, onStart=()=>{}, onFinish=()=>{},signal}={}) {
   const films={
     opening:{title:'Ghost Shift opening film',heading:'INCOMING TRANSMISSION',skip:'INTRO',status:'Your shift starts at 02:17.',description:'Rainy city skyline. The city never stops. Neither does its data. Tonight, the next call is yours. Ghost Shift: Midnight Breach. Follow the data. Protect the people.'},
     credits:{title:'Ghost Shift team credits',heading:'END CREDITS',skip:'CREDITS',status:'SHA/020 · Niks/141 · Rip/911',description:'The team behind the Ghost Shift: SHA/020, Niks/141 and Rip/911. Thank you for playing.'},
     'good-ending':{title:'Heroic ending: city protected',heading:'HEROIC ENDING',skip:'ENDING',status:'80% or more correct · City protected',description:'A shield rises over the city at dawn. You held the line. The city wakes safer. Privacy Sentinel. Trust defended.'},
     'bad-ending':{title:'Scary ending: trust went dark',heading:'DARK ENDING',skip:'ENDING',status:'Below 80% correct · Review your calls',description:'A red surveillance eye looms over a dark city. The leak did not stop. Trust went dark. The night is not over. Review your calls. Come back ready.'}
   };
-  const film=films[kind];if(!film)return Promise.resolve();
+  const film=films[kind];if(!film||signal?.aborted)return Promise.resolve();
   return new Promise(resolve => {
     const previous=document.activeElement;
     const dialog=document.createElement('dialog');
@@ -17,7 +17,7 @@ export function playCinematic(kind, {muted=true, onStart=()=>{}, onFinish=()=>{}
     const video=dialog.querySelector('video'), play=dialog.querySelector('.cinema-play'), status=dialog.querySelector('.cinema-status'), audio=dialog.querySelector('.cinema-sound');
     let done=false, watchdog;
     function finish(){
-      if(done)return;done=true;clearTimeout(watchdog);video.pause();video.removeAttribute('src');video.load();dialog.close();dialog.remove();
+      if(done)return;done=true;clearTimeout(watchdog);signal?.removeEventListener('abort',finish);video.pause();video.removeAttribute('src');video.load();dialog.close();dialog.remove();
       onFinish();if(previous?.isConnected)previous.focus({preventScroll:true});resolve();
     }
     async function start(){
@@ -26,7 +26,7 @@ export function playCinematic(kind, {muted=true, onStart=()=>{}, onFinish=()=>{}
       try { await video.play(); if(done)return;play.hidden=true;status.textContent=film.status; }
       catch {if(!done){play.hidden=false;status.textContent='Press Play film, or skip to continue.';}}
     }
-    dialog.querySelector('.cinema-skip').onclick=finish;
+    signal?.addEventListener('abort',finish,{once:true});dialog.querySelector('.cinema-skip').onclick=finish;
     dialog.addEventListener('cancel',e=>{e.preventDefault();finish();});
     play.onclick=start;
     audio.onclick=()=>{video.muted=!video.muted;audio.textContent=video.muted?'ENABLE SOUND':'MUTE FILM';};

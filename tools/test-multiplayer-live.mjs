@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync,unlinkSync} from 'node:fs';
+import {createRequire} from 'node:module';
+import {randomUUID,randomBytes} from 'node:crypto';
+import {Room} from '../3d/online.js';
+import {createRun,startBriefing,finishBriefing,submit,resolve} from '../3d/engine.js';
+const require=createRequire(import.meta.url),bundle=new URL('./.supabase-live-audit.cjs',import.meta.url);
+writeFileSync(bundle,'const self=globalThis;\n'+readFileSync(new URL('../3d/vendor/supabase.js',import.meta.url),'utf8'));
+const {createClient}=require(bundle.pathname.replace(/^\/([A-Za-z]:)/,'$1'));
+const config=readFileSync(new URL('../3d/supabase-config.js',import.meta.url),'utf8'),url=config.match(/url:\s*'([^']+)'/)[1],key=config.match(/publishableKey:\s*'([^']+)'/)[1];
+const stories=JSON.parse(readFileSync(new URL('../3d/stories.json',import.meta.url))),clients=[],rooms=[],events=[];
+const pool='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',code=Array.from(randomBytes(6),b=>pool[b%pool.length]).join('');
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function waitFor(check,label,timeout=15000){const until=Date.now()+timeout;while(!check()){if(Date.now()>until)throw Error('Timed out: '+label);await delay(100);}}
+function make(alias){const client=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});clients.push(client);let room;room=new Room(client,randomUUID(),()=>{},message=>events.push({alias,status:message}),reason=>{events.push({alias,closed:reason});room.close();});rooms.push(room);return room;}
+try{
+ const host=make('QAHost');await host.connect(code,true,'QAHost',[]);host.snapshot();
+ const b=make('QATwo'),c=make('QAThree');await b.connect(code,false,'QATwo',[]);await c.connect(code,false,'QAThree',[]);await waitFor(()=>host.crew.length===3&&b.crew.length===3&&c.crew.length===3,'three-player admission');console.log('PASS three live clients admitted with matching rosters');
+ const extra=make('QAFour');await extra.connect(code,false,'QAFour',[]);await waitFor(()=>extra.closed,'fourth-player rejection');assert.equal(host.crew.length,3);console.log('PASS fourth player rejected');
+ host.state=createRun(stories,[0,1],host.crew.map(p=>({id:p.id,alias:p.alias})),randomUUID());startBriefing(host.state,Date.now());host.snapshot();await waitFor(()=>b.state?.phase==='briefing'&&c.state?.phase==='briefing','shared briefing');console.log('PASS shared briefing; waiting for its full ten seconds');await delay(10100);assert.equal(finishBriefing(host.state,Date.now()),true);host.snapshot();await waitFor(()=>b.state?.phase==='decision'&&c.state?.phase==='decision','shared question');assert.equal(host.state.limitSeconds,60);assert.equal(b.state.deadline,host.state.deadline);assert.equal(c.state.deadline,host.state.deadline);
+ const late=make('QALate');await late.connect(code,false,'QALate',[]);await waitFor(()=>late.closed,'late join rejection');await delay(300);assert.equal(host.closed,false);assert.equal(host.state.phase,'decision');console.log('PASS late-join rejection does not close the active room');
+ host.onAction=m=>{if(m.action!=='answer')return;if(submit(host.state,m.from,m.choice,Date.now())){resolve(host.state,stories,Date.now());host.snapshot();}};
+ host.action('answer',{choice:0});b.action('answer',{choice:1});c.action('answer',{choice:0});await waitFor(()=>host.state.phase==='review'&&b.state?.phase==='review'&&c.state?.phase==='review','simultaneous answers');assert.deepEqual(host.state.players.map(p=>p.points),[100,0,100]);assert.deepEqual(b.state.players,host.state.players);assert.deepEqual(c.state.players,host.state.players);console.log('PASS immediate resolution, synchronized scores and rankings');
+ if(!process.argv.includes('--quick')){host.state.turn++;host.state.phase='explore';host.state.ready=[];host.state.rev++;const {openTurn}=await import('../3d/engine.js');openTurn(host.state,Date.now());host.snapshot();await waitFor(()=>b.state?.turn===1&&c.state?.turn===1,'second question');host.action('answer',{choice:0});b.action('answer',{choice:0});await waitFor(()=>Object.keys(host.state.locks).length===2,'two answers locked');console.log('CHECK waiting for the real 60-second deadline with one missing answer');await waitFor(()=>Date.now()>=host.state.deadline,'actual deadline',65000);assert.equal(resolve(host.state,stories,Date.now()),true);host.snapshot();await waitFor(()=>b.state?.phase==='review'&&c.state?.phase==='review','timeout synchronized');assert.equal(host.state.log.at(-1).results.find(r=>r.id===c.id).timeout,true);assert.equal(host.state.log.at(-1).results.find(r=>r.id===c.id).limitSeconds,60);console.log('PASS real 60-second timeout and missing-player penalty');}
+ await host.close();await waitFor(()=>b.closed&&c.closed,'host-close propagation');await Promise.all(rooms.map(r=>r.close()));assert.ok(rooms.every(r=>r.me===null&&r.state===null&&r.crew.length===0));console.log('PASS host close propagates and session usernames are cleared');console.log('LIVE MULTIPLAYER AUDIT PASSED');
+}catch(error){console.error(error.stack);console.error(JSON.stringify(events));process.exitCode=1;}finally{await Promise.allSettled(rooms.map(r=>r.close()));await Promise.allSettled(clients.map(c=>c.removeAllChannels()));unlinkSync(bundle);}

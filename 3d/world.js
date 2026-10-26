@@ -5,9 +5,9 @@ import * as T from './vendor/three.module.js';
 import {finishOffice} from './art-direction.js?v=office2';
 import {buildElevator} from './elevator.js?v=depth1';
 import {visibleInScene,interactionOwner,bearingTo} from './fpv-interaction.js?v=finish1';
-import {buildOffice} from './realistic-office.js?v=office1';
+import {buildOffice} from './realistic-office.js?v=audit1';
 import {createEffects} from './world-effects.js?v=depth1';
-import {walkPosition,desiredVelocity} from './fpv-motion.js?v=fpv1';
+import {walkPosition,desiredVelocity} from './fpv-motion.js?v=audit1';
 
 export function createWorld(canvas,onInteract){
  const renderer=new T.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
