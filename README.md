@@ -128,3 +128,5 @@ The supplied soundtrack now plays at 0.8 gain in the elevator and gameplay (prev
 A bright yellow downward arrow and ACTIVE CASE label mark the assigned desk whenever exploration is enabled. It follows case changes, remains visible through furniture and during auxiliary-system restrictions, and scales up at a distance. During the solo opening it marks ARRIVAL CLUES instead. Reduced motion disables its gentle bob. It hides during dialogs, films and menus.
 
 Evidence detail now has Back to All Evidence, which returns to the three-exhibit board without closing it. Collected documents can be reopened with Review. Return to Game is available on the board; Escape from a detail returns to the board first.
+
+Arrival evidence now uses the same two-level navigation: opening badge, terminal and witness details return to all three leads. Completing the last lead does not close the board; Continue to Case is explicit. The desk pickup and colleague interaction use this same arrival board.
