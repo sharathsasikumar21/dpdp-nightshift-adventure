@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {createRenderBudget} from '../adaptive-rendering.js';
+test('slow active scenes reduce only rendering resolution, bounded without oscillation',()=>{const budget=createRenderBudget();for(let i=0;i<140;i++)budget.update(1/14);assert.equal(budget.scale,.66);const low=budget.scale;for(let i=0;i<300;i++)budget.update(1/45);assert.equal(budget.scale,low);for(let i=0;i<1200;i++)budget.update(1/90);assert.ok(budget.scale>low&&budget.scale<=1);});
+test('background tabs and a paused frame do not lower the rendering budget',()=>{const budget=createRenderBudget();for(let i=0;i<300;i++)budget.update(.1,false);budget.update(60);assert.equal(budget.scale,1);budget.reset(.8);assert.equal(budget.scale,.8);});

@@ -58,7 +58,7 @@ export function createEffects(scene, positions, screens, {realistic=false}={}) {
       const pod = mesh(new T.CylinderGeometry(.15, .15, .07, 8), dark, group); pod.position.set(x, .02, z);
       const rotor = cube(.4, .015, .055, hull, group); rotor.position.set(x, .07, z); rotors.push(rotor);
     }
-    const lamp = new T.PointLight(i ? 0xffb67d : 0x7affe0, 2, 3); lamp.position.y = -.2; group.add(lamp);if(realistic){group.scale.setScalar(.45);lamp.intensity=0;}
+    const lamp = new T.PointLight(i ? 0xffb67d : 0x7affe0, 2, 3); lamp.position.y = -.2; group.add(lamp);if(realistic){group.scale.setScalar(.45);lamp.intensity=0;lamp.visible=false;}
     group.traverse(o => { if (o.isMesh) target(o, 'drone', i); });
     return { group, rotors, paused: 0, t: i * Math.PI, direction: i ? -1 : 1 };
   });

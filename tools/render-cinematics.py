@@ -63,7 +63,7 @@ def creator_figure(layer, x, t, index):
         d.ellipse((x+dx-3,y+19,x+dx+3,y+25),fill=(35,30,28,255))
         d.point((x+dx-1,y+20),fill=(255,255,240,255))
     d.arc((x-11,y+26,x+11,y+39),10,170,fill=(77,47,34,255),width=2)
-    name=['SHA/020','Niks/141','Rip/911'][index]
+    name=['SHA/020','NIKS/141','RIP/911'][index]
     f=font(27,True); bounds=d.textbbox((0,0),name,font=f)
     d.text((x-bounds[2]/2,390),name,font=f,fill=WHITE)
 def label(layer, text, y, size, color=WHITE, alpha=1, bold=False):
@@ -163,6 +163,8 @@ def frame(t, credits=False, ending=None):
         a=envelope(t,10.3,14)
         label(overlay,'THANK YOU FOR PLAYING',209,38,alpha=a,bold=True)
         label(overlay,'EVERY BETTER MORNING STARTS WITH A CALL.',270,16,GREEN,a)
+        label(overlay,'SOUNDTRACK BY',330,13,GREEN,a)
+        label(overlay,'Renjith Mohan M R',358,26,alpha=a,bold=True)
     else:
         for a,b,line,sub in [(0,4.1,'THE CITY NEVER STOPS.','NEITHER DOES ITS DATA.'),(3.9,8.1,'ONE SHORTCUT. A THOUSAND LIVES.','TONIGHT, THE NEXT CALL IS YOURS.')]:
             e=envelope(t,a,b); label(overlay,line,211,36,alpha=e,bold=True);label(overlay,sub,269,17,GREEN,e)

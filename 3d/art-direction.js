@@ -44,5 +44,5 @@ export function finishOffice(scene,office){
  // Subtle frosted glass safety bands; keep the clear opening unobstructed.
  const frost=new T.MeshStandardMaterial({color:'#b5c9c8',roughness:.85,transparent:true,opacity:.24,depthWrite:false,side:T.DoubleSide});
  for(const x of [-7.5,7.5])for(const y of [1.23,1.32]){const band=new T.Mesh(new T.PlaneGeometry(3.75,.035),frost);band.rotation.y=Math.PI/2;band.position.set(x+.012,y,8.9);details.add(band);}
- return {setQuality(low){details.visible=!low;}};
+ return {setQuality(low){details.visible=!low;},setFloor(floor,name){for(const [object,text] of [[company,floor+' / MERIDIAN DATAWORKS'],[department,name.toUpperCase()]]){const c=object.material.map.image,d=c.getContext('2d');d.fillStyle='#20282b';d.fillRect(0,0,c.width,c.height);d.fillStyle='#ddd6bf';d.font='500 44px Arial';d.textAlign='center';d.fillText(text,512,82);object.material.map.needsUpdate=true;}}};
 }

@@ -38,19 +38,19 @@ export function buildOffice(scene,renderer){
  const diffuser=new T.MeshStandardMaterial({color:'#f5ebd7',emissive:'#fff1d6',emissiveIntensity:1.3,roughness:.8});
  for(const x of [-10,-5,0,5,10])for(const z of [-6,0,6]){box(x,3.36,z,1.24,.07,.64,metal);box(x,3.315,z,1.14,.012,.54,diffuser);}
  for(const x of [-10,0,10])for(const z of [-6,6]){const l=new T.PointLight('#ffe4c4',18,11,2);l.position.set(x,3.12,z);scene.add(l);lamps.push(l);}
- const key=new T.SpotLight('#ffe1b5',115,24,.95,.7,1.6);key.position.set(2,3.25,2);key.target.position.set(0,0,-3);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.bias=-.00015;key.shadow.normalBias=.025;scene.add(key,key.target);
+ const key=new T.SpotLight('#ffe1b5',115,24,.95,.7,1.6);key.position.set(2,3.25,2);key.target.position.set(0,0,-3);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.bias=-.00015;key.shadow.normalBias=.025;scene.add(key,key.target);
  for(const x of [-12,12]){box(x,3.37,0,.6,.04,1.4,white);for(let i=0;i<10;i++)box(x,3.34,-.55+i*.12,.48,.01,.035,black);}
  // Full-height glazing with slim mullions, blinds, rain streaks and night city.
  for(let x=-13.5;x<15;x+=3){if(Math.abs(x)<2)continue;box(x,1.8,11.85,2.94,3.3,.025,glass).castShadow=false;box(x-1.5,1.75,11.8,.06,3.5,.12,metal);box(x,3.3,11.65,2.96,.12,.14,white);for(let j=0;j<4;j++)box(x,3.17-j*.07,11.62,2.88,.018,.12,white);}
  for(const x of [-8.3,8.3])box(x,.25,11.82,13.4,.5,.2,plaster);for(const x of [-2.3,2.3])box(x,1.8,11.85,1.4,3.3,.025,glass).castShadow=false;
  const positions=[[-10,-6],[-5,-6],[0,-6],[5,-6],[10,-6],[-10,5],[-5,5],[0,5],[5,5],[10,5]];
  const sectors=['SIGNAL','CONSENT','CIVIC','JUNIOR','VENDOR','INCIDENT','RIGHTS','ARCHIVE','BORDER','AUDIT'];
- positions.forEach(([x,z],i)=>{
+ const deskGroups=[];positions.forEach(([x,z],i)=>{const firstMesh=meshes.length,firstBlock=blocks.length;
   rounded(x,.76,z,2.6,.06,1.1,wood,.018);for(const dx of [-1.12,1.12]){box(x+dx,.38,z,.055,.7,.07,metal);box(x+dx,.045,z,.18,.04,.85,metal);}box(x,.48,z-.32,2.25,.04,.06,metal);
   box(x,.88,z-.16,.045,.25,.06,metal);rounded(x,.8,z-.16,.42,.025,.26,black,.008);
   rounded(x,1.16,z-.2,1.12,.65,.045,black,.018);const tex=monitorTexture(i,sectors[i]);const screen=add(new T.PlaneGeometry(1.055,.59),new T.MeshStandardMaterial({map:tex,emissiveMap:tex,emissive:'#ffffff',emissiveIntensity:.65,roughness:.25}),x,1.16,z-.173);screens.push(screen);
   rounded(x-.08,.811,z+.28,.6,.022,.21,black,.008);const keyGeo=new T.BoxGeometry(.031,.008,.029),keyMatrix=new T.Matrix4();
-  for(const [mat,columns] of [[rubber,13],[white,1]]){const keys=new T.InstancedMesh(keyGeo,mat,columns*4);let n=0;for(let row=0;row<4;row++)for(let col=0;col<columns;col++){keyMatrix.makeTranslation(x-.35+(columns===1?13:col)*.039,.827,z+.21+row*.041);keys.setMatrixAt(n++,keyMatrix);}keys.castShadow=true;keys.receiveShadow=true;scene.add(keys);}
+  for(const [mat,columns] of [[rubber,13],[white,1]]){const keys=new T.InstancedMesh(keyGeo,mat,columns*4);let n=0;for(let row=0;row<4;row++)for(let col=0;col<columns;col++){keyMatrix.makeTranslation(x-.35+(columns===1?13:col)*.039,.827,z+.21+row*.041);keys.setMatrixAt(n++,keyMatrix);}keys.castShadow=true;keys.receiveShadow=true;scene.add(keys);meshes.push(keys);}
   const mouse=add(new T.SphereGeometry(1,12,8),black,x+.49,.83,z+.28);mouse.scale.set(.035,.02,.055);box(x+.49,.796,z+.3,.26,.003,.3,rubber);
   // Fabric task chairs, curved backs, five-star bases and castor wheels.
   const cx=x+.9,cz=z+1.2;rounded(cx,.46,cz,.49,.09,.47,fabric,.035);const back=rounded(cx,.78,cz+.22,.47,.55,.06,fabric,.025);back.rotation.x=-.09;cylinder(cx,.24,cz,.025,.4,metal);
@@ -61,7 +61,7 @@ export function buildOffice(scene,renderer){
   const notebook=rounded(x+.84,.803,z-.12,.25,.025,.35,i%2?paper:fabric,.008);notebook.rotation.y=.14;
   textPlate(String(i+1).padStart(2,'0')+' / '+sectors[i],x,.72,z+.558,.72,.095);
   // Desk partitions absorb sound and ground the workstations in an actual office.
-  box(x,1.05,z-.53,2.6,.5,.04,fabric);
+  box(x,1.05,z-.53,2.6,.5,.04,fabric);const group=new T.Group();scene.add(group);for(const mesh of meshes.slice(firstMesh))group.attach(mesh);deskGroups.push(group);for(const block of blocks.slice(firstBlock))block.caseIndex=i;
  });
  // Rear archive cabinets: rack doors, mesh vents, handles and small activity LEDs.
  for(const x of [-12,-9.6,9.6,12]){box(x,1.1,-10.7,1.1,2.2,.8,black);box(x,1.1,-10.28,.99,2.06,.025,metal);for(let y=.25;y<2;y+=.17){box(x,y,-10.25,.9,.11,.015,black);for(let j=0;j<4;j++)box(x-.32+j*.018,y,-10.235,.007,.07,.008,metal);box(x+.35,y,-10.23,.015,.015,.008,new T.MeshBasicMaterial({color:y>1?'#90c8a0':'#bba875'}));}box(x+.39,1.1,-10.19,.025,.22,.035,black);blocks.push({x,z:-10.7,w:1.1,d:.8});contact(x,-10.7,1.8,1.4);}
@@ -76,5 +76,5 @@ export function buildOffice(scene,renderer){
  const leaf=new T.MeshStandardMaterial({color:'#314d32',roughness:.8,side:T.DoubleSide});for(const x of [-14,14]){cylinder(x,.25,10,.25,.5,white);for(let i=0;i<14;i++){const a=i*2.4;const stem=cylinder(x+Math.sin(a)*.08,.65,10+Math.cos(a)*.08,.005,.8,black);const l=add(new T.SphereGeometry(1,10,8),leaf,x+Math.sin(a)*.2,.65+i%4*.16,10+Math.cos(a)*.2);l.scale.set(.09,.31,.025);l.rotation.z=Math.sin(a)*.8;}contact(x,10,1,1);}
  // Reflection capture with neutral practical lights, not coloured neon strips.
  const env=document.createElement('canvas');env.width=512;env.height=256;const ed=env.getContext('2d');const grad=ed.createLinearGradient(0,0,0,256);grad.addColorStop(0,'#303b50');grad.addColorStop(.48,'#182334');grad.addColorStop(1,'#242a2d');ed.fillStyle=grad;ed.fillRect(0,0,512,256);ed.fillStyle='#fff2d9';for(let x=16;x<512;x+=95)ed.fillRect(x,34,42,14);ed.fillStyle='#6b8caa';ed.fillRect(210,110,120,42);const et=new T.CanvasTexture(env);et.colorSpace=T.SRGBColorSpace;et.mapping=T.EquirectangularReflectionMapping;const pm=new T.PMREMGenerator(renderer);scene.environment=pm.fromEquirectangular(et).texture;scene.environmentIntensity=.32;pm.dispose();et.dispose();
- return {positions,screens,blocks,meshes,key,lamps,box,rounded,metal,black,paper,textPlate};
+ return {positions,screens,blocks,meshes,key,lamps,box,rounded,metal,black,paper,textPlate,deskGroups};
 }

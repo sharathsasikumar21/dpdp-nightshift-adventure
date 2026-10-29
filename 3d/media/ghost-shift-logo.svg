@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title description">
+ <title id="title">Ghost Shift emblem</title><desc id="description">A protected data trail forms a G within a midnight shield.</desc>
+ <defs><linearGradient id="edge" x2="1" y2="1"><stop stop-color="#a4f3ff"/><stop offset="1" stop-color="#28bcd9"/></linearGradient></defs>
+ <path fill="#0b1c32" stroke="url(#edge)" stroke-width="3" d="M64 7 110 27v37c0 24-19 42-46 57-27-15-46-33-46-57V27Z"/>
+ <path fill="none" stroke="#406780" stroke-width="1.5" d="M64 17 101 33v31c0 19-15 35-37 48-22-13-37-29-37-48V33Z"/>
+ <path fill="none" stroke="#ecfaff" stroke-width="9" stroke-linecap="square" d="M82 44a26 26 0 1 0 6 32V64H65"/>
+ <path fill="none" stroke="#ffc46d" stroke-width="4" d="M17 65H7m114 0h-10M64 7V1"/>
+ <circle cx="88" cy="64" r="4" fill="#67e5ff"/><circle cx="65" cy="64" r="3" fill="#ffc46d"/>
+</svg>

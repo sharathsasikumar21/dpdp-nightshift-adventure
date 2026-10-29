@@ -13,10 +13,10 @@ export function buildElevator(scene,office){
  box(0,2.73,13.5,1.5,.025,.6,glow);const light=new T.PointLight('#ffe1b1',15,5,2);light.position.set(0,2.55,13.6);scene.add(light);
  for(const x of [-1.48,1.48])box(x,1.4,11.98,.22,2.8,.25,metal);box(0,2.68,11.98,3,.24,.25,metal);
  const left=rounded(-.7,1.24,12.03,1.39,2.48,.055,panel,.008),right=rounded(.7,1.24,12.03,1.39,2.48,.055,panel,.008);
- for(const door of [left,right]){const strip=new T.Mesh(new T.BoxGeometry(.012,2.38,.008),metal);strip.position.z=.034;door.add(strip);}
- textPlate('47  /  MERIDIAN DATAWORKS',0,2.47,12.08,1.8,.13,'#20292d','#e4d3ac');
+ for(const door of [left,right]){door.userData.dynamic=true;const strip=new T.Mesh(new T.BoxGeometry(.012,2.38,.008),metal);strip.position.z=.034;door.add(strip);}
+ const landing=textPlate('47  /  MERIDIAN DATAWORKS',0,2.47,12.08,1.8,.13,'#20292d','#e4d3ac');
  box(1.15,1.4,12.13,.23,.7,.04,black);for(let i=0;i<4;i++){const b=new T.Mesh(new T.CylinderGeometry(.035,.035,.012,20),i===3?glow:metal);b.rotation.x=Math.PI/2;b.position.set(1.15,1.63-i*.15,12.16);scene.add(b);}
- textPlate("SIMON 'GHOST' RILEY",-1.1,1.35,12.11,.36,.11,'#162321','#aad4b2');
+ const display=textPlate('29 / INCIDENT RESPONSE',1.46,2.02,13.6,1.4,.22,'#112029','#e4d3ac');display.rotation.y=-Math.PI/2;
  // Closed doors remain as an architectural exit when the introduction finishes.
- return {update(seconds){const s=arrivalState(seconds);left.position.x=-.7-s.doors*1.28;right.position.x=.7+s.doors*1.28;return s;}};
+ let destination=47;return {setFloor(number){destination=number;const c=landing.material.map.image,d=c.getContext('2d');d.fillStyle='#20292d';d.fillRect(0,0,c.width,c.height);d.fillStyle='#e4d3ac';d.font='500 49px Arial';d.textAlign='center';d.fillText(number+' / MERIDIAN DATAWORKS',512,82);landing.material.map.needsUpdate=true;},update(seconds){const s=arrivalState(seconds);const c=display.material.map.image,d=c.getContext('2d');d.fillStyle='#112029';d.fillRect(0,0,1024,128);d.fillStyle='#e4d3ac';d.font='bold 46px Arial';d.textAlign='center';d.fillText((s.done?destination:s.floor)+' / INCIDENT RESPONSE',512,82);display.material.map.needsUpdate=true;left.position.x=-.7-s.doors*1.28;right.position.x=.7+s.doors*1.28;return s;}};
 }
