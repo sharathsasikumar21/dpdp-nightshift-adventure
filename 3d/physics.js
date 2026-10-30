@@ -13,7 +13,8 @@ export async function createOfficePhysics(blocks,{floor=47,position={x:0,z:9}}={
  const fixed=(x,y,z,w,h,d)=>world.createCollider(RAPIER.ColliderDesc.cuboid(w/2,h/2,d/2).setTranslation(x,y,z).setFriction(.6));
  fixed(0,-.1,0,31,.2,25);
  fixed(-14.78,1.75,0,.2,3.5,24);fixed(14.78,1.75,0,.2,3.5,24);
- fixed(0,1.75,-11.63,30,3.5,.2);fixed(0,1.75,11.63,30,3.5,.2);
+ fixed(0,1.75,-11.63,30,3.5,.2);for(const x of [-8.25,8.25])fixed(x,1.75,11.63,13.5,3.5,.2);
+ fixed(0,-.1,13.6,3.2,.2,4.4);for(const x of [-1.6,1.6])fixed(x,1.4,13.5,.1,2.8,3.2);fixed(0,1.4,15.1,3.2,2.8,.1);
  const obstacles=blocks.map(b=>({block:b,collider:fixed(b.x,(b.h??1.8)/2,b.z,b.w,b.h??1.8,b.d)}));
  const moving=obstacles.filter(o=>o.block.dynamic);
  const body=world.createRigidBody(RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(position.x,CENTER,position.z));
@@ -44,7 +45,7 @@ export async function createOfficePhysics(blocks,{floor=47,position={x:0,z:9}}={
    const alpha=accumulator/STEP;
    return {x:previous.x+(current.x-previous.x)*alpha,z:previous.z+(current.z-previous.z)*alpha};
   },
-  status:()=>({engine:'Rapier 0.21.0',floor,position:{...current},colliders:obstacles.filter(o=>o.collider.isEnabled()).length+6}),
+  status:()=>({engine:'Rapier 0.21.0',floor,position:{...current},colliders:obstacles.filter(o=>o.collider.isEnabled()).length+11}),
   dispose(){if(!disposed){disposed=true;world.free();}}
  };
 }

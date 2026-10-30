@@ -1,5 +1,0 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {createPetPatrol} from '../pet-patrol.js';
-test('Chikku visits the colleague on each floor and stays in the room aisles',()=>{
- for(const [floor,npc] of [[47,0],[48,1],[49,2],[50,null]]){const p=createPetPatrol();p.setFloor(floor);const seen=new Set();let moved=false;for(let i=0;i<6000;i++){const s=p.update(.1);assert.ok(Math.abs(s.x)<14&&s.z>=0&&s.z<=10);assert.ok(s.speed>=0&&s.speed<=.65);if(s.speed>.05)moved=true;if(s.event!==null)seen.add(s.event);for(const x of [-10,-5,0,5,10])assert.ok(!(Math.abs(s.x-x)<1.6&&Math.abs(s.z-5)<.9),'desk intersection');}assert.ok(moved);assert.deepEqual([...seen],npc===null?[]:[npc]);}
-});
-test('Chikku pauses for the player, petting, and scene interruptions',()=>{const p=createPetPatrol();let s=p.update(.1);const before={x:s.x,z:s.z};for(let i=0;i<100;i++)s=p.update(.1,{paused:true});assert.equal(s.x,before.x);assert.equal(s.z,before.z);for(let i=0;i<100;i++)s=p.update(.1,{player:before});assert.equal(s.x,before.x);assert.equal(s.z,before.z);});

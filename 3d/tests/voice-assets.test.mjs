@@ -5,3 +5,12 @@ test('every contextual and tutorial voice has a real matching audio file and cur
  const metadata=JSON.parse(fs.readFileSync(new URL('../media/voices/voice-lines.json',import.meta.url),'utf8'));
  for(const clips of Object.values(VOICE_CLIPS))for(const clip of clips){const url=new URL('../'+clip.src,import.meta.url),data=fs.readFileSync(url),hash=crypto.createHash('sha256').update(data).digest('hex');assert.equal(url.searchParams.get('v'),hash.slice(0,12),clip.id);assert.equal(metadata[clip.id].sha256,hash,clip.id);assert.equal(clip.text,metadata[clip.id].text);assert.ok(clip.speaker);assert.ok(metadata[clip.id].duration>0&&metadata[clip.id].duration<16,clip.id);assert.ok(data.length>1000,clip.id);}
 });
+
+test('DPO reactions and kind Chikku greetings use the recorded male voice',()=>{
+ const metadata=JSON.parse(fs.readFileSync(new URL('../media/voices/voice-lines.json',import.meta.url),'utf8'));
+ for(const group of ['evidence','terminal','coffee','keepsake','warning','pet-dpo']){
+  assert.ok(VOICE_CLIPS[group]?.length>=2,group);
+  for(const clip of VOICE_CLIPS[group]){assert.equal(metadata[clip.id].voice,'am_adam',clip.id);assert.equal(clip.speaker,'Simon Ghost Riley · DPO');}
+ }
+ assert.ok(VOICE_CLIPS['pet-dpo'].every(clip=>clip.text.includes('Chikku')&&clip.text.includes('Good boy')));
+});

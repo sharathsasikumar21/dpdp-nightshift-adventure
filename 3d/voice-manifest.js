@@ -3,93 +3,93 @@ export const VOICE_CLIPS={
   "evidence": [
     {
       "id": "evidence-1",
-      "src": "media/voices/evidence-1.mp3?v=37cb98892049",
+      "src": "media/voices/evidence-1.mp3?v=b454c4ffa30b",
       "text": "Source record secured. Check the other two before drawing a conclusion.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "evidence-2",
-      "src": "media/voices/evidence-2.mp3?v=9a2906c0b806",
+      "src": "media/voices/evidence-2.mp3?v=89abcc146b7c",
       "text": "One record is a lead. Compare it with the evidence on this desk.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "evidence-banter-1",
-      "src": "media/voices/evidence-banter-1.mp3?v=f0344f61f5f6",
+      "src": "media/voices/evidence-banter-1.mp3?v=5792a24d43aa",
       "text": "One clue down. Please do not solve the entire case from a paperclip.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "evidence-banter-2",
-      "src": "media/voices/evidence-banter-2.mp3?v=8641565d342f",
+      "src": "media/voices/evidence-banter-2.mp3?v=a01f0001b9bf",
       "text": "Excellent. Actual evidence. The guessing department is closed tonight.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     }
   ],
   "terminal": [
     {
       "id": "terminal-1",
-      "src": "media/voices/terminal-1.mp3?v=085682cc7f30",
+      "src": "media/voices/terminal-1.mp3?v=25f8baacb16c",
       "text": "Verify the facts before you make the call. The order of your actions matters.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "terminal-2",
-      "src": "media/voices/terminal-2.mp3?v=933ac190402e",
+      "src": "media/voices/terminal-2.mp3?v=61d2d5aadb2d",
       "text": "Read all three records. Then choose the response you can defend.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "terminal-banter-1",
-      "src": "media/voices/terminal-banter-1.mp3?v=bf95258cc1be",
+      "src": "media/voices/terminal-banter-1.mp3?v=84a9383e58aa",
       "text": "Confidence is not a lawful basis. Check the record.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "terminal-banter-2",
-      "src": "media/voices/terminal-banter-2.mp3?v=2360f9d57a52",
+      "src": "media/voices/terminal-banter-2.mp3?v=c3728c1c33cb",
       "text": "Four options. Somehow, guessing still feels like a fifth.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     }
   ],
   "coffee": [
     {
       "id": "coffee-1",
-      "src": "media/voices/coffee-1.mp3?v=d4e73d489d3d",
+      "src": "media/voices/coffee-1.mp3?v=f23d0767e7fa",
       "text": "Stay sharp. The records still need you, even after the coffee.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "coffee-2",
-      "src": "media/voices/coffee-2.mp3?v=3c02e3423b91",
+      "src": "media/voices/coffee-2.mp3?v=8fcb0fcdfd43",
       "text": "One coffee. Still no permission to guess. Back to the evidence.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "coffee-banter-1",
-      "src": "media/voices/coffee-banter-1.mp3?v=3e9ac8f43ffc",
+      "src": "media/voices/coffee-banter-1.mp3?v=3a8ab8767907",
       "text": "Coffee acquired. Legal immunity still unavailable.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "coffee-banter-2",
-      "src": "media/voices/coffee-banter-2.mp3?v=bac2796f6484",
+      "src": "media/voices/coffee-banter-2.mp3?v=3f90a2b86975",
       "text": "That is your coffee break. The breach did not take one.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     }
   ],
   "keepsake": [
     {
       "id": "keepsake-1",
-      "src": "media/voices/keepsake-1.mp3?v=53e334013aa3",
+      "src": "media/voices/keepsake-1.mp3?v=e4666f47088e",
       "text": "Every desk has a story. Tonight, the records matter more than the souvenirs.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "keepsake-2",
-      "src": "media/voices/keepsake-2.mp3?v=053bd20ea9e8",
+      "src": "media/voices/keepsake-2.mp3?v=9613e5acd625",
       "text": "Someone left a little history on this desk. Take a look.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     }
   ],
   "lift": [
@@ -109,27 +109,27 @@ export const VOICE_CLIPS={
   "warning": [
     {
       "id": "warning-1",
-      "src": "media/voices/warning-1.mp3?v=7ef06bc30556",
+      "src": "media/voices/warning-1.mp3?v=b8e47754fd87",
       "text": "Slow down. Preserve the evidence and check the facts before your next decision.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "warning-2",
-      "src": "media/voices/warning-2.mp3?v=4f2707401ac9",
+      "src": "media/voices/warning-2.mp3?v=f61a0282562c",
       "text": "The risk is still active. Contain it, verify the scope, and keep a clear record.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "warning-banter-1",
-      "src": "media/voices/warning-banter-1.mp3?v=cb0e920cdc1e",
+      "src": "media/voices/warning-banter-1.mp3?v=3a28d77f7ee2",
       "text": "Bold choice. The audit log disagrees. Check the evidence before the next call.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "warning-banter-2",
-      "src": "media/voices/warning-banter-2.mp3?v=872c9b8dea85",
+      "src": "media/voices/warning-banter-2.mp3?v=733435c3e20e",
       "text": "The evidence called. It wants a second opinion. Preserve the records and verify the facts.",
-      "speaker": "Control \u00b7 Operations"
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     }
   ],
   "arrival": [
@@ -298,6 +298,20 @@ export const VOICE_CLIPS={
       "src": "media/voices/radio-counsel.mp3?v=57ae1876d553",
       "text": "Read all three first, Mira. Then let the Data Protection Officer make the call.",
       "speaker": "Leena \u00b7 Privacy counsel"
+    }
+  ],
+  "pet-dpo": [
+    {
+      "id": "pet-dpo-1",
+      "src": "media/voices/pet-dpo-1.mp3?v=dded2f8f09a3",
+      "text": "Hey, Chikku. Good boy. I am right here.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    },
+    {
+      "id": "pet-dpo-2",
+      "src": "media/voices/pet-dpo-2.mp3?v=0fea35295b08",
+      "text": "There you are, Chikku. Good boy. You are safe with me.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
     }
   ],
   "pet-mira": [

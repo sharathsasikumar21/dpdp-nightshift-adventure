@@ -14,9 +14,9 @@ test('Rapier slides along furniture and contains the player at room boundaries',
 test('floor changes remove hidden furniture collision and restore it on return',async()=>{
  const p=await createOfficePhysics([{x:0,z:0,w:4,d:1,floor:48},{x:8,z:0,w:1,d:1,caseIndex:2}],{position:{x:0,z:3}});
  try{
-  assert.equal(p.status().colliders,6);assert.ok(walk(p,0,-3).z<0);
-  p.setFloor(48);p.teleport({x:0,z:3});assert.equal(p.status().colliders,7);assert.ok(walk(p,0,-3).z>.76);
-  p.setFloor(49);assert.equal(p.status().colliders,7);p.teleport({x:0,z:3});assert.ok(walk(p,0,-3).z<0);
+  const baseline=p.status().colliders;assert.ok(walk(p,0,-3).z<0);
+  p.setFloor(48);p.teleport({x:0,z:3});assert.equal(p.status().colliders,baseline+1);assert.ok(walk(p,0,-3).z>.76);
+  p.setFloor(49);assert.equal(p.status().colliders,baseline+1);p.teleport({x:0,z:3});assert.ok(walk(p,0,-3).z<0);
  }finally{p.dispose();}
 });
 test('teleport clears interpolation and cannot pull the player back to the old floor position',async()=>{
@@ -33,3 +33,5 @@ test('an inactive-tab time gap is discarded and invalid movement is rejected',as
  try{p.advance(3.7,0,20);assert.ok(p.status().position.x<.4);assert.throws(()=>p.advance(NaN,0,.016));assert.throws(()=>p.advance(1,0,-1));}finally{p.dispose();}
 });
 test('moving colleague colliders leave the old location and block the new one',async()=>{const block={x:0,z:0,w:1,d:1,dynamic:true},p=await createOfficePhysics([block],{position:{x:0,z:3}});try{block.x=5;p.advance(0,0,1/60);assert.ok(walk(p,0,-3).z<0);p.teleport({x:5,z:3});assert.ok(walk(p,0,-3).z>.76);}finally{p.dispose();}});
+
+test('the lift doorway is passable while cabin walls remain solid',async()=>{const p=await createOfficePhysics([],{position:{x:0,z:10}});try{const inside=walk(p,0,2,2);assert.ok(inside.z>13&&inside.z<14.9);const side=walk(p,3,0,1);assert.ok(side.x<1.4);const back=walk(p,0,3,2);assert.ok(back.z<14.9);const out=walk(p,0,-2,3);assert.ok(out.z<10);}finally{p.dispose();}});

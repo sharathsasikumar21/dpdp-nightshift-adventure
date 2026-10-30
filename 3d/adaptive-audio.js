@@ -1,3 +1,4 @@
+import {AUDIO_CUES} from './audio-cues.js';
 // Supplied gameplay soundtrack with adaptive effects and synth fallback. Audio is created only after a user gesture.
 export class Sound{
  constructor(){this.enabled=true;this.ctx=null;this.ambient=null;this.situation={phase:'home',integrity:70,remaining:90,level:0};this.beat=0;this.next=0;}
@@ -27,16 +28,19 @@ export class Sound{
   const p=this.ctx.createStereoPanner();p.pan.value=Math.max(-1,Math.min(1,pan));p.connect(this.music);
   const t=this.ctx.currentTime,variation=.92+Math.random()*.16;
   const noise=(at,len,volume,frequency,type='lowpass')=>{const buffer=this.ctx.createBuffer(1,Math.ceil(this.ctx.sampleRate*len),this.ctx.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*Math.exp(-i/data.length*4);const source=this.ctx.createBufferSource(),filter=this.ctx.createBiquadFilter(),gain=this.ctx.createGain();source.buffer=buffer;filter.type=type;filter.frequency.value=frequency*variation;gain.gain.value=volume;source.connect(filter);filter.connect(gain);gain.connect(p);source.start(at);};
-  if(kind==='phone'){this.tone(660*variation,t,.2,.2,'sine',p);this.tone(880*variation,t+.24,.18,.15,'sine',p);}
+  const signature=AUDIO_CUES[kind==='clue'?'evidence':kind];
+  if(signature){signature.notes.forEach((f,i)=>this.tone(f,t+i*signature.spacing,signature.length,signature.volume,signature.type,p));}
+  else if(kind==='phone'){this.tone(660*variation,t,.2,.2,'sine',p);this.tone(880*variation,t+.24,.18,.15,'sine',p);}
   else if(kind==='step'){this.tone(82*variation,t,.065,.13,'sine',p);noise(t,.11,.075,550);}
   else if(kind==='clue'){this.tone(740*variation,t,.55,.1,'sine',p);this.tone(1108*variation,t+.09,.35,.035,'sine',p);}
   else if(kind==='paper'){noise(t,.2,.15,1800,'bandpass');noise(t+.1,.18,.09,2600,'bandpass');}
   else if(kind==='coffee'){noise(t,.8,.14,1600,'bandpass');this.tone(1260*variation,t+.65,.16,.07,'sine',p);}
   else if(kind==='terminal'||kind==='switch'){noise(t,.045,.16,2400,'highpass');this.tone(1650*variation,t,.025,.055,'triangle',p);if(kind==='terminal')noise(t+.08,.035,.1,1900,'highpass');}
+  else if(kind==='lift-motion'){noise(t,.9,.16,180);this.tone(68,t,.9,.08,'sine',p);}
   else if(kind==='lift'){this.tone(587.33,t,.55,.11,'sine',p);this.tone(783.99,t+.22,.55,.07,'sine',p);}
   else noise(t,.3,kind==='rain'?.12:.14,kind==='rain'?1400:500);
   setTimeout(()=>p.disconnect(),1500);
  }
- warning(){if(!this.enabled)return;this.start();[440,330,220].forEach((f,i)=>this.tone(f,this.ctx.currentTime+i*.2,.32,.065,'triangle',this.ctx.destination));}
+ warning(){this.spatial('warning');}
  cue(good=true){if(!this.enabled)return;this.start();[good?523:170,good?659:130,good?784:85].forEach((f,i)=>this.tone(f,this.ctx.currentTime+i*.09,.2,.045,'triangle',this.ctx.destination));}
 }

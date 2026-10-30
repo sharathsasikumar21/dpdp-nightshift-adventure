@@ -1,51 +1,51 @@
 {
   "evidence-1": {
     "text": "Source record secured. Check the other two before drawing a conclusion.",
-    "voice": "af_heart",
-    "duration": 4.268,
-    "sha256": "37cb98892049ce4b61b6bd9702be52fd62f550a77f80c15243e387f9b538e5e0"
+    "voice": "am_adam",
+    "duration": 4.334,
+    "sha256": "b454c4ffa30b2e59efa3f555e28fbba529ba257376b1e3efa3cd016cdeb785e0"
   },
   "evidence-2": {
     "text": "One record is a lead. Compare it with the evidence on this desk.",
-    "voice": "af_heart",
-    "duration": 4.161,
-    "sha256": "9a2906c0b80658f9ecc6378c5be0e678e2367d5e1e135f65603fb34f277360c6"
+    "voice": "am_adam",
+    "duration": 3.993,
+    "sha256": "89abcc146b7c311ac1899aca416f7e0a578493e01c69642839b241ac20fe7193"
   },
   "terminal-1": {
     "text": "Verify the facts before you make the call. The order of your actions matters.",
-    "voice": "af_heart",
-    "duration": 4.652,
-    "sha256": "085682cc7f309545a288e85257356f82f5d7dfb4ca56a05dac19b6a8574c15eb"
+    "voice": "am_adam",
+    "duration": 4.547,
+    "sha256": "25f8baacb16c8d15bee2f1096e418f0293ab504135ee9ac67e8eb7f7932247cf"
   },
   "terminal-2": {
     "text": "Read all three records. Then choose the response you can defend.",
-    "voice": "af_heart",
-    "duration": 4.034,
-    "sha256": "933ac190402e3fe771532cebfe8b65cb5de1011c0798dd68aa2ee928ce73f6cf"
+    "voice": "am_adam",
+    "duration": 3.866,
+    "sha256": "61d2d5aadb2d263f4343d46fcfdf4e7b990c8754bdfc47a0f200ef301aaf1273"
   },
   "coffee-1": {
     "text": "Stay sharp. The records still need you, even after the coffee.",
-    "voice": "af_heart",
-    "duration": 3.884,
-    "sha256": "d4e73d489d3d8ea74389aaf8872dc340bdf0c742f678b00f34f8f786fc7bdb31"
+    "voice": "am_adam",
+    "duration": 3.545,
+    "sha256": "f23d0767e7fa3f63ded75874afdff20c169ff5d2f806cc0acd0a81861e062b28"
   },
   "coffee-2": {
     "text": "One coffee. Still no permission to guess. Back to the evidence.",
-    "voice": "af_heart",
-    "duration": 4.055,
-    "sha256": "3c02e3423b915a2a3fb735ff0f7e9880b94a5baa68431f9b2945de9f501bd059"
+    "voice": "am_adam",
+    "duration": 3.758,
+    "sha256": "8fcb0fcdfd438b8197b56b2731781a42f644c03e1bc57220f50b1d6e3c7bf4f5"
   },
   "keepsake-1": {
     "text": "Every desk has a story. Tonight, the records matter more than the souvenirs.",
-    "voice": "af_heart",
-    "duration": 4.737,
-    "sha256": "53e334013aa3c6a40d1376ff5a315e447198dfadf2155ec623bab22b184aabd4"
+    "voice": "am_adam",
+    "duration": 4.483,
+    "sha256": "e4666f47088ef2dc43899a88794d232f899dbfb70119502870a7cce1721589ca"
   },
   "keepsake-2": {
     "text": "Someone left a little history on this desk. Take a look.",
-    "voice": "af_heart",
-    "duration": 3.393,
-    "sha256": "053bd20ea9e8b63795a6f449510e1c40c142e71d158cb2fe523a15f0f3ad85f1"
+    "voice": "am_adam",
+    "duration": 3.246,
+    "sha256": "9613e5acd625051589f24a2373e5a5f6658af1981452629f93b4813745c6cbed"
   },
   "lift-1": {
     "text": "Check the department on your objective. Your next lead may be on another floor.",
@@ -61,15 +61,15 @@
   },
   "warning-1": {
     "text": "Slow down. Preserve the evidence and check the facts before your next decision.",
-    "voice": "af_heart",
-    "duration": 4.844,
-    "sha256": "7ef06bc305567c49826b0fc1bec9093cf7ae934e668f171d21b07ffcde1e4c33"
+    "voice": "am_adam",
+    "duration": 4.442,
+    "sha256": "b8e47754fd87860d1d2a34465c0544bc563c37523498a9dd2f3f806bf59cb8c3"
   },
   "warning-2": {
     "text": "The risk is still active. Contain it, verify the scope, and keep a clear record.",
-    "voice": "af_heart",
-    "duration": 5.1,
-    "sha256": "4f2707401ac9022e4fa3bc2613469c05e8144c51c9b39d230831f6c5bd279b01"
+    "voice": "am_adam",
+    "duration": 4.634,
+    "sha256": "f61a0282562c782c7fbcb34b547b2627ca7bdb825e870109f82fbac42b239183"
   },
   "arrival-1": {
     "text": "Find your active case desk. The badge, door log and witness account are together on that table.",
@@ -277,51 +277,51 @@
   },
   "evidence-banter-1": {
     "text": "One clue down. Please do not solve the entire case from a paperclip.",
-    "voice": "af_heart",
-    "duration": 4.396,
-    "sha256": "f0344f61f5f6e109f7924397b198d83f9bc10dcbf55eb4dc827cfbfb6e33a759"
+    "voice": "am_adam",
+    "duration": 4.419,
+    "sha256": "5792a24d43aab18ea2620c3d3748a5eb08656a83052005473a553d7ebc31f83b"
   },
   "evidence-banter-2": {
     "text": "Excellent. Actual evidence. The guessing department is closed tonight.",
-    "voice": "af_heart",
-    "duration": 4.247,
-    "sha256": "8641565d342f3d2ba4ab51552e776af1ac4fd858e1c5ca7d5b87007963294763"
+    "voice": "am_adam",
+    "duration": 3.993,
+    "sha256": "a01f0001b9bfa674dbde6754e24adf6319c74e49f66e7c09b86c612f093b6811"
   },
   "coffee-banter-1": {
     "text": "Coffee acquired. Legal immunity still unavailable.",
-    "voice": "af_heart",
-    "duration": 3.521,
-    "sha256": "3e9ac8f43ffc6051233cd557c83f96aed01be8216d16c05a8cafd5eecdfea75a"
+    "voice": "am_adam",
+    "duration": 3.502,
+    "sha256": "3a8ab87679071e9b784667273a342d4a6c7e2891c1bbbd48eff9f631e798bfe4"
   },
   "coffee-banter-2": {
     "text": "That is your coffee break. The breach did not take one.",
-    "voice": "af_heart",
-    "duration": 3.287,
-    "sha256": "bac2796f6484199af6280d4b6a718d2e81f67a5c90fa14e41af63cb869149348"
+    "voice": "am_adam",
+    "duration": 3.182,
+    "sha256": "3f90a2b869753b7f43ea75ee2373c01212c76c07e3eae8adbcd8e00e07398b6a"
   },
   "terminal-banter-1": {
     "text": "Confidence is not a lawful basis. Check the record.",
-    "voice": "af_heart",
-    "duration": 3.585,
-    "sha256": "bf95258cc1be073349e87f75b1985cf92141af719d9c27601fc4d7815e35469d"
+    "voice": "am_adam",
+    "duration": 3.545,
+    "sha256": "84a9383e58aad05335c15f6d892a60108b53213cf3e6718d6647f2ee92181a75"
   },
   "terminal-banter-2": {
     "text": "Four options. Somehow, guessing still feels like a fifth.",
-    "voice": "af_heart",
-    "duration": 3.777,
-    "sha256": "2360f9d57a52f713075e9b3f39e8c30b5f4d6ffb8056faf5674360fcc93c96be"
+    "voice": "am_adam",
+    "duration": 3.438,
+    "sha256": "c3728c1c33cb8bd401f0cc5a9b4661b08d1acb267af716c2993292315264e8cf"
   },
   "warning-banter-1": {
     "text": "Bold choice. The audit log disagrees. Check the evidence before the next call.",
-    "voice": "af_heart",
-    "duration": 5.164,
-    "sha256": "cb0e920cdc1e434842160267282a8d553f9e84b5ba542cd352e3bdd32a852e73"
+    "voice": "am_adam",
+    "duration": 4.931,
+    "sha256": "3a28d77f7ee2b9b3ee7151bdba786a482dc2183d05f3b51340ded3191b0f523c"
   },
   "warning-banter-2": {
     "text": "The evidence called. It wants a second opinion. Preserve the records and verify the facts.",
-    "voice": "af_heart",
-    "duration": 5.825,
-    "sha256": "872c9b8dea85656e5309d7dac71272d254e38dcac7b688b96cda2539782eabbf"
+    "voice": "am_adam",
+    "duration": 5.42,
+    "sha256": "733435c3e20ee651765360c792672dcb65678b51f34561efb6c779ee2c94ec97"
   },
   "pet-mira": {
     "text": "Hey, Chikku. Good boy. Keeping the night crew company?",
@@ -340,5 +340,17 @@
     "voice": "bf_emma",
     "duration": 3.991,
     "sha256": "cf75ea9f59567bc8af7228fee91ea54682b5b8e75cd63e1aa410e91415d19219"
+  },
+  "pet-dpo-1": {
+    "text": "Hey, Chikku. Good boy. I am right here.",
+    "voice": "am_adam",
+    "duration": 2.561,
+    "sha256": "dded2f8f09a38ee08c314eca034521124b0e465e0ba645787f50182ac3909f8a"
+  },
+  "pet-dpo-2": {
+    "text": "There you are, Chikku. Good boy. You are safe with me.",
+    "voice": "am_adam",
+    "duration": 3.095,
+    "sha256": "0fea35295b08042ac6ad219e52efa906176469a0adc25bbdcc58a70fd8c5dcac"
   }
 }

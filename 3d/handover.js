@@ -1,0 +1,14 @@
+import {floorForCase} from './building.js';
+export function buildHandover(state,stories,playerId,evidence=new Map(),openingCount=0){
+ const decisions=state.log.map(entry=>{const result=entry.results.find(r=>r.id===playerId),story=stories[entry.story],scene=story.scenes[entry.scene];return {number:entry.turn+1,story:story.title,topic:scene.tag,good:!!result?.good,timeout:!!result?.timeout,why:scene.why,next:scene.a,effect:result?.good?scene.good:scene.effect};});
+ const correct=decisions.filter(d=>d.good).length,total=decisions.length;
+ const cases=state.route.map(index=>{const story=stories[index],log=state.log.filter(e=>e.story===index);return {title:story.title,floor:floorForCase(index),documents:evidence.get(state.id+':'+story.id)?.size||0,correct:log.filter(e=>e.results.find(r=>r.id===playerId)?.good).length,decisions:log.length};});
+ return {correct,total,accuracy:total?Math.floor(correct/total*100):0,documents:cases.reduce((n,c)=>n+c.documents,0),expectedDocuments:state.route.length*3,openingCount,cases,decisions,followUp:decisions.filter(d=>!d.good)};
+}
+export function assessDpo(report){
+ const strengths=report.decisions.filter(d=>d.good).slice(0,3).map(d=>({title:d.topic,detail:d.why}));
+ const improvements=report.followUp.slice(0,3).map(d=>({title:d.topic,detail:d.timeout?'Practise comparing the three records before opening the timed decision. '+d.next:d.next}));
+ if(report.documents<report.expectedDocuments)improvements.unshift({title:'Evidence discipline',detail:'Examine all three records at each case desk before deciding. Your handover contains '+report.documents+' of '+report.expectedDocuments+' records.'});
+ return {title:report.accuracy>=80?'Defensible under pressure':'Further review needed',strengths,improvements:improvements.slice(0,3)};
+}
+export function handoverText(report){return ['GHOST SHIFT: MIDNIGHT BREACH','MORNING HANDOVER · SIMON GHOST RILEY · DATA PROTECTION OFFICER','',report.accuracy+'% correct · '+report.correct+'/'+report.total+' defensible decisions',report.documents+'/'+report.expectedDocuments+' case records examined · '+report.openingCount+'/3 arrival clues','',...report.cases.map(c=>'FLOOR '+c.floor+' · '+c.title+' · '+c.documents+'/3 records · '+c.correct+'/'+c.decisions+' correct'),'',report.followUp.length?'FOLLOW-UP REQUIRED':'ALL DECISIONS DEFENSIBLE',...report.followUp.flatMap(d=>['Decision '+d.number+' · '+d.story+' · '+d.topic+(d.timeout?' · TIMED OUT':''),'Why: '+d.why,'Next action: '+d.next,'Effect: '+d.effect,'']),'FULL DECISION RECORD',...report.decisions.flatMap(d=>[d.number+'. '+d.story+' · '+d.topic+' · '+(d.good?'DEFENSIBLE':d.timeout?'TIMED OUT':'UNSAFE'),'Rationale: '+d.why,'Effect: '+d.effect,'']),'Preserve source records, verify outstanding facts and coordinate containment with the responsible teams.','Educational simulation: the report records in-game decisions.'].join('\n');}

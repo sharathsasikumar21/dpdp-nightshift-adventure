@@ -27,3 +27,5 @@ test('crew exchange plays replies only after the first speaker finishes and canc
  await bank.playExchange(['first','reply']);assert.equal(audios.length,1);audios[0].onended();await Promise.resolve();assert.equal(audios.length,2);bank.stop();
  await bank.playExchange(['first','reply']);const stale=audios[2].onended;bank.stop();stale();assert.equal(audios.length,3);
 });
+
+test('serious mode excludes banter but keeps warning narration and can stop only an active joke',async()=>{let banter=false;const audios=[];class Audio{constructor(src){this.src=src;audios.push(this);}play(){return Promise.resolve();}pause(){this.paused=true;}}const bank=new VoiceBank({clips:{warning:[{id:'warning-banter-1',src:'joke.mp3'},{id:'warning-1',src:'serious.mp3'}]},Audio,getBanter:()=>banter,random:()=>0});await bank.play('warning',{cooldown:0});assert.ok(audios[0].src.includes('serious'));bank.stopBanter();assert.equal(audios[0].paused,undefined);bank.stop();banter=true;await bank.play('warning',{cooldown:0});assert.ok(audios[1].src.includes('joke'));bank.stopBanter();assert.equal(audios[1].paused,true);});
