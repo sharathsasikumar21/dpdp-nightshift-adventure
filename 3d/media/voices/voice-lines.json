@@ -322,5 +322,23 @@
     "voice": "af_heart",
     "duration": 5.825,
     "sha256": "872c9b8dea85656e5309d7dac71272d254e38dcac7b688b96cda2539782eabbf"
+  },
+  "pet-mira": {
+    "text": "Hey, Chikku. Good boy. Keeping the night crew company?",
+    "voice": "af_heart",
+    "duration": 3.521,
+    "sha256": "e844e107ab04ec198ab2223ae577572ec2cf5ba93ef41655fb01a0caad327857"
+  },
+  "pet-arjun": {
+    "text": "Chikku, my favourite member of security. Good boy.",
+    "voice": "am_michael",
+    "duration": 3.948,
+    "sha256": "0b5af628ccb32a28b685e3d61ecda43fa9c16c18fc981666a9609f528966d261"
+  },
+  "pet-leena": {
+    "text": "Hello, Chikku. One quick scratch, then back to the investigation.",
+    "voice": "bf_emma",
+    "duration": 3.991,
+    "sha256": "cf75ea9f59567bc8af7228fee91ea54682b5b8e75cd63e1aa410e91415d19219"
   }
 }

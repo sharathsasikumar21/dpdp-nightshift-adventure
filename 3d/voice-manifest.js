@@ -300,6 +300,30 @@ export const VOICE_CLIPS={
       "speaker": "Leena \u00b7 Privacy counsel"
     }
   ],
+  "pet-mira": [
+    {
+      "id": "pet-mira",
+      "src": "media/voices/pet-mira.mp3?v=e844e107ab04",
+      "text": "Hey, Chikku. Good boy. Keeping the night crew company?",
+      "speaker": "Mira \u00b7 Incident analyst"
+    }
+  ],
+  "pet-arjun": [
+    {
+      "id": "pet-arjun",
+      "src": "media/voices/pet-arjun.mp3?v=0b5af628ccb3",
+      "text": "Chikku, my favourite member of security. Good boy.",
+      "speaker": "Arjun \u00b7 Security engineer"
+    }
+  ],
+  "pet-leena": [
+    {
+      "id": "pet-leena",
+      "src": "media/voices/pet-leena.mp3?v=cf75ea9f5956",
+      "text": "Hello, Chikku. One quick scratch, then back to the investigation.",
+      "speaker": "Leena \u00b7 Privacy counsel"
+    }
+  ],
   "ending": [
     {
       "id": "heroic-narration",

@@ -53,14 +53,17 @@ LINES = {
  'terminal-banter-2': ('terminal', 'Four options. Somehow, guessing still feels like a fifth.'),
  'warning-banter-1': ('warning', 'Bold choice. The audit log disagrees. Check the evidence before the next call.'),
  'warning-banter-2': ('warning', 'The evidence called. It wants a second opinion. Preserve the records and verify the facts.'),
+ 'pet-mira': ('pet-mira', 'Hey, Chikku. Good boy. Keeping the night crew company?'),
+ 'pet-arjun': ('pet-arjun', 'Chikku, my favourite member of security. Good boy.'),
+ 'pet-leena': ('pet-leena', 'Hello, Chikku. One quick scratch, then back to the investigation.'),
  'heroic-narration': ('ending', 'The copies are contained. The evidence is intact. Mumbai wakes to a safer morning. You held the line.'),
  'dark-narration': ('ending', 'You found the signature. The copies survived. Somewhere beyond this room, the incident is still unfolding. The night is not over.')
 }
 
 def speaker_for(group):
- if group in ('mira','radio-mira','radio-analyst'):return 'Mira · Incident analyst'
- if group in ('arjun','radio-arjun','radio-security'):return 'Arjun · Security engineer'
- if group in ('leena','radio-leena','radio-counsel'):return 'Leena · Privacy counsel'
+ if group in ('mira','radio-mira','radio-analyst','pet-mira'):return 'Mira · Incident analyst'
+ if group in ('arjun','radio-arjun','radio-security','pet-arjun'):return 'Arjun · Security engineer'
+ if group in ('leena','radio-leena','radio-counsel','pet-leena'):return 'Leena · Privacy counsel'
  return 'Control · Operations'
 
 def main():
@@ -72,7 +75,7 @@ def main():
  for story in json.loads(Path('3d/stories.json').read_text(encoding='utf-8')):
   LINES['story-'+story['id']]=('story-'+story['id'],story['brief'])
  for name,(group,text) in LINES.items():
-  voice='am_michael' if group in ('arjun','radio-arjun','radio-security') else 'bf_emma' if group in ('leena','radio-leena','radio-counsel') else 'af_heart'
+  voice='am_michael' if group in ('arjun','radio-arjun','radio-security','pet-arjun') else 'bf_emma' if group in ('leena','radio-leena','radio-counsel','pet-leena') else 'af_heart'
   lang='en-gb' if voice.startswith('b') else 'en-us';target=out/(name+'.mp3')
   if args.only and name not in args.only:continue
   if args.reuse_existing and target.exists():duration=sf.info(target).duration

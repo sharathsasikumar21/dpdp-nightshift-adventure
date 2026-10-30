@@ -39,3 +39,5 @@ The navigation diamond points to your active table, or the lift when the case is
 Simon Ghost Riley uses the supplied GLB character in the lift. Its browser copy is reduced to fewer than 50,000 triangles. The model has no skeleton or animation clips; the entrance uses a standing cinematic pose followed by first-person arrival.
 
 Supplied scene assets: an animated Labrador companion can be greeted near the lift; Mira uses the supplied female model in a stationary office pose. The window overlooks the supplied night skyline with the imported road surface, pavement, railings, lamps and traffic lights around the moving coastal traffic. Short occasional banter lines are mixed into evidence, terminal, coffee and warning responses.
+
+Chikku now walks the office aisles and visits the colleague on each floor. Walk close, look at him and press E to pet him: the first-person camera lowers and a suited hand strokes his head. He pauses while you interact. When another department holds the active case, Lift / Floors and its destination are highlighted yellow. Imported road vehicles are aligned to their lane direction.

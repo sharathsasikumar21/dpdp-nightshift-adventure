@@ -70,3 +70,6 @@ header{background:linear-gradient(#091429f5,#0b172ad9);border-bottom:1px solid #
 .dialogue-response p{margin:12px 0}.dialogue-response strong{color:#e6be73;font-size:12px}.next-action{color:#f3dba8!important}
 
 .speech-caption[popover]{inset:auto;left:50%;bottom:24vh;margin:0;border:0;border-left:2px solid #e6be73;overflow:visible}
+
+#floor-directory.floor-needed,.floor-list .target-floor{border:2px solid #ffd85a!important;color:#ffe898!important;background:#51421ad9!important;box-shadow:0 0 0 3px #ffd85a22,0 0 20px #ffd85a33}
+#floor-directory.floor-needed{animation:lift-guidance 1.7s ease-in-out infinite}@keyframes lift-guidance{50%{box-shadow:0 0 0 5px #ffd85a22,0 0 26px #ffd85a66}}@media(prefers-reduced-motion:reduce){#floor-directory.floor-needed{animation:none}}

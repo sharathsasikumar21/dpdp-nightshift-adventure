@@ -5,13 +5,17 @@ import {coastalRoadPoint,ROAD_Y} from './city-traffic.js';
 export const CAR_SLOTS=[0,1,3,4,5,6,7,8,9,11,12,13,14,15],BUS_SLOTS=[2,10];
 export function trafficPosition(slot,time){const direction=slot%2?1:-1,t=((slot/16+time*.018*direction)%1+1)%1,p=coastalRoadPoint(t,direction*1.35);return {...p,yaw:p.yaw+(direction<0?Math.PI:0)};}
 export function flightPosition(index,time){const phases=[0,100,175],period=260,duration=[65,65,18][index],age=((time-phases[index])%period+period)%period;return {visible:age<duration,x:-240+age/duration*480,y:[92,105,72][index],z:[210,235,155][index]};}
-function normalise(scene,length){
- scene.updateMatrixWorld(true);let box=new T.Box3().setFromObject(scene),size=box.getSize(new T.Vector3());if(size.x>size.z){scene.rotation.y+=Math.PI/2;scene.updateMatrixWorld(true);box.setFromObject(scene);size=box.getSize(new T.Vector3());}
+export function principalGroundYaw(points){
+ if(points.length<2)return 0;
+ const mean=points.reduce((s,p)=>({x:s.x+p.x,z:s.z+p.z}),{x:0,z:0});mean.x/=points.length;mean.z/=points.length;let xx=0,zz=0,xz=0;for(const p of points){const x=p.x-mean.x,z=p.z-mean.z;xx+=x*x;zz+=z*z;xz+=x*z;}const theta=.5*Math.atan2(2*xz,xx-zz);return Math.atan2(Math.cos(theta),Math.sin(theta));
+}
+function normalise(scene,length,ground=false){
+ scene.updateMatrixWorld(true);if(ground){const points=[],v=new T.Vector3();scene.traverse(o=>{if(!o.isMesh)return;const p=o.geometry.attributes.position,step=Math.max(1,Math.floor(p.count/500));for(let i=0;i<p.count;i+=step){v.fromBufferAttribute(p,i).applyMatrix4(o.matrixWorld);points.push({x:v.x,z:v.z});}});scene.rotation.y-=principalGroundYaw(points);scene.updateMatrixWorld(true);}let box=new T.Box3().setFromObject(scene),size=box.getSize(new T.Vector3());if(size.x>size.z){scene.rotation.y+=Math.PI/2;scene.updateMatrixWorld(true);box.setFromObject(scene);size=box.getSize(new T.Vector3());}
  const centre=box.getCenter(new T.Vector3()),scale=length/size.z,offset=new T.Matrix4().makeTranslation(-centre.x*scale,-box.min.y*scale,-centre.z*scale),matrix=offset.multiply(new T.Matrix4().makeScale(scale,scale,scale));return matrix;
 }
 export function addImportedTraffic(root,fallback,legacyPlane){
  const loader=new GLTFLoader(),fleets=[],aircraft=[],dummy=new T.Object3D();let lastTime=0;
- async function fleet(file,slots,length){const asset=await loader.loadAsync(new URL('./media/city/'+file,import.meta.url).href),normal=normalise(asset.scene,length),groups=new Map();
+ async function fleet(file,slots,length){const asset=await loader.loadAsync(new URL('./media/city/'+file,import.meta.url).href),normal=normalise(asset.scene,length,true),groups=new Map();
   asset.scene.traverse(o=>{if(!o.isMesh)return;const material=o.material,geometry=o.geometry.clone().applyMatrix4(new T.Matrix4().multiplyMatrices(normal,o.matrixWorld));for(const key of Object.keys(geometry.attributes))if(!['position','normal','uv'].includes(key))geometry.deleteAttribute(key);if(!geometry.attributes.uv)geometry.setAttribute('uv',new T.BufferAttribute(new Float32Array(geometry.attributes.position.count*2),2));const key=material.uuid;if(!groups.has(key))groups.set(key,{material,geometries:[]});groups.get(key).geometries.push(geometry.index?geometry.toNonIndexed():geometry);});
   const meshes=[];for(const {material,geometries} of groups.values()){const geometry=mergeGeometries(geometries),mesh=new T.InstancedMesh(geometry,material,slots.length);mesh.instanceMatrix.setUsage(T.DynamicDrawUsage);mesh.frustumCulled=false;root.add(mesh);meshes.push(mesh);if(file==='car.glb'&&/body/i.test(material.name))slots.forEach((_,i)=>mesh.setColorAt(i,new T.Color(['#d4d2c8','#687780','#514b4b','#b8bec3'][i%4])));}
   fleets.push({slots,meshes});update(lastTime);return meshes;
