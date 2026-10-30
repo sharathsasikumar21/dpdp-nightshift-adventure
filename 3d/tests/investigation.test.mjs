@@ -22,9 +22,9 @@ test('every answer has equal word length and early rounds retain the close distr
   }
  }
 });
-test('shared story briefing never consumes the 30-second response clock',()=>{
- const s=createRun(stories,[0],[{id:'a'}],'room');assert.ok(startBriefing(s,1000));assert.equal(s.deadline,0);assert.equal(submit(s,'a',0,2000),false);assert.equal(finishBriefing(s,10999),false);assert.ok(finishBriefing(s,13000));assert.equal(s.deadline,43000);assert.equal(s.limitSeconds,30);assert.equal(finishBriefing(s,14000),false);assert.ok(submit(s,'a',0,42999));assert.ok(resolve(s,stories,42999));
+test('shared story briefing never consumes the 50-second response clock',()=>{
+ const s=createRun(stories,[0],[{id:'a'}],'room');assert.ok(startBriefing(s,1000));assert.equal(s.deadline,0);assert.equal(submit(s,'a',0,2000),false);assert.equal(finishBriefing(s,10999),false);assert.ok(finishBriefing(s,13000));assert.equal(s.deadline,63000);assert.equal(s.limitSeconds,50);assert.equal(finishBriefing(s,14000),false);assert.ok(submit(s,'a',0,62999));assert.ok(resolve(s,stories,62999));
 });
-test('solo thriller deadlines enforce the fixed 30 seconds and retain the timeout duration',()=>{
- for(const duration of [30000]){const s=createRun(stories,[0],[{id:'a'}],'solo');openTurn(s,1000,duration);assert.equal(resolve(s,stories,1000+duration-1),false);assert.equal(submit(s,'a',0,1000+duration),false);assert.ok(resolve(s,stories,1000+duration));assert.equal(s.log[0].results[0].limitSeconds,duration/1000);assert.equal(s.log[0].results[0].timeout,true);}
+test('solo thriller deadlines enforce the fixed 50 seconds and retain the timeout duration',()=>{
+ for(const duration of [50000]){const s=createRun(stories,[0],[{id:'a'}],'solo');openTurn(s,1000,duration);assert.equal(resolve(s,stories,1000+duration-1),false);assert.equal(submit(s,'a',0,1000+duration),false);assert.ok(resolve(s,stories,1000+duration));assert.equal(s.log[0].results[0].limitSeconds,duration/1000);assert.equal(s.log[0].results[0].timeout,true);}
 });

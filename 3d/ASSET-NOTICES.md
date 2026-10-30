@@ -8,3 +8,6 @@
 - Desk keepsakes, office geometry and generated surface details are code-authored. No game poster artwork is loaded by the browser release.
 
 No paid asset-generation service is required to run this release.
+
+## Supplied protagonist
+`media/characters/simon-riley.glb` is a browser-optimised derivative of the project owner’s supplied `men1.glb`, used for Simon Ghost Riley in the lift introduction.

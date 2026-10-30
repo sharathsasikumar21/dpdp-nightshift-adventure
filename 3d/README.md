@@ -31,3 +31,9 @@ Run `node --test tests/*.test.mjs`. The suite covers scoring and endings, case p
 The contents of this directory are static assets suitable for GitHub Pages or Cloudflare Pages. No build command or server-side application is required. Serve `.mjs` as JavaScript. The Rapier compatibility bundle embeds WebAssembly, so no separate WASM fetch or cross-origin isolation configuration is required.
 
 The title screen uses an original SVG shield emblem and the tagline “Every decision leaves a trace.” The coastal road has lane-bound instanced cars, headlights and taillights. Aircraft remain separate from road traffic.
+
+Dialogue subtitles show the speaker’s name and follow prerecorded speech. Toggle them in Accessibility. Crew members exchange short radio updates while exploring. Their names appear in conversations rather than above their heads.
+
+The navigation diamond points to your active table, or the lift when the case is on another floor. The NEXT instruction changes as arrival clues and case records are collected. Every timed decision allows 50 seconds; the clock starts after the pre-question briefing is confirmed.
+
+Simon Ghost Riley uses the supplied GLB character in the lift. Its browser copy is reduced to fewer than 50,000 triangles. The model has no skeleton or animation clips; the entrance uses a standing cinematic pose followed by first-person arrival.

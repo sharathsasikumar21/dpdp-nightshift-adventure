@@ -1,5 +1,5 @@
 import * as T from './vendor/three.module.js';
-import {parseCharacterFBX,inPlaceClip,characterMaterials} from './character-assets.js';
+import {parseCharacterFBX,inPlaceClip,characterMaterials,hairMaterial} from './character-assets.js';
 let shadowTexture;
 function contactShadow(){if(!shadowTexture){const canvas=document.createElement('canvas');canvas.width=canvas.height=64;const d=canvas.getContext('2d'),g=d.createRadialGradient(32,32,3,32,32,31);g.addColorStop(0,'rgba(0,0,0,.42)');g.addColorStop(1,'rgba(0,0,0,0)');d.fillStyle=g;d.fillRect(0,0,64,64);shadowTexture=new T.CanvasTexture(canvas);}const mesh=new T.Mesh(new T.PlaneGeometry(.85,.75),new T.MeshBasicMaterial({map:shadowTexture,transparent:true,depthWrite:false}));mesh.rotation.x=-Math.PI/2;mesh.position.y=.016;return mesh;}
 const base=new URL('./media/characters/',import.meta.url),models=new Map(),textures=new Map();
@@ -22,7 +22,15 @@ export function createHuman({female=false,civilian=false,tint=0xffffff}={}){
   // charcoal tie in the DPO material; skin is preserved by the hue threshold.
   if(!female&&!civilian)cloth.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>','#include <map_fragment>\nif(vMapUv.x>=.34 && vMapUv.x<=.68 && vMapUv.y<.18 && diffuseColor.r>diffuseColor.g*1.8 && diffuseColor.r>diffuseColor.b*1.5) diffuseColor.rgb=vec3(.012,.014,.018);');};
   const skin=new T.MeshStandardMaterial({map:head,normalMap:headNormal,roughness:.78,metalness:0});
-  const hairMat=new T.MeshStandardMaterial({map:hair,alphaTest:.45,side:T.DoubleSide,roughness:1,metalness:0});
+  // The male atlas includes the scalp on the skin material. Keep that textured
+  // hair region matte too, rather than lighting it like the forehead.
+  if(!female)skin.onBeforeCompile=shader=>{
+   shader.vertexShader='varying float vScalpHeight;\n'+shader.vertexShader;
+   shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvScalpHeight=position.z;');
+   shader.fragmentShader='varying float vScalpHeight;\n'+shader.fragmentShader;
+   shader.fragmentShader=shader.fragmentShader.replace('#include <opaque_fragment>','float scalp=smoothstep(173.5,176.0,vScalpHeight); outgoingLight=mix(outgoingLight,diffuseColor.rgb*.8+vec3(.004),scalp);\n#include <opaque_fragment>');
+  };
+  const hairMat=hairMaterial(hair);
   model.traverse(o=>{if(o.isMesh){o.material=characterMaterials(o.material,{cloth,skin,hair:hairMat});o.castShadow=!lowQuality;o.receiveShadow=true;o.frustumCulled=false;}if(o.isBone&&/Bip01_Head$/.test(o.name))headBone=o;});
   mixer=new T.AnimationMixer(model);actions.idle=mixer.clipAction(inPlaceClip(idle.animations[0],model));actions.idle.play();current='idle';
   const walk=await source('walk.fbx');actions.walk=mixer.clipAction(inPlaceClip(walk.animations[0],model,{retarget:female}));if(!female&&!civilian){const run=await source('run.fbx');actions.run=mixer.clipAction(inPlaceClip(run.animations[0],model));}

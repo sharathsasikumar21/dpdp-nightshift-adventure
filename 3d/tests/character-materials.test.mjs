@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as T from '../vendor/three.module.js';
-import {parseCharacterFBX,characterMaterials,inPlaceClip} from '../character-assets.js';
+import {parseCharacterFBX,characterMaterials,inPlaceClip,hairMaterial} from '../character-assets.js';
 function load(name){const data=fs.readFileSync(new URL('../media/characters/'+name,import.meta.url));return parseCharacterFBX(data.buffer.slice(data.byteOffset,data.byteOffset+data.byteLength));}
 test('real male and female FBX material groups retain separate clothing, skin and hair',()=>{
  const saved=globalThis.window;globalThis.window={innerWidth:1280,innerHeight:720,URL};
@@ -16,3 +16,5 @@ test('walking and running clips retain vertical motion while removing horizontal
  const saved=globalThis.window;globalThis.window={innerWidth:1280,innerHeight:720,URL};
  try{const model=load('dpo.fbx');for(const name of ['walk.fbx','run.fbx']){const clip=inPlaceClip(load(name).animations[0],model),root=clip.tracks.find(t=>t.name==='Bip01.position');assert.ok(root);for(let i=0;i<root.values.length;i+=3){assert.equal(root.values[i],root.values[0]);assert.equal(root.values[i+2],root.values[2]);}assert.ok(new Set(Array.from(root.values).filter((_,i)=>i%3===1)).size>1);}}finally{globalThis.window=saved;}
 });
+
+test("hair cards retain texture alpha and avoid harsh light patches",()=>{const map=new T.Texture(),mat=hairMaterial(map);assert.equal(mat.map,map);assert.equal(mat.alphaToCoverage,true);assert.ok(mat.alphaTest>0&&mat.alphaTest<.45);assert.equal(mat.side,T.DoubleSide);});

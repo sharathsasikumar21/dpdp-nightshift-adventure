@@ -15,3 +15,15 @@ test('tutorial narration replaces the current line while ordinary reactions do n
  const audios=[];class Audio{constructor(){audios.push(this);}play(){return Promise.resolve();}pause(){this.paused=true;}}
  const bank=new VoiceBank({clips,Audio});await bank.play('evidence');assert.equal(await bank.play('tutorial'),false);assert.equal(await bank.play('tutorial',{priority:true,cooldown:0}),true);assert.equal(audios[0].paused,true);assert.equal(audios[0].onended,null);bank.stop();
 });
+
+test('caption names and lines follow the current voice and clear when playback stops',async()=>{
+ const shown=[],audios=[];class Audio{constructor(){audios.push(this);}play(){return Promise.resolve();}pause(){}}
+ const clip={id:'named',src:'line.mp3',text:'Preserve the log.',speaker:'Mira'};
+ const bank=new VoiceBank({clips:{mira:[clip]},Audio,onCaption:line=>shown.push(line)});await bank.play('mira');assert.equal(shown.at(-1),clip);audios[0].onended();assert.equal(shown.at(-1),null);
+});
+test('crew exchange plays replies only after the first speaker finishes and cancels on interruption',async()=>{
+ const audios=[];class Audio{constructor(src){this.src=src;audios.push(this);}play(){return Promise.resolve();}pause(){}}
+ const bank=new VoiceBank({clips:{first:[{id:'1',src:'1.mp3'}],reply:[{id:'2',src:'2.mp3'}]},Audio});
+ await bank.playExchange(['first','reply']);assert.equal(audios.length,1);audios[0].onended();await Promise.resolve();assert.equal(audios.length,2);bank.stop();
+ await bank.playExchange(['first','reply']);const stale=audios[2].onended;bank.stop();stale();assert.equal(audios.length,3);
+});

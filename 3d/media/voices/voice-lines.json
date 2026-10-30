@@ -238,5 +238,41 @@
     "voice": "af_heart",
     "duration": 6.444,
     "sha256": "ad12fa4c4cd809b907ced477a6d4901b79441e366be405e68de0a42db1b06610"
+  },
+  "radio-mira": {
+    "text": "Arjun, the visitor badge and dashboard disagree. Can you verify the original door log?",
+    "voice": "af_heart",
+    "duration": 5.74,
+    "sha256": "3db3ce6b379f88d0d49af2992acc4015baa24a10a97d3974bf4917389c365c40"
+  },
+  "radio-arjun": {
+    "text": "Checking the controller now, Mira. Preserve both records. A delayed dashboard update could explain the mismatch.",
+    "voice": "am_michael",
+    "duration": 8.023,
+    "sha256": "110f54fb4f6530448ab49dcd38db6445c23c20bbc9cbee331a569eca9561bc1e"
+  },
+  "radio-leena": {
+    "text": "Arjun, secure the transfer route, but keep the audit trail intact. We still need the signed authorisation.",
+    "voice": "bf_emma",
+    "duration": 6.444,
+    "sha256": "97f71f03a33e4ada4fc33b70615c440b4de4edac93d94229fcebfbd27e885a0f"
+  },
+  "radio-security": {
+    "text": "Understood, Leena. I will preserve the logs while we check the scope of the export.",
+    "voice": "am_michael",
+    "duration": 5.676,
+    "sha256": "2a4b138a91fbeb4228cfd1c454b99e163c498eeb4cae18bd6745572c464f784e"
+  },
+  "radio-analyst": {
+    "text": "Leena, the next case records are on the marked workstation. Should we open the terminal now?",
+    "voice": "af_heart",
+    "duration": 5.399,
+    "sha256": "9515f08a7b4cbe3178aebc8d7e54a35908aa2706efc9bac1381613ce3c103cfb"
+  },
+  "radio-counsel": {
+    "text": "Read all three first, Mira. Then let the Data Protection Officer make the call.",
+    "voice": "bf_emma",
+    "duration": 4.823,
+    "sha256": "57ae1876d55316b60b637fbfd501a1fa542e0c82ff5bf0a3638cfe7e4699f56d"
   }
 }

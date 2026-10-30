@@ -27,3 +27,9 @@ export function characterMaterials(original,{cloth,skin,hair}){
  const select=material=>{const name=material.name.toLowerCase();return name.includes('opacity')?hair:name.includes('head')?skin:cloth;};
  return Array.isArray(original)?original.map(select):select(original);
 }
+
+export function hairMaterial(map){
+ // Hair cards need soft coverage and a small diffuse fill in the enclosed lift.
+ // A matte texture response avoids the hard black/tan patches from standard PBR.
+ return new T.MeshBasicMaterial({map,color:0x827970,alphaTest:.16,alphaToCoverage:true,side:T.DoubleSide});
+}
