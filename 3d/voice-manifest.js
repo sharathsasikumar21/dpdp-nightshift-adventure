@@ -300,33 +300,129 @@ export const VOICE_CLIPS={
       "speaker": "Leena \u00b7 Privacy counsel"
     }
   ],
+  "rage-mira": [
+    {
+      "id": "rage-mira-banter-1",
+      "src": "media/voices/rage-mira-banter-1.mp3?v=bd59e4595325",
+      "text": "Bold choice. Were the records just decoration?",
+      "speaker": "Mira \u00b7 Incident analyst"
+    },
+    {
+      "id": "rage-mira-banter-2",
+      "src": "media/voices/rage-mira-banter-2.mp3?v=00e9f1001484",
+      "text": "You read the warning and chose the plot twist. Impressive.",
+      "speaker": "Mira \u00b7 Incident analyst"
+    }
+  ],
+  "rage-arjun": [
+    {
+      "id": "rage-arjun-banter-1",
+      "src": "media/voices/rage-arjun-banter-1.mp3?v=1450694e4c19",
+      "text": "That was not a strategy. That was a breach with confidence.",
+      "speaker": "Arjun \u00b7 Security engineer"
+    },
+    {
+      "id": "rage-arjun-banter-2",
+      "src": "media/voices/rage-arjun-banter-2.mp3?v=384955bfc041",
+      "text": "The evidence was right there. Did you try negotiating with it?",
+      "speaker": "Arjun \u00b7 Security engineer"
+    }
+  ],
+  "rage-leena": [
+    {
+      "id": "rage-leena-banter-1",
+      "src": "media/voices/rage-leena-banter-1.mp3?v=8306e3635e38",
+      "text": "A fascinating decision. The audit committee will have questions.",
+      "speaker": "Leena \u00b7 Privacy counsel"
+    },
+    {
+      "id": "rage-leena-banter-2",
+      "src": "media/voices/rage-leena-banter-2.mp3?v=674875673ff7",
+      "text": "Confidence is not a lawful basis. We have discussed this.",
+      "speaker": "Leena \u00b7 Privacy counsel"
+    }
+  ],
+  "chikku-found-alert": [
+    {
+      "id": "chikku-found-alert",
+      "src": "media/voices/chikku-found-alert.mp3?v=dd38de92a5e8",
+      "text": "Hey, Chikku found something. Look beside the active case desk.",
+      "speaker": "Mira \u00b7 Incident analyst"
+    }
+  ],
+  "pet-found": [
+    {
+      "id": "pet-found-1",
+      "src": "media/voices/pet-found-1.mp3?v=80dfc4214857",
+      "text": "Good girl, Chikku. Let us see what you found.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
+  "walk": [
+    {
+      "id": "walk-banter-1",
+      "src": "media/voices/walk-banter-1.mp3?v=5e4e691f21e6",
+      "text": "Another desk. Another excellent opportunity to read before panicking.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    },
+    {
+      "id": "walk-banter-2",
+      "src": "media/voices/walk-banter-2.mp3?v=99f750714526",
+      "text": "I came for a quiet shift. Apparently the data had other plans.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    },
+    {
+      "id": "walk-banter-3",
+      "src": "media/voices/walk-banter-3.mp3?v=81bfe3bd7adc",
+      "text": "Follow the yellow marker. Revolutionary detective work, Simon.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    },
+    {
+      "id": "walk-hint-1",
+      "src": "media/voices/walk-hint-1.mp3?v=302e8ae95977",
+      "text": "Two timestamps disagree. First check what each clock is actually recording.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    },
+    {
+      "id": "walk-hint-2",
+      "src": "media/voices/walk-hint-2.mp3?v=40642da992c6",
+      "text": "A shared account names a system. It does not identify the person who approved the job.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    },
+    {
+      "id": "walk-hint-3",
+      "src": "media/voices/walk-hint-3.mp3?v=904a11ff7a96",
+      "text": "The request, the approval, and the log. Compare all three before the terminal.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
   "pet-dpo": [
     {
       "id": "pet-dpo-1",
-      "src": "media/voices/pet-dpo-1.mp3?v=dded2f8f09a3",
-      "text": "Hey, Chikku. Good boy. I am right here.",
+      "src": "media/voices/pet-dpo-1.mp3?v=9a9fd7e6b3f6",
+      "text": "Hey, Chikku. Good girl. I am right here.",
       "speaker": "Simon Ghost Riley \u00b7 DPO"
     },
     {
       "id": "pet-dpo-2",
-      "src": "media/voices/pet-dpo-2.mp3?v=0fea35295b08",
-      "text": "There you are, Chikku. Good boy. You are safe with me.",
+      "src": "media/voices/pet-dpo-2.mp3?v=7df7656bd2ea",
+      "text": "There you are, Chikku. Good girl. You are safe with me.",
       "speaker": "Simon Ghost Riley \u00b7 DPO"
     }
   ],
   "pet-mira": [
     {
       "id": "pet-mira",
-      "src": "media/voices/pet-mira.mp3?v=e844e107ab04",
-      "text": "Hey, Chikku. Good boy. Keeping the night crew company?",
+      "src": "media/voices/pet-mira.mp3?v=abe1ce3ec1c9",
+      "text": "Hey, Chikku. Good girl. Keeping the night crew company?",
       "speaker": "Mira \u00b7 Incident analyst"
     }
   ],
   "pet-arjun": [
     {
       "id": "pet-arjun",
-      "src": "media/voices/pet-arjun.mp3?v=0b5af628ccb3",
-      "text": "Chikku, my favourite member of security. Good boy.",
+      "src": "media/voices/pet-arjun.mp3?v=aa978d35d6ab",
+      "text": "Chikku, my favourite member of security. Good girl.",
       "speaker": "Arjun \u00b7 Security engineer"
     }
   ],

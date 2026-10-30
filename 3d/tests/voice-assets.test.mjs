@@ -12,5 +12,18 @@ test('DPO reactions and kind Chikku greetings use the recorded male voice',()=>{
   assert.ok(VOICE_CLIPS[group]?.length>=2,group);
   for(const clip of VOICE_CLIPS[group]){assert.equal(metadata[clip.id].voice,'am_adam',clip.id);assert.equal(clip.speaker,'Simon Ghost Riley · DPO');}
  }
- assert.ok(VOICE_CLIPS['pet-dpo'].every(clip=>clip.text.includes('Chikku')&&clip.text.includes('Good boy')));
+ assert.ok(VOICE_CLIPS['pet-dpo'].every(clip=>clip.text.includes('Chikku')&&clip.text.includes('Good girl')));
+});
+
+test('walking hints, optional banter and Chikku discovery have the intended recorded speakers',()=>{
+ const metadata=JSON.parse(fs.readFileSync(new URL('../media/voices/voice-lines.json',import.meta.url),'utf8'));
+ assert.equal(VOICE_CLIPS.walk.length,6);assert.equal(VOICE_CLIPS.walk.filter(c=>c.id.includes('-banter-')).length,3);
+ for(const c of [...VOICE_CLIPS.walk,...VOICE_CLIPS['pet-found']])assert.equal(metadata[c.id].voice,'am_adam');
+ assert.equal(VOICE_CLIPS['chikku-found-alert'][0].speaker,'Mira · Incident analyst');
+ for(const group of ['pet-dpo','pet-mira','pet-arjun'])for(const c of VOICE_CLIPS[group])assert.ok(c.text.includes('Good girl'));
+});
+
+test('wrong-call NPC roasts have distinct character voices and respect banter filtering',()=>{
+ const metadata=JSON.parse(fs.readFileSync(new URL('../media/voices/voice-lines.json',import.meta.url),'utf8'));
+ for(const [role,voice] of [['mira','af_heart'],['arjun','am_michael'],['leena','bf_emma']]){const clips=VOICE_CLIPS['rage-'+role];assert.equal(clips.length,2);for(const c of clips){assert.ok(c.id.includes('-banter-'));assert.equal(metadata[c.id].voice,voice);}}
 });

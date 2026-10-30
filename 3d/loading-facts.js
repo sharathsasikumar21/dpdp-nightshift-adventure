@@ -7,7 +7,7 @@ export const LOADING_FACTS=Object.freeze([
  'Outsmart the problem. If that fails, out-confuse it.',
  'When in doubt, look busy. Then read the evidence.',
  'The element of surprise also works on the person making the plan.',
- 'Chikku read the evidence. He does not even have a badge.',
+ 'Chikku read the evidence. She does not even have a badge.',
  'Your confidence arrived before the facts. Classic.',
  'Four options. Somehow you will invent a fifth called “vibes”.',
  'The yellow arrow believes in you. Management remains undecided.',

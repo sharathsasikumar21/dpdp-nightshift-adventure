@@ -53,22 +53,36 @@ LINES = {
  'terminal-banter-2': ('terminal', 'Four options. Somehow, guessing still feels like a fifth.'),
  'warning-banter-1': ('warning', 'Bold choice. The audit log disagrees. Check the evidence before the next call.'),
  'warning-banter-2': ('warning', 'The evidence called. It wants a second opinion. Preserve the records and verify the facts.'),
- 'pet-dpo-1': ('pet-dpo', 'Hey, Chikku. Good boy. I am right here.'),
- 'pet-dpo-2': ('pet-dpo', 'There you are, Chikku. Good boy. You are safe with me.'),
- 'pet-mira': ('pet-mira', 'Hey, Chikku. Good boy. Keeping the night crew company?'),
- 'pet-arjun': ('pet-arjun', 'Chikku, my favourite member of security. Good boy.'),
+ 'rage-mira-banter-1': ('rage-mira', 'Bold choice. Were the records just decoration?'),
+ 'rage-mira-banter-2': ('rage-mira', 'You read the warning and chose the plot twist. Impressive.'),
+ 'rage-arjun-banter-1': ('rage-arjun', 'That was not a strategy. That was a breach with confidence.'),
+ 'rage-arjun-banter-2': ('rage-arjun', 'The evidence was right there. Did you try negotiating with it?'),
+ 'rage-leena-banter-1': ('rage-leena', 'A fascinating decision. The audit committee will have questions.'),
+ 'rage-leena-banter-2': ('rage-leena', 'Confidence is not a lawful basis. We have discussed this.'),
+ 'chikku-found-alert': ('chikku-found-alert', 'Hey, Chikku found something. Look beside the active case desk.'),
+ 'pet-found-1': ('pet-found', 'Good girl, Chikku. Let us see what you found.'),
+ 'walk-banter-1': ('walk', 'Another desk. Another excellent opportunity to read before panicking.'),
+ 'walk-banter-2': ('walk', 'I came for a quiet shift. Apparently the data had other plans.'),
+ 'walk-banter-3': ('walk', 'Follow the yellow marker. Revolutionary detective work, Simon.'),
+ 'walk-hint-1': ('walk', 'Two timestamps disagree. First check what each clock is actually recording.'),
+ 'walk-hint-2': ('walk', 'A shared account names a system. It does not identify the person who approved the job.'),
+ 'walk-hint-3': ('walk', 'The request, the approval, and the log. Compare all three before the terminal.'),
+ 'pet-dpo-1': ('pet-dpo', 'Hey, Chikku. Good girl. I am right here.'),
+ 'pet-dpo-2': ('pet-dpo', 'There you are, Chikku. Good girl. You are safe with me.'),
+ 'pet-mira': ('pet-mira', 'Hey, Chikku. Good girl. Keeping the night crew company?'),
+ 'pet-arjun': ('pet-arjun', 'Chikku, my favourite member of security. Good girl.'),
  'pet-leena': ('pet-leena', 'Hello, Chikku. One quick scratch, then back to the investigation.'),
  'heroic-narration': ('ending', 'The copies are contained. The evidence is intact. Mumbai wakes to a safer morning. You held the line.'),
  'dark-narration': ('ending', 'You found the signature. The copies survived. Somewhere beyond this room, the incident is still unfolding. The night is not over.')
 }
 
-DPO_GROUPS={'evidence','terminal','coffee','keepsake','warning','pet-dpo'}
+DPO_GROUPS={'evidence','terminal','coffee','keepsake','warning','pet-dpo','pet-found','walk'}
 
 def speaker_for(group):
  if group in DPO_GROUPS:return 'Simon Ghost Riley · DPO'
- if group in ('mira','radio-mira','radio-analyst','pet-mira'):return 'Mira · Incident analyst'
- if group in ('arjun','radio-arjun','radio-security','pet-arjun'):return 'Arjun · Security engineer'
- if group in ('leena','radio-leena','radio-counsel','pet-leena'):return 'Leena · Privacy counsel'
+ if group in ('mira','radio-mira','radio-analyst','pet-mira','chikku-found-alert','rage-mira'):return 'Mira · Incident analyst'
+ if group in ('arjun','radio-arjun','radio-security','pet-arjun','rage-arjun'):return 'Arjun · Security engineer'
+ if group in ('leena','radio-leena','radio-counsel','pet-leena','rage-leena'):return 'Leena · Privacy counsel'
  return 'Control · Operations'
 
 def main():
@@ -80,12 +94,12 @@ def main():
  for story in json.loads(Path('3d/stories.json').read_text(encoding='utf-8')):
   LINES['story-'+story['id']]=('story-'+story['id'],story['brief'])
  for name,(group,text) in LINES.items():
-  voice='am_adam' if group in DPO_GROUPS else 'am_michael' if group in ('arjun','radio-arjun','radio-security','pet-arjun') else 'bf_emma' if group in ('leena','radio-leena','radio-counsel','pet-leena') else 'af_heart'
+  voice='am_adam' if group in DPO_GROUPS else 'am_michael' if group in ('arjun','radio-arjun','radio-security','pet-arjun','rage-arjun') else 'bf_emma' if group in ('leena','radio-leena','radio-counsel','pet-leena','rage-leena') else 'af_heart'
   lang='en-gb' if voice.startswith('b') else 'en-us';target=out/(name+'.mp3')
   if args.only and name not in args.only:continue
   if args.reuse_existing and target.exists():duration=sf.info(target).duration
   else:
-   audio,rate=model.create(text,voice=voice,speed=.92 if group=='pet-dpo' else .98,lang=lang)
+   audio,rate=model.create(text,voice=voice,speed=.92 if group in ('pet-dpo','pet-found') else .98,lang=lang)
    audio=np.concatenate([np.zeros(int(rate*.12)),audio,np.zeros(int(rate*.18))]).astype(np.float32)
    duration=len(audio)/rate;wav=out/(name+'.wav');sf.write(wav,audio,rate)
    subprocess.run([ffmpeg,'-hide_banner','-loglevel','error','-y','-i',str(wav),'-af',('asetrate=24000*0.92,aresample=24000,atempo='+str(1/.92)+',' if group in DPO_GROUPS else '')+'loudnorm=I=-18:TP=-2:LRA=7','-ar','24000','-ac','1','-b:a','56k',str(target)],check=True);wav.unlink()

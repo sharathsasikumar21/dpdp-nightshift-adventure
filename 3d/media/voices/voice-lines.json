@@ -324,16 +324,16 @@
     "sha256": "733435c3e20ee651765360c792672dcb65678b51f34561efb6c779ee2c94ec97"
   },
   "pet-mira": {
-    "text": "Hey, Chikku. Good boy. Keeping the night crew company?",
+    "text": "Hey, Chikku. Good girl. Keeping the night crew company?",
     "voice": "af_heart",
-    "duration": 3.521,
-    "sha256": "e844e107ab04ec198ab2223ae577572ec2cf5ba93ef41655fb01a0caad327857"
+    "duration": 3.5,
+    "sha256": "abe1ce3ec1c9459270c61acd6ab8c93bae5ca6b39c106507624e211ff7694cf7"
   },
   "pet-arjun": {
-    "text": "Chikku, my favourite member of security. Good boy.",
+    "text": "Chikku, my favourite member of security. Good girl.",
     "voice": "am_michael",
-    "duration": 3.948,
-    "sha256": "0b5af628ccb32a28b685e3d61ecda43fa9c16c18fc981666a9609f528966d261"
+    "duration": 3.969,
+    "sha256": "aa978d35d6abe5940f457d579bc93d7df1ab4e3b776d6f4f6994b8febe8a7b6c"
   },
   "pet-leena": {
     "text": "Hello, Chikku. One quick scratch, then back to the investigation.",
@@ -342,15 +342,99 @@
     "sha256": "cf75ea9f59567bc8af7228fee91ea54682b5b8e75cd63e1aa410e91415d19219"
   },
   "pet-dpo-1": {
-    "text": "Hey, Chikku. Good boy. I am right here.",
+    "text": "Hey, Chikku. Good girl. I am right here.",
     "voice": "am_adam",
-    "duration": 2.561,
-    "sha256": "dded2f8f09a38ee08c314eca034521124b0e465e0ba645787f50182ac3909f8a"
+    "duration": 2.668,
+    "sha256": "9a9fd7e6b3f66d34f2286f6f3a6b85848cc68e534f7db000189e2fb569da9497"
   },
   "pet-dpo-2": {
-    "text": "There you are, Chikku. Good boy. You are safe with me.",
+    "text": "There you are, Chikku. Good girl. You are safe with me.",
     "voice": "am_adam",
-    "duration": 3.095,
-    "sha256": "0fea35295b08042ac6ad219e52efa906176469a0adc25bbdcc58a70fd8c5dcac"
+    "duration": 3.116,
+    "sha256": "7df7656bd2ead7c623041b1453f4b3ed45a47d4bb026094ce1035a35aeb64192"
+  },
+  "chikku-found-alert": {
+    "text": "Hey, Chikku found something. Look beside the active case desk.",
+    "voice": "af_heart",
+    "duration": 3.927,
+    "sha256": "dd38de92a5e8e8ab322d31dd190b6b78f01589ca1be9e52568f46dfcf2a23bbd"
+  },
+  "pet-found-1": {
+    "text": "Good girl, Chikku. Let us see what you found.",
+    "voice": "am_adam",
+    "duration": 2.903,
+    "sha256": "80dfc4214857262cefc741a55adcc8eb0f380290da69d37088f4f39ed963cb65"
+  },
+  "walk-banter-1": {
+    "text": "Another desk. Another excellent opportunity to read before panicking.",
+    "voice": "am_adam",
+    "duration": 4.332,
+    "sha256": "5e4e691f21e6e28b4dcdd6c918599c00acbbda301417cced2e02202e72cb3785"
+  },
+  "walk-banter-2": {
+    "text": "I came for a quiet shift. Apparently the data had other plans.",
+    "voice": "am_adam",
+    "duration": 3.948,
+    "sha256": "99f7507145269a65e39705b661e3885bae70eef5d6976ce48895e0b869711d30"
+  },
+  "walk-banter-3": {
+    "text": "Follow the yellow marker. Revolutionary detective work, Simon.",
+    "voice": "am_adam",
+    "duration": 4.204,
+    "sha256": "81bfe3bd7adc8f109b56425fcd85f77771301241903f5bd32c34c5ed78c9fcbd"
+  },
+  "walk-hint-1": {
+    "text": "Two timestamps disagree. First check what each clock is actually recording.",
+    "voice": "am_adam",
+    "duration": 4.716,
+    "sha256": "302e8ae95977a5e84317708912e4c9c1d2b9ded251d9454637060b830f76677b"
+  },
+  "walk-hint-2": {
+    "text": "A shared account names a system. It does not identify the person who approved the job.",
+    "voice": "am_adam",
+    "duration": 5.356,
+    "sha256": "40642da992c6e8add47f3737e68530e0dbaf22b6084cf3709a9e01d4dd9ce74f"
+  },
+  "walk-hint-3": {
+    "text": "The request, the approval, and the log. Compare all three before the terminal.",
+    "voice": "am_adam",
+    "duration": 4.481,
+    "sha256": "904a11ff7a9633d2a10dc9fa3b4bb8950b1c50182392bfc83d077b35e0161c15"
+  },
+  "rage-mira-banter-1": {
+    "text": "Bold choice. Were the records just decoration?",
+    "voice": "af_heart",
+    "duration": 3.073,
+    "sha256": "bd59e4595325e52d79d9ed86923170fe78c69ed4af50898846d0d15007700d93"
+  },
+  "rage-mira-banter-2": {
+    "text": "You read the warning and chose the plot twist. Impressive.",
+    "voice": "af_heart",
+    "duration": 3.607,
+    "sha256": "00e9f1001484bf52dcb0029d2aac85ab42aef8f663493c4f40763148776687b1"
+  },
+  "rage-arjun-banter-1": {
+    "text": "That was not a strategy. That was a breach with confidence.",
+    "voice": "am_michael",
+    "duration": 4.268,
+    "sha256": "1450694e4c19c479ac4b9bda6acb3e0196332d03be9795acb1188a05b80132c4"
+  },
+  "rage-arjun-banter-2": {
+    "text": "The evidence was right there. Did you try negotiating with it?",
+    "voice": "am_michael",
+    "duration": 4.439,
+    "sha256": "384955bfc04150bcac9144bb8ee54c0e6244623a5c9a5fc43f7827318ce2ef15"
+  },
+  "rage-leena-banter-1": {
+    "text": "A fascinating decision. The audit committee will have questions.",
+    "voice": "bf_emma",
+    "duration": 3.991,
+    "sha256": "8306e3635e3889d731ba2a8363749241557645b738dae6a58595b91cc14d3210"
+  },
+  "rage-leena-banter-2": {
+    "text": "Confidence is not a lawful basis. We have discussed this.",
+    "voice": "bf_emma",
+    "duration": 3.692,
+    "sha256": "674875673ff7f0a2f76531bedfad12601c75fc6802a7808d3f3731da37cc9251"
   }
 }
