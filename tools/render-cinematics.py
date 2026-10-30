@@ -11,7 +11,7 @@ OUT = Path('3d/media'); OUT.mkdir(parents=True, exist_ok=True)
 FONT = Path('C:/Windows/Fonts')
 def font(size, bold=False):
     return ImageFont.truetype(str(FONT / ('bahnschrift.ttf' if bold else 'consola.ttf')), size)
-GREEN, WHITE, AMBER = (168, 248, 207), (235, 246, 240), (245, 181, 120)
+GREEN, WHITE, AMBER = (103, 229, 255), (235, 246, 240), (255, 196, 109)
 rng = random.Random(1701)
 buildings = [[(rng.randrange(-180, W+240), rng.randrange(32, 104), rng.randrange(65, 280), rng.randrange(9999)) for _ in range(24)] for _ in range(3)]
 rain = [(rng.random()*W, rng.random()*H, rng.uniform(20, 48)) for _ in range(90)]
@@ -116,39 +116,31 @@ def frame(t, credits=False, ending=None):
         p=(t*.36+i*.17)%1; px=x+(xx-x)*p; py=y+(yy-y)*p
         od.ellipse((px-2,py-2,px+2,py+2),fill=(*GREEN,int(230*net)))
         od.ellipse((x-4,y-4,x+4,y+4),outline=(*GREEN,int(130*net)))
-    # Letterbox and broad text scrim retain readability on a small phone.
-    od.rectangle((0,0,W,55),fill=(2,8,13,245)); od.rectangle((0,H-55,W,H),fill=(2,8,13,245))
-    od.rectangle((0,152,W,368),fill=(3,11,18,145))
-    od.line((62,77,124,77),fill=(*GREEN,190),width=2)
-    od.text((62,90),'N / OPERATIONS FILM',font=font(12),fill=(*GREEN,180))
-    od.text((W-200,H-38),'06:00 / HANDOVER' if credits or ending else '01:17 / INCOMING',font=font(12),fill=(*GREEN,180))
+    # Outcome films use one continuous camera drift with no text cards,
+    # jump cuts or overlapping burned-in subtitles. Titles live in the report.
+    if not ending:
+        od.rectangle((0,0,W,55),fill=(2,8,13,245));od.rectangle((0,H-55,W,H),fill=(2,8,13,245))
+        od.rectangle((0,152,W,368),fill=(3,11,18,145))
+        od.line((62,77,124,77),fill=(*GREEN,190),width=2)
+        od.text((62,90),'N / OPERATIONS FILM',font=font(12),fill=(*GREEN,180))
+        od.text((W-200,H-38),'06:00 / HANDOVER' if credits else '01:17 / INCOMING',font=font(12),fill=(*GREEN,180))
     if ending:
-        # A wide shield at dawn versus a looming red surveillance eye in blackout.
         if ending=='bad-ending':
-            red=Image.new('RGBA',(W,H),(45,0,4,135))
-            im=Image.alpha_composite(im,red)
-            color=(255,104,96)
-            od.rectangle((0,135,W,385),fill=(15,2,8,215))
-            eye_y=112; radius=20+5*math.sin(t*.5)
-            od.arc((W/2-92,eye_y-44,W/2+92,eye_y+44),180,360,fill=(*color,160),width=2)
-            od.arc((W/2-92,eye_y-44,W/2+92,eye_y+44),0,180,fill=(*color,160),width=2)
-            od.ellipse((W/2-radius,eye_y-radius,W/2+radius,eye_y+radius),outline=(*color,210),width=3)
-            od.line((W/2,72,W/2,151),fill=(*color,180),width=2)
+            red=Image.new('RGBA',(W,H),(32,0,5,100));im=Image.alpha_composite(im,red)
+            color=(255,117,92);eye_y=215;radius=28+3*math.sin(t*.5);spread=112+3*smooth(t/14)
+            od.arc((W/2-spread,eye_y-54,W/2+spread,eye_y+54),180,360,fill=(*color,170),width=3)
+            od.arc((W/2-spread,eye_y-54,W/2+spread,eye_y+54),0,180,fill=(*color,170),width=3)
+            od.ellipse((W/2-radius,eye_y-radius,W/2+radius,eye_y+radius),outline=(*color,220),width=3)
+            od.line((W/2,eye_y-38,W/2,eye_y+38),fill=(*color,170),width=2)
             for j in range(8):
-                y=400+j*9; x=80+(j*139+t*18)%800
-                od.line((x,y,x+50,y),fill=(*color,80),width=1)
-            cards=[(0,4.5,'THE LEAK DID NOT STOP.','THE CITY REMEMBERS EVERY SHORTCUT.'),(4.3,9,'TRUST WENT DARK.','RECORDS EXPOSED. PEOPLE LEFT AT RISK.'),(8.8,14,'THE NIGHT IS NOT OVER.','REVIEW YOUR CALLS. COME BACK READY.')]
+                y=400+j*9;x=80+(j*139+t*18)%800;od.line((x,y,x+50,y),fill=(*color,60),width=1)
         else:
-            color=GREEN
-            od.polygon([(W/2,70),(W/2+38,84),(W/2+32,121),(W/2,146),(W/2-32,121),(W/2-38,84)],fill=(25,63,54,220),outline=(*GREEN,255),width=3)
-            od.line((W/2-16,106,W/2-4,117,W/2+20,91),fill=(*GREEN,255),width=4)
+            cy=212-int(smooth(t/13)*5);scale=1+.035*smooth(t/12)
+            points=[(0,-72),(60,-50),(52,28),(0,73),(-52,28),(-60,-50)]
+            od.polygon([(W/2+x*scale,cy+y*scale)for x,y in points],fill=(12,41,52,215),outline=(*GREEN,235),width=3)
+            od.line((W/2-27,cy-2,W/2-6,cy+20,W/2+33,cy-24),fill=(*GREEN,255),width=5)
             for j in range(18):
-                x=(j*97+t*13)%W;y=H-(j*31+t*30)%H
-                od.ellipse((x,y,x+2,y+8),fill=(*AMBER,90))
-            cards=[(0,4.5,'YOU HELD THE LINE.','YOUR JUDGEMENT PROTECTED THE CITY.'),(4.3,9,'THE CITY WAKES SAFER.','EVERY CAREFUL CALL MADE A DIFFERENCE.'),(8.8,14,'PRIVACY SENTINEL','NIGHTSHIFT COMPLETE. TRUST DEFENDED.')]
-        for a,b,line,sub in cards:
-            e=envelope(t,a,b);label(overlay,line,205,44,color,e,True);label(overlay,sub,272,17,WHITE,e)
-        label(overlay,'SIGNAL LOST / UNRESOLVED RISK' if ending=='bad-ending' else 'SIGNAL RESTORED / CITY PROTECTED',335,12,color,.8)
+                x=(j*97+t*13)%W;y=H-(j*31+t*30)%H;od.ellipse((x,y,x+2,y+6),fill=(*AMBER,65))
     elif credits:
         a=envelope(t,0,3.1)
         label(overlay,'THE SHIFT HAS ENDED.',207,43,alpha=a,bold=True)
@@ -174,7 +166,7 @@ def frame(t, credits=False, ending=None):
         label(overlay,'FOLLOW THE DATA. PROTECT THE PEOPLE.',308,16,GREEN,e)
     # Restrained fades, with no strobe or flashing cuts.
     im=Image.alpha_composite(im,overlay).convert('RGB')
-    fade=smooth(t/.6)*smooth((DURATION-t)/.7)
+    fade=smooth((t-.08)/.6)*smooth((DURATION-.15-t)/.8) if ending else smooth(t/.6)*smooth((DURATION-t)/.7)
     return Image.blend(Image.new('RGB',(W,H),(3,9,15)),im,fade)
 
 def score(path, credits, ending=None):

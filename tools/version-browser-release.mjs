@@ -29,6 +29,12 @@ export function releaseImportMap(root){
 }
 
 export function versionBrowserRelease(root){
+ const assets={};
+ for(const kind of ['opening','credits','good-ending','bad-ending']){
+  const url=name=>'media/'+name+'?v='+crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'media',name))).digest('hex').slice(0,12);
+  assets[kind]={video:url(kind+'.mp4'),poster:url(kind+'-poster.jpg'),duration:14};
+ }
+ fs.writeFileSync(path.join(root,'cinematic-assets.js'),'// Generated from the actual media bytes before each release.\nexport const CINEMATIC_ASSETS='+JSON.stringify(assets,null,2)+';\n');
  const release=releaseImportMap(root),file=path.join(root,'index.html');
  let html=fs.readFileSync(file,'utf8').replace(/\s*<!-- RELEASE IMPORT MAP -->[\s\S]*?<!-- END RELEASE IMPORT MAP -->\s*/,'');
  html=html.replace(/<script type="module" src="app\.js[^"\n]*"><\/script>/,'<script type="module" src="app.js?v='+release.revision+'"></script>');

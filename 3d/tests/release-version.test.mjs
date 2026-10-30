@@ -9,6 +9,8 @@ test('a nested camera change invalidates the entire browser module graph',()=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'ghost-release-'));
  try{
   fs.mkdirSync(path.join(root,'view'));
+  fs.mkdirSync(path.join(root,'media'));
+  for(const kind of ['opening','credits','good-ending','bad-ending'])for(const suffix of ['.mp4','-poster.jpg'])fs.writeFileSync(path.join(root,'media',kind+suffix),'fixture');
   fs.writeFileSync(path.join(root,'app.js'),"import './view/camera.js?v=old'; import './view/camera.js';");
   fs.writeFileSync(path.join(root,'view/camera.js'),"import '../physics.js'; export const view='third-person';");
   fs.writeFileSync(path.join(root,'physics.js'),"export const engine='rapier';");

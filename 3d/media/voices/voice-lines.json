@@ -1,0 +1,242 @@
+{
+  "evidence-1": {
+    "text": "Source record secured. Check the other two before drawing a conclusion.",
+    "voice": "af_heart",
+    "duration": 4.268,
+    "sha256": "37cb98892049ce4b61b6bd9702be52fd62f550a77f80c15243e387f9b538e5e0"
+  },
+  "evidence-2": {
+    "text": "One record is a lead. Compare it with the evidence on this desk.",
+    "voice": "af_heart",
+    "duration": 4.161,
+    "sha256": "9a2906c0b80658f9ecc6378c5be0e678e2367d5e1e135f65603fb34f277360c6"
+  },
+  "terminal-1": {
+    "text": "Verify the facts before you make the call. The order of your actions matters.",
+    "voice": "af_heart",
+    "duration": 4.652,
+    "sha256": "085682cc7f309545a288e85257356f82f5d7dfb4ca56a05dac19b6a8574c15eb"
+  },
+  "terminal-2": {
+    "text": "Read all three records. Then choose the response you can defend.",
+    "voice": "af_heart",
+    "duration": 4.034,
+    "sha256": "933ac190402e3fe771532cebfe8b65cb5de1011c0798dd68aa2ee928ce73f6cf"
+  },
+  "coffee-1": {
+    "text": "Stay sharp. The records still need you, even after the coffee.",
+    "voice": "af_heart",
+    "duration": 3.884,
+    "sha256": "d4e73d489d3d8ea74389aaf8872dc340bdf0c742f678b00f34f8f786fc7bdb31"
+  },
+  "coffee-2": {
+    "text": "One coffee. Still no permission to guess. Back to the evidence.",
+    "voice": "af_heart",
+    "duration": 4.055,
+    "sha256": "3c02e3423b915a2a3fb735ff0f7e9880b94a5baa68431f9b2945de9f501bd059"
+  },
+  "keepsake-1": {
+    "text": "Every desk has a story. Tonight, the records matter more than the souvenirs.",
+    "voice": "af_heart",
+    "duration": 4.737,
+    "sha256": "53e334013aa3c6a40d1376ff5a315e447198dfadf2155ec623bab22b184aabd4"
+  },
+  "keepsake-2": {
+    "text": "Someone left a little history on this desk. Take a look.",
+    "voice": "af_heart",
+    "duration": 3.393,
+    "sha256": "053bd20ea9e8b63795a6f449510e1c40c142e71d158cb2fe523a15f0f3ad85f1"
+  },
+  "lift-1": {
+    "text": "Check the department on your objective. Your next lead may be on another floor.",
+    "voice": "af_heart",
+    "duration": 4.716,
+    "sha256": "06b5cb27a9c3e0acd7e5845d5ae0320fb9f289a77b8663498c3cc79c0f61a9cd"
+  },
+  "lift-2": {
+    "text": "Four floors, one investigation. Follow the case, not a hunch.",
+    "voice": "af_heart",
+    "duration": 4.247,
+    "sha256": "a652588e2c25826cba516885b5a633903acc9a06fc7d73874e038f1945a0bf84"
+  },
+  "warning-1": {
+    "text": "Slow down. Preserve the evidence and check the facts before your next decision.",
+    "voice": "af_heart",
+    "duration": 4.844,
+    "sha256": "7ef06bc305567c49826b0fc1bec9093cf7ae934e668f171d21b07ffcde1e4c33"
+  },
+  "warning-2": {
+    "text": "The risk is still active. Contain it, verify the scope, and keep a clear record.",
+    "voice": "af_heart",
+    "duration": 5.1,
+    "sha256": "4f2707401ac9022e4fa3bc2613469c05e8144c51c9b39d230831f6c5bd279b01"
+  },
+  "arrival-1": {
+    "text": "Find your active case desk. The badge, door log and witness account are together on that table.",
+    "voice": "af_heart",
+    "duration": 5.996,
+    "sha256": "dc99b19f9da2fb6da8554bce561da14931cb10d2d83ad67037e3cbe33af20da3"
+  },
+  "arrival-2": {
+    "text": "Three arrival clues. Read them together before deciding what happened tonight.",
+    "voice": "af_heart",
+    "duration": 4.673,
+    "sha256": "31e7ff0d24de95a49016352953579c8459516fa4312b70112673d7ef9a4da2f6"
+  },
+  "mira-1": {
+    "text": "I kept the visitor record. Please check the time against the door log.",
+    "voice": "af_heart",
+    "duration": 4.268,
+    "sha256": "27c36d26609d80e820e22dc5b8d90335b4587ca0c69b83bd6e057de9debe6f72"
+  },
+  "mira-2": {
+    "text": "The badge and the dashboard do not tell the same story. Check the original record.",
+    "voice": "af_heart",
+    "duration": 4.929,
+    "sha256": "48d527e82d9556256160be009052f8f5d33db4f4c2f640140351bebe8c0045a0"
+  },
+  "arjun-1": {
+    "text": "The job number connects these records. A shared account does not name a person.",
+    "voice": "am_michael",
+    "duration": 5.463,
+    "sha256": "fac2efebcca3063c4ca7d2a561d96994d6cfbf2fef5985f5bf8aef3547bed5aa"
+  },
+  "arjun-2": {
+    "text": "Start with the source log. The dashboard can show when an event arrived.",
+    "voice": "am_michael",
+    "duration": 5.079,
+    "sha256": "02fbad01f99a49ec16b2dbf12f5fac76034c21dbff82fbd6a63a93afbcdf4962"
+  },
+  "leena-1": {
+    "text": "Separate authorisation from safeguards. We need to check both before making a call.",
+    "voice": "bf_emma",
+    "duration": 5.121,
+    "sha256": "c779bbed60a020bc84a654a4fc1029c9635ec151b42061efa69c2546199abfcb"
+  },
+  "leena-2": {
+    "text": "Preserve the record. Then establish what actually happened, and document the reasoning.",
+    "voice": "bf_emma",
+    "duration": 4.951,
+    "sha256": "57729a8ba8dda80f4606e0e64866c62572f5210c3127b9f26358ebff1785ae18"
+  },
+  "tutorial-1": {
+    "text": "You are the Data Protection Officer. Find out what happened to the records, protect the people affected, and explain your decisions.",
+    "voice": "af_heart",
+    "duration": 7.959,
+    "sha256": "f5898b5001967a486fae09920dd2ea2bd592780d42187561f16e7da44dc81f82"
+  },
+  "tutorial-2": {
+    "text": "First, practise moving. Press W or the up arrow, or choose Take a Step. Reach the practice desk in three steps.",
+    "voice": "af_heart",
+    "duration": 7.681,
+    "sha256": "b6e84380f2ac03345f21460ca65954d5803299af2a6ae317d874f557dcb7a086"
+  },
+  "tutorial-3": {
+    "text": "Look toward an object before interacting. Turn right to find the practice terminal, then press E or choose Inspect Terminal.",
+    "voice": "af_heart",
+    "duration": 7.937,
+    "sha256": "4168527d0b9a28fd817a764c042f7255a7012f25b597a0ef79961fe89ba2808f"
+  },
+  "tutorial-4": {
+    "text": "Follow the yellow arrow. Read the floor number in your objective. Use Lift and Floors if the case is in another department.",
+    "voice": "af_heart",
+    "duration": 7.703,
+    "sha256": "3d7df087378ee8d5ffaba91920f440e0ad8d9d01d914dbcb3d9b5a3df10b0529"
+  },
+  "tutorial-5": {
+    "text": "Inspect all three records. Return to all evidence after each one. Compare what was requested, what was approved, and what actually happened.",
+    "voice": "af_heart",
+    "duration": 8.833,
+    "sha256": "a23d5fc03c63a1528bc55f5ace8332c222f01e2f8d854720aa091dc5419337b6"
+  },
+  "tutorial-6": {
+    "text": "Now make a practice decision. Choose what you would do first. If the answer is unsafe, read the explanation and try again.",
+    "voice": "af_heart",
+    "duration": 7.852,
+    "sha256": "c74e9ab52bf3cb999d94ac8fca5dda9b07beb646af582dab898e157aed762545"
+  },
+  "tutorial-7": {
+    "text": "Read the result of every decision. Take a break after a case. Untimed mode lets you investigate without a question countdown.",
+    "voice": "af_heart",
+    "duration": 8.193,
+    "sha256": "3113790ae04156f0a74c791cad5a25e219c6c75108b39c98ae5aef33a9c610af"
+  },
+  "tutorial-8": {
+    "text": "Begin with the three arrival clues. Then follow your objective, inspect the case records, and open the terminal. You are ready for the night shift.",
+    "voice": "af_heart",
+    "duration": 9.153,
+    "sha256": "34a4eef07ba58eee05cfeec4871dce5d0d8412a3e42bdb40c71b40fefae13bcd"
+  },
+  "heroic-narration": {
+    "text": "The copies are contained. The evidence is intact. Mumbai wakes to a safer morning. You held the line.",
+    "voice": "af_heart",
+    "duration": 6.615,
+    "sha256": "162de0117f28e4dff65a46de1138f736b7c2e1a15d7a0651162b22e1dda30dcf"
+  },
+  "dark-narration": {
+    "text": "You found the signature. The copies survived. Somewhere beyond this room, the incident is still unfolding. The night is not over.",
+    "voice": "af_heart",
+    "duration": 7.959,
+    "sha256": "0e12a9252e6ceada50f01370619b5e26a13936bb0a7e10282bee947ff9d947f8"
+  },
+  "story-toggle": {
+    "text": "A fitness launch is harvesting more than steps. Follow the permissions to the advertising exchange.",
+    "voice": "af_heart",
+    "duration": 6.273,
+    "sha256": "7aee8ccc126c92a923afb6d27842e62fe4ce78d551434c0ca9422785491cf4b8"
+  },
+  "story-permission": {
+    "text": "An opt-out exposes a retention machine. Help one person reclaim control without losing the service.",
+    "voice": "af_heart",
+    "duration": 6.785,
+    "sha256": "88057e4a4743e59f7aa923d0b005598b0263ad0e5aaadcdb4d20cdf9086e45ab"
+  },
+  "story-city-form": {
+    "text": "A grant application grows tentacles. Trace its data appetite from one form to a government request.",
+    "voice": "af_heart",
+    "duration": 6.743,
+    "sha256": "0be0efdd1784a7fefad8c5e9781321cd6255a14fd3f7b874016cce3e47dafd46"
+  },
+  "story-schoolyard": {
+    "text": "A learning game turns children into ad segments. Find the tracker, check the parent, fix the rights desk.",
+    "voice": "af_heart",
+    "duration": 6.551,
+    "sha256": "373011bb8329801d1b65e9d46c6c14feddfb02973777f876834551b549941336"
+  },
+  "story-vendor": {
+    "text": "An appointment vendor brings a subcontractor and a convenient theory of responsibility.",
+    "voice": "af_heart",
+    "duration": 5.484,
+    "sha256": "754098093c0cae340dce0515e72b58c61344da0e83a6a720a304239606370387"
+  },
+  "story-breach": {
+    "text": "A personal drive becomes a breach. Contain it and get the truth to affected people.",
+    "voice": "af_heart",
+    "duration": 5.441,
+    "sha256": "6c6250c8efe49bc034f32b376a508fe174f20f029716fe804f1d9d6670ce73aa"
+  },
+  "story-rights-desk": {
+    "text": "A missing data summary leads to a wrong name and an unanswered complaint. Make the desk work for people.",
+    "voice": "af_heart",
+    "duration": 6.657,
+    "sha256": "3a5068f9dcd39373d08f6fd566e3fd7395d78bc943794f4c8910ff47e7a0b0ca"
+  },
+  "story-memory-drawer": {
+    "text": "Old profiles, lingering copies and a contradictory loan record. Decide what to keep, erase and correct.",
+    "voice": "af_heart",
+    "duration": 6.999,
+    "sha256": "bc3b4f2084a7558e291b634397677cf91989e57814ab8c20652014779b02751e"
+  },
+  "story-borderless-copy": {
+    "text": "A cloud migration meets a public-data shortcut. Follow the source, destination and responsible contact.",
+    "voice": "af_heart",
+    "duration": 7.276,
+    "sha256": "f68745a28422dae0527b2eda7eca4eafeeffa700d6fc2a36b3b0fa4afc095482"
+  },
+  "story-audit-trail": {
+    "text": "A missing consent receipt, a suspicious request and an overpowered intern. Evidence beats theatre.",
+    "voice": "af_heart",
+    "duration": 6.444,
+    "sha256": "ad12fa4c4cd809b907ced477a6d4901b79441e366be405e68de0a42db1b06610"
+  }
+}

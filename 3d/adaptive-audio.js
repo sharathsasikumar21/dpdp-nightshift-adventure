@@ -5,7 +5,7 @@ export class Sound{
  async loadScore(){try{const response=await fetch(new URL('./media/gameplay-renith.m4a?v=renith1',import.meta.url));if(!response.ok)throw new Error('Score unavailable');const buffer=await this.ctx.decodeAudioData(await response.arrayBuffer());this.score=this.ctx.createBufferSource();this.score.buffer=buffer;this.score.loop=true;this.score.loopEnd=buffer.duration;this.score.connect(this.scoreGain);this.score.start();this.applyVolume();}catch{this.score=null;this.applyVolume();}}
  toggle(){this.enabled=!this.enabled;if(this.ctx)this.applyVolume();return this.enabled;}
  setSituation(s){this.situation=s;if(this.ctx)this.applyVolume();}
- applyVolume(){const silent=!this.enabled||this.situation.phase==='film'||document.hidden;this.ambient.gain.setTargetAtTime(silent||this.score?0:.012,this.ctx.currentTime,.3);this.scoreGain.gain.setTargetAtTime(silent||this.ctx.currentTime<(this.discoveryUntil||0)?0:(['briefing','break','end'].includes(this.situation.phase)?.4:.8),this.ctx.currentTime,.6);this.music.gain.setTargetAtTime(silent?0:(this.score? .045:.085),this.ctx.currentTime,.3);}
+ applyVolume(){const silent=!this.enabled||this.situation.phase==='film'||document.hidden;this.ambient.gain.setTargetAtTime(silent||this.score?0:.012,this.ctx.currentTime,.3);this.scoreGain.gain.setTargetAtTime(silent||this.ctx.currentTime<(this.discoveryUntil||0)?0:(this.voiceActive?.16:['briefing','break','end'].includes(this.situation.phase)?.4:.8),this.ctx.currentTime,.6);this.music.gain.setTargetAtTime(silent?0:(this.score? .045:.085),this.ctx.currentTime,.3);}
  tone(f,t,len,volume,type='triangle',out=this.music){const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(volume,t+.018);g.gain.exponentialRampToValueAtTime(.0001,t+len);o.connect(g);g.connect(out);o.start(t);o.stop(t+len+.02);}
  schedule(){if(!this.ctx||this.ctx.state!=='running')return;const s=this.situation;if(this.next<this.ctx.currentTime-.2)this.next=this.ctx.currentTime;
  const urgent=s.phase==='decision'&&s.remaining<=15,critical=s.integrity<=30;const tense=!['break','end'].includes(s.phase);const bpm=urgent?118:critical?98:s.phase==='briefing'?86:tense?66+(s.level||0)*8:54;
@@ -22,7 +22,21 @@ export class Sound{
  this.next+=60/bpm/2;
  }}
  discovery(){if(!this.enabled)return;this.start();this.discoveryUntil=this.ctx.currentTime+1.8;this.applyVolume();this.spatial('clue',.15);}
- spatial(kind,pan=0){if(!this.enabled||document.hidden||this.situation.phase==='film')return;this.start();const p=this.ctx.createStereoPanner();p.pan.value=Math.max(-1,Math.min(1,pan));p.connect(this.music);const t=this.ctx.currentTime;if(kind==='phone'){this.tone(660,t,.2,.22,'sine',p);this.tone(880,t+.24,.18,.16,'sine',p);}else if(kind==='step'){this.tone(85,t,.075,.15,'triangle',p);}else if(kind==='clue'){this.tone(740,t,.7,.12,'sine',p);}else {const buffer=this.ctx.createBuffer(1,this.ctx.sampleRate*.3,this.ctx.sampleRate);const data=buffer.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*Math.exp(-i/data.length*4);const noise=this.ctx.createBufferSource(),filter=this.ctx.createBiquadFilter(),gain=this.ctx.createGain();noise.buffer=buffer;filter.type='lowpass';filter.frequency.value=kind==='rain'?1400:500;gain.gain.value=kind==='rain'?.12:.16;noise.connect(filter);filter.connect(gain);gain.connect(p);noise.start();}setTimeout(()=>p.disconnect(),1500);}
+ spatial(kind,pan=0){
+  if(!this.enabled||document.hidden||this.situation.phase==='film')return;this.start();
+  const p=this.ctx.createStereoPanner();p.pan.value=Math.max(-1,Math.min(1,pan));p.connect(this.music);
+  const t=this.ctx.currentTime,variation=.92+Math.random()*.16;
+  const noise=(at,len,volume,frequency,type='lowpass')=>{const buffer=this.ctx.createBuffer(1,Math.ceil(this.ctx.sampleRate*len),this.ctx.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*Math.exp(-i/data.length*4);const source=this.ctx.createBufferSource(),filter=this.ctx.createBiquadFilter(),gain=this.ctx.createGain();source.buffer=buffer;filter.type=type;filter.frequency.value=frequency*variation;gain.gain.value=volume;source.connect(filter);filter.connect(gain);gain.connect(p);source.start(at);};
+  if(kind==='phone'){this.tone(660*variation,t,.2,.2,'sine',p);this.tone(880*variation,t+.24,.18,.15,'sine',p);}
+  else if(kind==='step'){this.tone(82*variation,t,.065,.13,'sine',p);noise(t,.11,.075,550);}
+  else if(kind==='clue'){this.tone(740*variation,t,.55,.1,'sine',p);this.tone(1108*variation,t+.09,.35,.035,'sine',p);}
+  else if(kind==='paper'){noise(t,.2,.15,1800,'bandpass');noise(t+.1,.18,.09,2600,'bandpass');}
+  else if(kind==='coffee'){noise(t,.8,.14,1600,'bandpass');this.tone(1260*variation,t+.65,.16,.07,'sine',p);}
+  else if(kind==='terminal'||kind==='switch'){noise(t,.045,.16,2400,'highpass');this.tone(1650*variation,t,.025,.055,'triangle',p);if(kind==='terminal')noise(t+.08,.035,.1,1900,'highpass');}
+  else if(kind==='lift'){this.tone(587.33,t,.55,.11,'sine',p);this.tone(783.99,t+.22,.55,.07,'sine',p);}
+  else noise(t,.3,kind==='rain'?.12:.14,kind==='rain'?1400:500);
+  setTimeout(()=>p.disconnect(),1500);
+ }
  warning(){if(!this.enabled)return;this.start();[440,330,220].forEach((f,i)=>this.tone(f,this.ctx.currentTime+i*.2,.32,.065,'triangle',this.ctx.destination));}
  cue(good=true){if(!this.enabled)return;this.start();[good?523:170,good?659:130,good?784:85].forEach((f,i)=>this.tone(f,this.ctx.currentTime+i*.09,.2,.045,'triangle',this.ctx.destination));}
 }

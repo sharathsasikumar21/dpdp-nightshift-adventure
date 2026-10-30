@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><base href="../"><title>Ending playback QA</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="release-ui.css"></head><body style="background:#87205c;padding:40px"><main><h1>Ending playback QA</h1><p>The bright report behind the film must stay covered until the ending and credits finish.</p><button id="good">PLAY HEROIC SEQUENCE</button><button id="bad">PLAY DARK SEQUENCE</button><p>Press X to cancel the current test. Escape skips the current film.</p><p id="result" role="status">READY</p><pre id="log"></pre></main><script type="module">
+import {playCinematic,preloadCinematics} from './cinematics.js';
+import {playEndingSequence} from './ending-sequence.js';
+let controller,active=false,violations=0;const result=document.querySelector('#result'),log=document.querySelector('#log');
+function sample(){if(!active)return;if(!document.querySelector('.cinema-transition')||document.querySelectorAll('dialog.cinema').length>1)violations++;requestAnimationFrame(sample);}
+async function run(kind){if(active)return;active=true;violations=0;log.textContent='';result.textContent='RUNNING '+kind;controller=new AbortController();const release=preloadCinematics([kind,'credits'],{signal:controller.signal});
+ const film=name=>playCinematic(name,{muted:false,signal:controller.signal,onStart:()=>log.textContent+='START '+name+'\n',onFinish:reason=>log.textContent+='FINISH '+name+' '+reason+'\n'});
+ try{const pending=playEndingSequence({signal:controller.signal,ending:()=>film(kind),credits:()=>film('credits')});requestAnimationFrame(sample);await pending;result.textContent=(controller.signal.aborted?'CANCELLED':'COMPLETE')+' · COVER VIOLATIONS '+violations+' · OPEN FILMS '+document.querySelectorAll('dialog.cinema').length;}finally{active=false;release();}}
+document.querySelector('#good').onclick=()=>run('good-ending');document.querySelector('#bad').onclick=()=>run('bad-ending');document.addEventListener('keydown',event=>{if(event.key.toLowerCase()==='x')controller?.abort();});
+</script></body></html>
