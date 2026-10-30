@@ -1,0 +1,4 @@
+<!doctype html><meta charset="utf-8"><style>body{margin:0}canvas{display:block}</style><canvas></canvas><script type="module">
+import {createWorld} from '../world.js';
+const world=createWorld(document.querySelector('canvas'),()=>{});window.testWorld=world;await world.ready;world.setQuality(true);world.enterLobby();world.setEnabled(true);document.body.className='phase-explore';window.testReady=true;
+</script>
