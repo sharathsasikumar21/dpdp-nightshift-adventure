@@ -37,3 +37,5 @@ header{background:linear-gradient(#091429f5,#0b172ad9);border-bottom:1px solid #
 .phase-home .shade{background:linear-gradient(90deg,#050a12b3,transparent 80%),linear-gradient(0deg,#05070b88,transparent 45%)}.game-menu{background:linear-gradient(105deg,#080e18ef,#0a121ac9 60%,#0b111887),linear-gradient(0deg,#080b10,transparent 55%)}.menu-bottom{background:transparent;border-color:#606d7a44}.menu-legal,.powered-footer{background:#080c12}.powered-logos a{background:#101820;border-color:#34444f}.phase-explore .shade{background:linear-gradient(0deg,#05070b77,transparent 32%)}.phase-explore .objective{background:linear-gradient(130deg,#10171ff5,#151d24f2)}
 .film-credits .cinema-subtitle{display:none}
 .phase-explore .objective,.phase-explore .metrics{backdrop-filter:none}
+
+.asset-loader .loading-trivia{width:min(560px,80vw);margin:16px auto 0;padding:18px 20px;border-top:1px solid #395363}.loading-trivia>span{font:11px var(--mono);letter-spacing:.15em;color:#ffc46d}.asset-loader .loading-fact{min-height:3em;margin:10px 0 0;font-size:15px;line-height:1.5;color:#e4edf4;text-wrap:balance}

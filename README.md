@@ -8,6 +8,7 @@ A first-person, single-player data protection thriller set at Meridian Dataworks
 
 ## Current browser release
 
+- Random office trivia rotates on the loading screen.
 - A main menu leads into the cinematic lift arrival. The protagonist introduction and objectives appear after the lift opens, followed by an optional beginner tutorial.
 - Explore four departments on floors 47–50. A yellow overhead arrow marks the arrival desk or active case desk.
 - Ten linked cases contain thirty situation-based decisions. Choose a 2-, 3- or 5-case shift, with timed or untimed play. Timed questions progress from 90 to 75 to 60 seconds.
@@ -55,7 +56,7 @@ node tools/version-browser-release.mjs
 node --test 3d/tests/*.test.mjs
 ```
 
-The current suite has 70 passing tests covering case progression, scoring, deadlines, evidence, checkpoints, Rapier collision, character assets, NPC routines, traffic, rendering budgets and browser module versioning. Historical room tests remain as regression coverage; multiplayer is not exposed by this release.
+The current suite has 72 passing tests covering case progression, scoring, deadlines, evidence, checkpoints, Rapier collision, character assets, NPC routines, traffic, rendering budgets and browser module versioning. Historical room tests remain as regression coverage; multiplayer is not exposed by this release.
 
 ## Hosting and updates
 
