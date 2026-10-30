@@ -18,6 +18,11 @@ test('a nested camera change invalidates the entire browser module graph',()=>{
   const after=releaseImportMap(root);
   assert.notEqual(after.revision,before.revision);
   assert.notEqual(after.imports['./physics.js'],before.imports['./physics.js']);
+  fs.writeFileSync(path.join(root,'view/camera.js'),"import '../physics.js';\r\nexport const view='first-person';");
+  const windows=releaseImportMap(root);
+  fs.writeFileSync(path.join(root,'view/camera.js'),"import '../physics.js';\nexport const view='first-person';");
+  assert.equal(releaseImportMap(root).revision,windows.revision);
+  fs.writeFileSync(path.join(root,'view/camera.js'),"import '../physics.js'; export const view='first-person';");
   fs.writeFileSync(path.join(root,'index.html'),'<script type="module" src="app.js?v=old"></script>');
   versionBrowserRelease(root);const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
   versionBrowserRelease(root);assert.equal(fs.readFileSync(path.join(root,'index.html'),'utf8'),html);

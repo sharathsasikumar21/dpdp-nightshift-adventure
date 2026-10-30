@@ -1,0 +1,4 @@
+# This repository publishes the browser game. Native projects stay local.
+/unreal/
+/dist/
+/3d/node_modules/

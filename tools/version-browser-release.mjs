@@ -9,7 +9,7 @@ export function releaseImportMap(root){
  const modules=new Map(),aliases=new Map();
  function visit(relative){
   if(modules.has(relative))return;
-  const source=fs.readFileSync(path.join(root,relative),'utf8');
+  const source=fs.readFileSync(path.join(root,relative),'utf8').replace(/\r\n/g,'\n');
   modules.set(relative,source);
   for(const match of source.matchAll(/(?:\bfrom\s*|\bimport\s*(?:\(\s*)?)['"]([^'"]+)['"]/g)){
    const specifier=match[1];if(!specifier.startsWith('.'))continue;
