@@ -37,3 +37,5 @@ Dialogue subtitles show the speaker’s name and follow prerecorded speech. Togg
 The navigation diamond points to your active table, or the lift when the case is on another floor. The NEXT instruction changes as arrival clues and case records are collected. Every timed decision allows 50 seconds; the clock starts after the pre-question briefing is confirmed.
 
 Simon Ghost Riley uses the supplied GLB character in the lift. Its browser copy is reduced to fewer than 50,000 triangles. The model has no skeleton or animation clips; the entrance uses a standing cinematic pose followed by first-person arrival.
+
+Supplied scene assets: an animated Labrador companion can be greeted near the lift; Mira uses the supplied female model in a stationary office pose. The window overlooks the supplied night skyline with the imported road surface, pavement, railings, lamps and traffic lights around the moving coastal traffic. Short occasional banter lines are mixed into evidence, terminal, coffee and warning responses.

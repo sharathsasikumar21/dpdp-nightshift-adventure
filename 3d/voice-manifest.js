@@ -12,6 +12,18 @@ export const VOICE_CLIPS={
       "src": "media/voices/evidence-2.mp3?v=9a2906c0b806",
       "text": "One record is a lead. Compare it with the evidence on this desk.",
       "speaker": "Control \u00b7 Operations"
+    },
+    {
+      "id": "evidence-banter-1",
+      "src": "media/voices/evidence-banter-1.mp3?v=f0344f61f5f6",
+      "text": "One clue down. Please do not solve the entire case from a paperclip.",
+      "speaker": "Control \u00b7 Operations"
+    },
+    {
+      "id": "evidence-banter-2",
+      "src": "media/voices/evidence-banter-2.mp3?v=8641565d342f",
+      "text": "Excellent. Actual evidence. The guessing department is closed tonight.",
+      "speaker": "Control \u00b7 Operations"
     }
   ],
   "terminal": [
@@ -26,6 +38,18 @@ export const VOICE_CLIPS={
       "src": "media/voices/terminal-2.mp3?v=933ac190402e",
       "text": "Read all three records. Then choose the response you can defend.",
       "speaker": "Control \u00b7 Operations"
+    },
+    {
+      "id": "terminal-banter-1",
+      "src": "media/voices/terminal-banter-1.mp3?v=bf95258cc1be",
+      "text": "Confidence is not a lawful basis. Check the record.",
+      "speaker": "Control \u00b7 Operations"
+    },
+    {
+      "id": "terminal-banter-2",
+      "src": "media/voices/terminal-banter-2.mp3?v=2360f9d57a52",
+      "text": "Four options. Somehow, guessing still feels like a fifth.",
+      "speaker": "Control \u00b7 Operations"
     }
   ],
   "coffee": [
@@ -39,6 +63,18 @@ export const VOICE_CLIPS={
       "id": "coffee-2",
       "src": "media/voices/coffee-2.mp3?v=3c02e3423b91",
       "text": "One coffee. Still no permission to guess. Back to the evidence.",
+      "speaker": "Control \u00b7 Operations"
+    },
+    {
+      "id": "coffee-banter-1",
+      "src": "media/voices/coffee-banter-1.mp3?v=3e9ac8f43ffc",
+      "text": "Coffee acquired. Legal immunity still unavailable.",
+      "speaker": "Control \u00b7 Operations"
+    },
+    {
+      "id": "coffee-banter-2",
+      "src": "media/voices/coffee-banter-2.mp3?v=bac2796f6484",
+      "text": "That is your coffee break. The breach did not take one.",
       "speaker": "Control \u00b7 Operations"
     }
   ],
@@ -81,6 +117,18 @@ export const VOICE_CLIPS={
       "id": "warning-2",
       "src": "media/voices/warning-2.mp3?v=4f2707401ac9",
       "text": "The risk is still active. Contain it, verify the scope, and keep a clear record.",
+      "speaker": "Control \u00b7 Operations"
+    },
+    {
+      "id": "warning-banter-1",
+      "src": "media/voices/warning-banter-1.mp3?v=cb0e920cdc1e",
+      "text": "Bold choice. The audit log disagrees. Check the evidence before the next call.",
+      "speaker": "Control \u00b7 Operations"
+    },
+    {
+      "id": "warning-banter-2",
+      "src": "media/voices/warning-banter-2.mp3?v=872c9b8dea85",
+      "text": "The evidence called. It wants a second opinion. Preserve the records and verify the facts.",
       "speaker": "Control \u00b7 Operations"
     }
   ],

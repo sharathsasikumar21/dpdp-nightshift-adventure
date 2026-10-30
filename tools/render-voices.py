@@ -45,6 +45,14 @@ LINES = {
  'radio-security': ('radio-security', 'Understood, Leena. I will preserve the logs while we check the scope of the export.'),
  'radio-analyst': ('radio-analyst', 'Leena, the next case records are on the marked workstation. Should we open the terminal now?'),
  'radio-counsel': ('radio-counsel', 'Read all three first, Mira. Then let the Data Protection Officer make the call.'),
+ 'evidence-banter-1': ('evidence', 'One clue down. Please do not solve the entire case from a paperclip.'),
+ 'evidence-banter-2': ('evidence', 'Excellent. Actual evidence. The guessing department is closed tonight.'),
+ 'coffee-banter-1': ('coffee', 'Coffee acquired. Legal immunity still unavailable.'),
+ 'coffee-banter-2': ('coffee', 'That is your coffee break. The breach did not take one.'),
+ 'terminal-banter-1': ('terminal', 'Confidence is not a lawful basis. Check the record.'),
+ 'terminal-banter-2': ('terminal', 'Four options. Somehow, guessing still feels like a fifth.'),
+ 'warning-banter-1': ('warning', 'Bold choice. The audit log disagrees. Check the evidence before the next call.'),
+ 'warning-banter-2': ('warning', 'The evidence called. It wants a second opinion. Preserve the records and verify the facts.'),
  'heroic-narration': ('ending', 'The copies are contained. The evidence is intact. Mumbai wakes to a safer morning. You held the line.'),
  'dark-narration': ('ending', 'You found the signature. The copies survived. Somewhere beyond this room, the incident is still unfolding. The night is not over.')
 }

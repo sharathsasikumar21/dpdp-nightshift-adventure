@@ -274,5 +274,53 @@
     "voice": "bf_emma",
     "duration": 4.823,
     "sha256": "57ae1876d55316b60b637fbfd501a1fa542e0c82ff5bf0a3638cfe7e4699f56d"
+  },
+  "evidence-banter-1": {
+    "text": "One clue down. Please do not solve the entire case from a paperclip.",
+    "voice": "af_heart",
+    "duration": 4.396,
+    "sha256": "f0344f61f5f6e109f7924397b198d83f9bc10dcbf55eb4dc827cfbfb6e33a759"
+  },
+  "evidence-banter-2": {
+    "text": "Excellent. Actual evidence. The guessing department is closed tonight.",
+    "voice": "af_heart",
+    "duration": 4.247,
+    "sha256": "8641565d342f3d2ba4ab51552e776af1ac4fd858e1c5ca7d5b87007963294763"
+  },
+  "coffee-banter-1": {
+    "text": "Coffee acquired. Legal immunity still unavailable.",
+    "voice": "af_heart",
+    "duration": 3.521,
+    "sha256": "3e9ac8f43ffc6051233cd557c83f96aed01be8216d16c05a8cafd5eecdfea75a"
+  },
+  "coffee-banter-2": {
+    "text": "That is your coffee break. The breach did not take one.",
+    "voice": "af_heart",
+    "duration": 3.287,
+    "sha256": "bac2796f6484199af6280d4b6a718d2e81f67a5c90fa14e41af63cb869149348"
+  },
+  "terminal-banter-1": {
+    "text": "Confidence is not a lawful basis. Check the record.",
+    "voice": "af_heart",
+    "duration": 3.585,
+    "sha256": "bf95258cc1be073349e87f75b1985cf92141af719d9c27601fc4d7815e35469d"
+  },
+  "terminal-banter-2": {
+    "text": "Four options. Somehow, guessing still feels like a fifth.",
+    "voice": "af_heart",
+    "duration": 3.777,
+    "sha256": "2360f9d57a52f713075e9b3f39e8c30b5f4d6ffb8056faf5674360fcc93c96be"
+  },
+  "warning-banter-1": {
+    "text": "Bold choice. The audit log disagrees. Check the evidence before the next call.",
+    "voice": "af_heart",
+    "duration": 5.164,
+    "sha256": "cb0e920cdc1e434842160267282a8d553f9e84b5ba542cd352e3bdd32a852e73"
+  },
+  "warning-banter-2": {
+    "text": "The evidence called. It wants a second opinion. Preserve the records and verify the facts.",
+    "voice": "af_heart",
+    "duration": 5.825,
+    "sha256": "872c9b8dea85656e5309d7dac71272d254e38dcac7b688b96cda2539782eabbf"
   }
 }
