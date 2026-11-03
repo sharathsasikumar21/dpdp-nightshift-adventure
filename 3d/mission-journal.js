@@ -1,3 +1,4 @@
+import {workingFinding} from './working-findings.js';
 import {evidenceInsight} from './evidence-insights.js';
 import {floorForCase,floorInfo} from './building.js';
 import {nextInstruction} from './navigation-guidance.js';
@@ -5,7 +6,7 @@ export function buildJournal(state,stories,dossiers,evidence,openingCount,curren
  const activeIndex=Math.min(Math.floor(state.turn/3),state.route.length-1),targetFloor=floorForCase(state.route[activeIndex]);
  const cases=state.route.map((index,order)=>{
   const story=stories[index],found=evidence.get(state.id+':'+story.id)||new Set(),completed=state.log.filter(e=>e.story===index).length;
-  return {title:story.title,floor:floorForCase(index),active:order===activeIndex,completed,clues:(dossiers[story.id]?.clues||[]).map(([title,body],i)=>({title,body:found.has(i)?body:null})),unresolved:[...found].sort((a,b)=>a-b).map(i=>({source:dossiers[story.id]?.clues[i]?.[0],question:evidenceInsight(story.id,i)?.verify})).filter(f=>f.source&&f.question),question:order===activeIndex?story.scenes[state.turn%3]?.q:null};
+  return {title:story.title,floor:floorForCase(index),active:order===activeIndex,completed,clues:(dossiers[story.id]?.clues||[]).map(([title,body],i)=>({title,body:found.has(i)?body:null,finding:found.has(i)?workingFinding(state,story.id,i):null})),unresolved:[...found].sort((a,b)=>a-b).map(i=>({source:dossiers[story.id]?.clues[i]?.[0],question:evidenceInsight(story.id,i)?.verify})).filter(f=>f.source&&f.question),question:order===activeIndex?story.scenes[state.turn%3]?.q:null};
  });
  return {cases,targetFloor,next:nextInstruction({openingCount,evidenceCount:cases[activeIndex].clues.filter(c=>c.body).length,currentFloor,targetFloor,near:false})};
 }

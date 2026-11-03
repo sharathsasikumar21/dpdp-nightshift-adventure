@@ -29,7 +29,7 @@ export class VoiceBank{
   const audio=new this.Audio(new URL(clip.src,import.meta.url).href);this.audio=audio;this.clip=clip;audio.preload='auto';audio.volume=.85;
   this.last.set(group,{id:clip.id,at:now});
   const current=()=>this.generation===token&&this.audio===audio;
-  const started=()=>{if(current()){this.setActive(true);this.onCaption(clip);}};audio.onplaying=started;
+  const started=()=>{if(current()&&!this.active){this.setActive(true);this.onCaption(clip);}};audio.onplaying=started;
   audio.onended=()=>{if(current()){this.stop();onComplete();}};audio.onerror=()=>{if(current())this.stop();};
   try{await audio.play();if(!current()){audio.pause();return false;}started();return true;}
   catch{if(current())this.stop();return false;}

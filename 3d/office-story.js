@@ -1,6 +1,6 @@
 export const OPENING_LEADS=[
- {title:'Abandoned visitor badge',body:'Badge V-017 lies beside the lift. Its printed expiry is 00:30. Possession of the badge does not establish who used it.',question:'Who used it after expiry?'},
- {title:'Blinking access terminal',body:'The access log records V-017 entering at 01:12. An export job began at 01:16 under a shared service account. The log does not identify the person behind either event.',question:'Can the door event be linked to the export?'},
+ {title:'Abandoned visitor badge',body:'Badge V-017 lies beside the lift. Its printed expiry is 00:30. Possession of the badge does not establish who used it.',question:'What can the original door record establish about its use?'},
+ {title:'Blinking access terminal',body:'The dashboard displays V-017’s door event at 01:12. Its original controller time has not yet been checked. The scheduler records an export at 01:16 under a shared service account; neither display identifies the person who approved it.',question:'Can the door event be linked to the export?'},
  {title:'Mira’s account',body:'“I thought visitor access was disabled at midnight. I checked the dashboard, not the door controller.” Her account conflicts with the access log; it is a lead to investigate, not proof of deception.',question:'Which system actually enforced the restriction?'}
 ];
 export function openingComplete(found){return OPENING_LEADS.every((_,i)=>found.has(i));}

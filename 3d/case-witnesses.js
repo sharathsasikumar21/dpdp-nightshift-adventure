@@ -13,5 +13,5 @@ const profiles={
 };
 export function caseWitnesses(storyId){
  const p=profiles[storyId],dossier=dossiers[storyId];if(!p||!dossier)throw Error('Missing case-specific witness evidence: '+storyId);
- return {accounts:[{name:'Mira · Incident analyst',account:p[0],source:dossier.clues[0][0]+': '+dossier.clues[0][1]},{name:'Arjun · Security engineer',account:p[1],source:dossier.clues.slice(1).map(c=>c[0]+': '+c[1]).join(' ')}],findings:p.slice(2),confirmed:p[3]};
+ return {accounts:[{name:'Mira · Incident analyst',account:p[0],source:dossier.clues[0][0]+': '+dossier.clues[0][1]},{name:'Arjun · Security engineer',account:p[1],source:dossier.clues.map(c=>c[0]+': '+c[1]).join(' ')}],findings:p.slice(2),confirmed:p[3]};
 }

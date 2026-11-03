@@ -496,5 +496,395 @@
     "voice": "am_adam",
     "duration": 8.065,
     "sha256": "489c6d6d199ca24c786d32d5eaa9e2e148c0fae3ebec027ba3fbd05e3fb91ed1"
+  },
+  "staff-nitish-intro": {
+    "text": "Show me the event that actually happened. A dashboard summary is where I start asking questions, not where I stop.",
+    "voice": "am_echo",
+    "duration": 6.906,
+    "sha256": "d5f22caa5c29a07b1086ceb012a019753777f87b370a685df419fe2879f95ca6"
+  },
+  "staff-nitish-good": {
+    "text": "That gives me a verified checkpoint. I can trace the next event without inventing the missing step.",
+    "voice": "am_echo",
+    "duration": 5.775,
+    "sha256": "f51b9ddc99812f1ec480fbfe7e71f10fcaf343a011b0e79a5e30e9d8d3f5638f"
+  },
+  "staff-nitish-bad": {
+    "text": "The numbers still need explaining. I will preserve the original trace before we touch another setting.",
+    "voice": "am_echo",
+    "duration": 5.946,
+    "sha256": "cf331ddd63e3144c3c1a1ed4a947f45e69620763e011b722ea77cdc13d8bf674"
+  },
+  "staff-nitish-guide": {
+    "text": "Start with the source record on the active desk. Read the time, account and event separately.",
+    "voice": "am_echo",
+    "duration": 5.775,
+    "sha256": "e38696fcb1e047cd5af9012d9d866c08efd022705b8db71041efc89b76bc3428"
+  },
+  "staff-nitish-toggle": {
+    "text": "Let us isolate the observed event. The recorded upload occurs before the permission-screen event. Can the upload, account and permission-screen version be matched?",
+    "voice": "am_echo",
+    "duration": 9.253,
+    "sha256": "f1622127384e581f05dd3d3436663b646e4fdb70190c359255e67ca29eb6bd15"
+  },
+  "staff-nitish-permission": {
+    "text": "Let us isolate the observed event. The receipt records withdrawal from offers while distinguishing the core service. Which queued jobs and recipients received the updated preference?",
+    "voice": "am_echo",
+    "duration": 10.255,
+    "sha256": "450b36c2390d5c9c35379bf49ef2ded4c22156da801a7dceb6378fec9941c699"
+  },
+  "staff-nitish-rights-desk": {
+    "text": "Let us isolate the observed event. The ticket asks for an account-specific processing summary. Which account-specific records and response history are available?",
+    "voice": "am_echo",
+    "duration": 9.423,
+    "sha256": "8538ebfd354c78c4709cc49486b8a5776863dcf4a599c1e93b22b94d4565bb42"
+  },
+  "staff-ribika-intro": {
+    "text": "I keep the handover tidy. If two accounts disagree, both stay in the file until the source explains the difference.",
+    "voice": "af_bella",
+    "duration": 7.205,
+    "sha256": "091abe20bb61346a45ed649ccf7fec0c54ab6fe693067611d3e29fe00be4bb56"
+  },
+  "staff-ribika-good": {
+    "text": "Your record is clear enough for the next person to follow. Keep the source beside the conclusion.",
+    "voice": "af_bella",
+    "duration": 5.562,
+    "sha256": "13962ca97270af6c7f1bc43061d51d430e66beaadbe94c02a8cff899dcc17a47"
+  },
+  "staff-ribika-bad": {
+    "text": "I am keeping that safeguard on the unresolved list. A confident sentence will not close it.",
+    "voice": "af_bella",
+    "duration": 5.925,
+    "sha256": "1d42862d46bf42ae4f92d9db79d30e015f40f231fb13ee15d8da8773aa5d5a35"
+  },
+  "staff-ribika-guide": {
+    "text": "Check the evidence board, then compare the two accounts. The case journal keeps the questions we still need to verify.",
+    "voice": "af_bella",
+    "duration": 7.311,
+    "sha256": "d978d7a28f1f475d1a687bc55b65f553609640b1d450b55f5454af7ef25d4ad7"
+  },
+  "staff-ribika-toggle": {
+    "text": "Here is the intake detail I want kept in view. Marketing requested a promotional use of class-alert numbers. Which source records the purpose customers were originally shown?",
+    "voice": "af_bella",
+    "duration": 11.258,
+    "sha256": "12c3c9dc5bcb845370fd83dc01c1fef247e5516cd026ceb4c6244e147df2da7f"
+  },
+  "staff-ribika-permission": {
+    "text": "Here is the intake detail I want kept in view. The recording shows a one-tap entry and a much longer withdrawal route. Were other withdrawal paths available to this user at that time?",
+    "voice": "af_bella",
+    "duration": 11.813,
+    "sha256": "fc9b752e8b44351faf95a94e194aaebdf23d58722ec84598346ffb74fc24e97d"
+  },
+  "staff-ribika-rights-desk": {
+    "text": "Here is the intake detail I want kept in view. Credible evidence supports the name correction and no verification issue remains in this case. Which systems and recipients still hold the previous spelling?",
+    "voice": "af_bella",
+    "duration": 13.029,
+    "sha256": "06488a646e59cd4b17d112c0898f499d6bc9882a9b72ffe2f632f9876572e9b4"
+  },
+  "staff-nikita-intro": {
+    "text": "A supplier promise is a starting point. I want the reviewed scope, the named recipient and the acknowledgement.",
+    "voice": "bf_isabella",
+    "duration": 6.33,
+    "sha256": "60f5b2d9872f66019a1ca6e6235dc437bc2443f73a17a19b84634118e2b3b991"
+  },
+  "staff-nikita-good": {
+    "text": "That keeps the assurance trail usable. I can ask the responsible team for evidence rather than another promise.",
+    "voice": "bf_isabella",
+    "duration": 6.607,
+    "sha256": "f109de846f018491e77d9b398be6a3c6e2bedddd3bc9fff351b6c9e4cdd171a9"
+  },
+  "staff-nikita-bad": {
+    "text": "The arrangement still has a gap. I will record it against the responsible owner, not hide it in the contract folder.",
+    "voice": "bf_isabella",
+    "duration": 6.949,
+    "sha256": "a5cbdde740e597003c04d8ebbd2a8dddff4c2d1f6648a6972fa6e8401fcae1df"
+  },
+  "staff-nikita-guide": {
+    "text": "Compare the proposed action with its source record. Keep the responsible owner and any missing acknowledgement visible.",
+    "voice": "bf_isabella",
+    "duration": 6.671,
+    "sha256": "c2499ad6375b20c296e3d4a53d4e10ef05480d1b18531b68395c40673eaf27c8"
+  },
+  "staff-nikita-vendor": {
+    "text": "From an assurance perspective, this is the record to examine. The ticket proposes identifiable event access outside the reviewed arrangement. Do access logs show activation, use or onward disclosure?",
+    "voice": "bf_isabella",
+    "duration": 13.071,
+    "sha256": "f0f3139ea21712895d8eb9518d522835988f39c86dd4aa9662e0737b045a3aef"
+  },
+  "staff-nikita-breach": {
+    "text": "From an assurance perspective, this is the record to examine. The provider confirms exposure of company records without proof of completed notices. What acknowledgements or delivery records show who was told and when?",
+    "voice": "bf_isabella",
+    "duration": 13.05,
+    "sha256": "3f8c29cd935d09ac5940fdc4e76e615e1466f1d90224135e0c70796efb12438c"
+  },
+  "staff-nikita-audit-trail": {
+    "text": "From an assurance perspective, this is the record to examine. The attachment appears to contain another person\u2019s unverified identity documents. What reliable evidence can establish who is making the request and for whom?",
+    "voice": "bf_isabella",
+    "duration": 13.349,
+    "sha256": "f7f17097f2cf241d6283f34d88acf69de7609ffb77e2f2341fd3a4ee1984ec9b"
+  },
+  "staff-sharath-intro": {
+    "text": "Ghost, you lead the data protection decision. I coordinate the response. Give me verified facts, a scoped request and the risk we still cannot close.",
+    "voice": "bm_george",
+    "duration": 10.575,
+    "sha256": "bde86e8abd959ec4ad8c3c2e6bb4d4016c22f10f24a38aa801e6220a41e9a89d"
+  },
+  "staff-sharath-good": {
+    "text": "That is a decision I can coordinate around. Keep the acknowledgement and the source trail ready for handover.",
+    "voice": "bm_george",
+    "duration": 7.759,
+    "sha256": "f278b7455558d0d2f7fbeadf2f82ec82a2b4e8ee150f0e4aaa83a750762086bb"
+  },
+  "staff-sharath-bad": {
+    "text": "We do not hide an unsafe call. Preserve the record, name the unresolved risk, and tell me which safer action needs an owner.",
+    "voice": "bm_george",
+    "duration": 8.677,
+    "sha256": "5ccd9b524e8f4a33acc0f406b76b4b56bd2c5cb224f0527306557c7446b6663f"
+  },
+  "staff-sharath-guide": {
+    "text": "Check your objective floor. Inspect all three records, compare the accounts, then use the active terminal. I need your reasoning before we move.",
+    "voice": "bm_george",
+    "duration": 10.042,
+    "sha256": "cd04f06552af01760dfd6e3a1569f7e7afaabc59442dc93c9e447abcc171fa07"
+  },
+  "staff-sharath-toggle": {
+    "text": "This is the unresolved detail I want in the incident brief. The proposed interface combines two purposes in one checkbox. Was this interface deployed, and which version did people see?",
+    "voice": "bm_george",
+    "duration": 13.37,
+    "sha256": "b77af1c0f95af74489f7648a88980334870a7d4c1f2c31ca038235f033b74ba7"
+  },
+  "staff-sharath-permission": {
+    "text": "This is the unresolved detail I want in the incident brief. The proposal includes a consent tool and an advertising-profiling use. What verified records describe the proposed operator and its data uses?",
+    "voice": "bm_george",
+    "duration": 14.68,
+    "sha256": "ab38ea9d115fb9610be740a41d2be9cd351a09ac6f774c5fe4154d5951f9d7b8"
+  },
+  "staff-sharath-city-form": {
+    "text": "This is the unresolved detail I want in the incident brief. The office\u2019s request cites government status without naming its function or required records. Which documented function and record categories support this request?",
+    "voice": "bm_george",
+    "duration": 14.681,
+    "sha256": "9137d0573a31f9eb59a00f3397241a55f02543ca98645e16e72607abbc6fef00"
+  },
+  "staff-sharath-schoolyard": {
+    "text": "This is the unresolved detail I want in the incident brief. The recording shows a guardian unable to use the request form with assistive controls. Which accessible routes were actually available to this guardian?",
+    "voice": "bm_george",
+    "duration": 14.991,
+    "sha256": "72eaa4859bd477b76c7eb077245c30a71c2333a0bf6671942c345c7f945e94bf"
+  },
+  "staff-sharath-vendor": {
+    "text": "This is the unresolved detail I want in the incident brief. The thread records executives\u2019 assumption about the contract. Which signed terms and operating records support the responsibilities claimed?",
+    "voice": "bm_george",
+    "duration": 14.543,
+    "sha256": "e0b002af30fbbf0ae5a1fb72d8d2f634aa9a85b57aaddad113cb627302dd8651"
+  },
+  "staff-sharath-breach": {
+    "text": "This is the unresolved detail I want in the incident brief. The draft is held while the team awaits all forensic details. What does the incident timeline establish about discovery and known facts?",
+    "voice": "bm_george",
+    "duration": 14.159,
+    "sha256": "7e18bb7aebf3142b6a958184ab4a4a3bc534c38c039aed75f13859b4074fa9d6"
+  },
+  "staff-sharath-rights-desk": {
+    "text": "This is the unresolved detail I want in the incident brief. The queue records an unanswered deletion request with no assigned grievance owner. What response history and ownership records exist across the available channels?",
+    "voice": "bm_george",
+    "duration": 14.681,
+    "sha256": "d4795f4ce3935fc083d0999e06bd0a260ac8c29acb07d274fe21dcda20ffff05"
+  },
+  "staff-sharath-memory-drawer": {
+    "text": "This is the unresolved detail I want in the incident brief. The queued refund decision relies on contradictory attendee records. Which reliable source can reconcile the conflicting values before their use?",
+    "voice": "bm_george",
+    "duration": 14.68,
+    "sha256": "bcca0eb9f672fbee347a09b3173347fc3bef14544a63ea65c54b1a3aa6fa4149"
+  },
+  "staff-sharath-borderless-copy": {
+    "text": "This is the unresolved detail I want in the incident brief. The help page lists the cloud provider without an accountable business contact. Which responsible person can answer for the service\u2019s processing?",
+    "voice": "bm_george",
+    "duration": 14.693,
+    "sha256": "cb921f9640dfe0469928edeafd2685766456827abb5e39f613a6c0332f97784b"
+  },
+  "staff-sharath-audit-trail": {
+    "text": "This is the unresolved detail I want in the incident brief. The inventory shows an active broad export role for an intern needing ticket status. Which access and export logs show how the role was actually used?",
+    "voice": "bm_george",
+    "duration": 14.68,
+    "sha256": "b58cfb88b6c89c48f03ff1c2bf640ddbb0f5edd8a9a6667a8aac576882925d55"
+  },
+  "staff-sreshta-intro": {
+    "text": "There is a person behind every account. I check what the service actually does before accepting the label on its feature.",
+    "voice": "af_sarah",
+    "duration": 7.29,
+    "sha256": "6fd72893b255baf7ed0a9e793a06c400e5fc0c4254efba2e07077b40e2460b86"
+  },
+  "staff-sreshta-good": {
+    "text": "That keeps the person in view. I will document what the service did and which safeguard your call protected.",
+    "voice": "af_sarah",
+    "duration": 6.501,
+    "sha256": "ae2a56e61292fafd26346779109901cd64b6b7501e09796fdd55b90e37bb17e2"
+  },
+  "staff-sreshta-bad": {
+    "text": "The feature label has not removed the harm. I will keep the affected account and the missing safeguard in the case notes.",
+    "voice": "af_sarah",
+    "duration": 7.205,
+    "sha256": "c606a6ebbd51a205401f7d9d401d7e5073222bd547b3addf6d456199a6109aff"
+  },
+  "staff-sreshta-guide": {
+    "text": "Read what the first exhibit records, then compare it with the other two. A reassuring feature name is not a substitute for evidence.",
+    "voice": "af_sarah",
+    "duration": 8.207,
+    "sha256": "110d1f89385d407563febd6adb641678f4ce03bc2163b0e79c3177bf90d6a3d7"
+  },
+  "staff-sreshta-city-form": {
+    "text": "Look at the actual behaviour recorded here. The schema contains eligibility fields, contacts and browsing history. Which fields were actually collected, and what documented function uses each one?",
+    "voice": "af_sarah",
+    "duration": 12.666,
+    "sha256": "147e9a145256dbfcf1bf90aa0bdcc2f182b687899d3ef7c63225ebc1ec2fc5dc"
+  },
+  "staff-sreshta-schoolyard": {
+    "text": "Look at the actual behaviour recorded here. The trace records learning events feeding an advertising profile. Which children, recipients and module versions appear in the original logs?",
+    "voice": "af_sarah",
+    "duration": 11.557,
+    "sha256": "58b1eaec2fccd515909bdbbf2f36617585784e4910c5a14b55ca763e09170637"
+  },
+  "staff-preeti-intro": {
+    "text": "I ask the question the applicant would ask: what do you need from me, why, and who will answer when something goes wrong?",
+    "voice": "bf_lily",
+    "duration": 6.351,
+    "sha256": "74259be38fcba40ea92e635ed636de5098c314bf2840a6a8722d71d29de50157"
+  },
+  "staff-preeti-good": {
+    "text": "That is a response a person can act on. Keep the contact, the scope and the supporting record together.",
+    "voice": "bf_lily",
+    "duration": 6.373,
+    "sha256": "461736c99f2110ae367be4ca700661e9a36c16420f5b07cb85ad96d601c48ea1"
+  },
+  "staff-preeti-bad": {
+    "text": "The person still needs a usable answer. I will not mark the request resolved just because a ticket changed colour.",
+    "voice": "bf_lily",
+    "duration": 6.97,
+    "sha256": "3807f072bc246be64ae1e6b09753cb8f29e9de9b8e71ae02e15887fce0096504"
+  },
+  "staff-preeti-guide": {
+    "text": "Check the request against the response being proposed. Use the journal to keep unanswered factual questions separate from your decision.",
+    "voice": "bf_lily",
+    "duration": 7.973,
+    "sha256": "996e5e57507195624bd32e3259fbc28ec7f88bc210652b158e5d71984c7b3f63"
+  },
+  "staff-preeti-city-form": {
+    "text": "This is the service-facing record I would check next. The office\u2019s request cites government status without naming its function or required records. Which documented function and record categories support this request?",
+    "voice": "bf_lily",
+    "duration": 13.349,
+    "sha256": "3a6e7bc60159f5d3ad710cf04246be71b349e739c0b2450545398f75ea62801e"
+  },
+  "staff-preeti-schoolyard": {
+    "text": "This is the service-facing record I would check next. The recording shows a guardian unable to use the request form with assistive controls. Which accessible routes were actually available to this guardian?",
+    "voice": "bf_lily",
+    "duration": 12.154,
+    "sha256": "fab2afb527bb6f2bce57c357815ee3c45559cca351f105586399f0bfb2637028"
+  },
+  "staff-vishnuvardhan-intro": {
+    "text": "An archive is not a disappearing act. I track which record remains, where it remains and what supports keeping it.",
+    "voice": "bm_daniel",
+    "duration": 6.863,
+    "sha256": "7a132d38961cc1187629eb941a548e92784bc1cc8a61489a26361723fb39ef6f"
+  },
+  "staff-vishnuvardhan-good": {
+    "text": "That leaves a traceable record. I will keep the source, the decision and the remaining copy questions in separate columns.",
+    "voice": "bm_daniel",
+    "duration": 6.949,
+    "sha256": "d97b98ad1e3a317ec6fa8d97d0a6615627f197355c14c263e898f5deb449f9fc"
+  },
+  "staff-vishnuvardhan-bad": {
+    "text": "The ledger still has an open line. Moving a record is not the same as proving what happened to it.",
+    "voice": "bm_daniel",
+    "duration": 5.711,
+    "sha256": "0bd3d5f935522b90bb7947956a077695fa52e86725d4fefabfbd08d768a2f84b"
+  },
+  "staff-vishnuvardhan-guide": {
+    "text": "Check each record category and its source. Do not let one retention label stand in for the whole case.",
+    "voice": "bm_daniel",
+    "duration": 6.309,
+    "sha256": "592b217c2ae1fb1bcd49131d8626e40efab0a3f13083d1bcb2240e4fd87ce037"
+  },
+  "staff-vishnuvardhan-memory-drawer": {
+    "text": "The records ledger needs this distinction preserved. The review distinguishes dietary preferences from separately required processing records. Which record-specific retention duties and dates have actually been documented?",
+    "voice": "bm_daniel",
+    "duration": 12.965,
+    "sha256": "d2aec0e1ba4ae2dc3a9cf9c967224265649a601b45b6621de2b78135ea9f59b3"
+  },
+  "staff-vishnuvardhan-borderless-copy": {
+    "text": "The records ledger needs this distinction preserved. The page is visible publicly but its publication history is unknown. Who published the personal data, and what source establishes that history?",
+    "voice": "bm_daniel",
+    "duration": 11.578,
+    "sha256": "519975e505564f0ea7cbf3cd80c7e3569607721d4b2be57cc5497c15ce482671"
+  },
+  "staff-renjith-intro": {
+    "text": "I follow the route one verified link at a time. A familiar provider name tells me far less than a source and destination record.",
+    "voice": "af_nicole",
+    "duration": 13.263,
+    "sha256": "f3be89efe2b0ce04fef8d1dae087b425b6c6436b121016c8eb3216e2086e42f1"
+  },
+  "staff-renjith-good": {
+    "text": "That gives the route a defensible checkpoint. I can keep tracing the recipients without treating a label as proof.",
+    "voice": "af_nicole",
+    "duration": 10.917,
+    "sha256": "6ec1673d0a71e656dfc80e9226a2e2475d3c7450d68cea545560d95080d5971b"
+  },
+  "staff-renjith-bad": {
+    "text": "There is still a missing link in the route. I will flag it instead of drawing an arrow through an assumption.",
+    "voice": "af_nicole",
+    "duration": 9.167,
+    "sha256": "ca7f166d4cc7aea3d761725f866ea4c4ec9437aa0e0c7d34002b8f62efdfc05d"
+  },
+  "staff-renjith-guide": {
+    "text": "Follow the source identifiers, then check which destination or recipient facts are actually recorded. The active desk has the source bundle.",
+    "voice": "af_nicole",
+    "duration": 14.117,
+    "sha256": "f65606f8b0cb2ba2de034ab376ed4e1b49c1b067125c45cbe59f78c2231e1d52"
+  },
+  "staff-renjith-memory-drawer": {
+    "text": "For the route map, this is the link we can examine. The inventory lists staging profiles and processor copies after the event ended. Which processors, backups and source owners can confirm the remaining copies?",
+    "voice": "af_nicole",
+    "duration": 14.69,
+    "sha256": "fa183b802a7e2e6467e64bb1cbff4bd4c5b8a74304e2baf090e71f31399d12f6"
+  },
+  "staff-renjith-borderless-copy": {
+    "text": "For the route map, this is the link we can examine. The migration plan lacks destination and restriction checks. Which destination, applicable directions and sector-specific requirements have been verified?",
+    "voice": "af_nicole",
+    "duration": 14.687,
+    "sha256": "43cf45647f938aaf9212ad4af840b8cf63aa042506b534e1aef626550b9133e4"
+  },
+  "staff-shambhu-intro": {
+    "text": "I look after the equipment and its paper trail. If someone says the copy vanished, I would like to know which copy they checked.",
+    "voice": "bm_lewis",
+    "duration": 7.546,
+    "sha256": "b0a0fdd6fee92b1f6d1e7a865267474029eb27b98883fc51f49ffa8609219458"
+  },
+  "staff-shambhu-good": {
+    "text": "Good. The system record and the handover now tell the same story about that call.",
+    "voice": "bm_lewis",
+    "duration": 5.135,
+    "sha256": "ecaf5d537a97442731f0674061582a2a0818ebb51f601657c4c9ff6f38778834"
+  },
+  "staff-shambhu-bad": {
+    "text": "That is another loose end for the morning team. I will preserve it properly; sweeping it under the server rack is not a control.",
+    "voice": "bm_lewis",
+    "duration": 7.695,
+    "sha256": "eed8978b2ef4ff96ed2a86bb9797783c31fe1ba6785e71ec9b9def3e68398f68"
+  },
+  "staff-shambhu-guide": {
+    "text": "Check the last exhibit and its limits. Then return to the active terminal with the evidence you can actually defend.",
+    "voice": "bm_lewis",
+    "duration": 7.354,
+    "sha256": "ca67cc0d94e08fadbfd6d4ce5d359ecb298f923293ce0989f8e333f75c71e462"
+  },
+  "staff-shambhu-memory-drawer": {
+    "text": "Here is the equipment-side detail I do not want lost. The queued refund decision relies on contradictory attendee records. Which reliable source can reconcile the conflicting values before their use?",
+    "voice": "bm_lewis",
+    "duration": 13.114,
+    "sha256": "7ae8cbeb6928e2b447ea4aed6bf7c79a330bfb05f7520fc7883c37f24cd7c715"
+  },
+  "staff-shambhu-borderless-copy": {
+    "text": "Here is the equipment-side detail I do not want lost. The help page lists the cloud provider without an accountable business contact. Which responsible person can answer for the service\u2019s processing?",
+    "voice": "bm_lewis",
+    "duration": 12.687,
+    "sha256": "9e18db8fb63e2fd25800925a3654719fd46c76ec1f4c840141f8625ed7764f91"
   }
 }

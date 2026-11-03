@@ -1,8 +1,8 @@
 export const FLOORS=[
- {number:47,name:'Incident Operations',description:'Arrival records, consent and the rights desk.'},
- {number:48,name:'Security Operations',description:'Vendor assurance, incident response and access control.'},
- {number:49,name:'Civic & Learning Services',description:'Public requests, safeguarding and witness accounts.'},
- {number:50,name:'Records & Transfer Control',description:'Accuracy disputes, retention and overseas copies.'}
+ {number:47,shortName:'Sentinel Hub',name:'Sentinel Hub / Incident Operations',description:'Arrival records, consent and the rights desk.'},
+ {number:48,shortName:'Breach Lab',name:'Breach Lab / Security Operations',description:'Vendor assurance, incident response and access control.'},
+ {number:49,shortName:'Civic Commons',name:'Civic Commons / Learning Services',description:'Public requests, safeguarding and witness accounts.'},
+ {number:50,shortName:'The Vault',name:'The Vault / Records & Transfers',description:'Accuracy disputes, retention and overseas copies.'}
 ];
 const CASE_FLOORS=[47,47,49,49,48,48,47,50,50,48];
 export const floorForCase=index=>CASE_FLOORS[index]??47;

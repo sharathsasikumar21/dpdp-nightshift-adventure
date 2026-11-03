@@ -19,7 +19,7 @@ export function buildOffice(scene,renderer){
  const white=new T.MeshStandardMaterial({color:'#c6c8c3',roughness:.72});
  const rubber=new T.MeshStandardMaterial({color:'#141718',roughness:.95});
  const paper=new T.MeshStandardMaterial({color:'#e0d8be',roughness:.98});
- const glass=new T.MeshPhysicalMaterial({color:'#b5c8dd',metalness:.05,roughness:.075,transparent:true,opacity:.07,depthWrite:false,side:T.DoubleSide});
+ const glass=new T.MeshPhysicalMaterial({color:'#b5c8dd',metalness:.05,roughness:.075,transparent:true,opacity:.07,depthWrite:false,side:T.DoubleSide,forceSinglePass:true});
  const meshes=[],blocks=[],lamps=[],screens=[];
  const add=(geo,mat,x,y,z)=>{const o=new T.Mesh(geo,mat);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;scene.add(o);meshes.push(o);return o;};
  const box=(x,y,z,w,h,d,m=black)=>add(new T.BoxGeometry(w,h,d),m,x,y,z);

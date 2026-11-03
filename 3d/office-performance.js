@@ -6,7 +6,7 @@ import {interactionOwner,visibleInScene} from './fpv-interaction.js';
 export function batchStaticOffice(office){
  const groups=new Map();let originals=0,batches=0;
  for(const mesh of office.meshes){
-  if(!mesh.parent||!mesh.isMesh||mesh.isInstancedMesh||Array.isArray(mesh.material)||mesh.material.transparent||mesh.userData.dynamic||interactionOwner(mesh))continue;
+  if(!mesh.parent||!mesh.isMesh||mesh.isInstancedMesh||Array.isArray(mesh.material)||mesh.material.transparent||mesh.userData.dynamic||(!office.allowInteractive&&interactionOwner(mesh)))continue;
   if(!mesh.geometry.attributes.normal||!mesh.geometry.attributes.uv)continue;
   const key=mesh.parent.uuid+'/'+mesh.material.uuid;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(mesh);
  }

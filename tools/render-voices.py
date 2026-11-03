@@ -122,6 +122,11 @@ def main():
   target=out/(name+'.mp3')
   if target.exists() and name in metadata:
    digest=hashlib.sha256(target.read_bytes()).hexdigest()[:12];manifest.setdefault(group,[]).append({'id':name,'src':'media/voices/'+name+'.mp3?v='+digest,'text':text,'speaker':speaker_for(group)})
+ if (out/'staff-lines.json').exists():
+  for line in json.loads((out/'staff-lines.json').read_text(encoding='utf-8')):
+   target=out/(line['id']+'.mp3')
+   if target.exists() and line['id'] in metadata:
+    digest=hashlib.sha256(target.read_bytes()).hexdigest()[:12];manifest[line['group']]=[{'id':line['id'],'src':'media/voices/'+line['id']+'.mp3?v='+digest,'text':line['text'],'speaker':line['speaker']}]
  (out/'voice-lines.json').write_text(json.dumps(metadata,indent=2),encoding='utf-8')
  (out.parent.parent/'voice-manifest.js').write_text('// Locally rendered Kokoro speech. No runtime generation service.\nexport const VOICE_CLIPS='+json.dumps(manifest,indent=2)+';\n',encoding='utf-8')
 

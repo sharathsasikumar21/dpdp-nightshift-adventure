@@ -21,3 +21,18 @@ The supplied `road-hd.zip` provides the road geometry and textures; `road-pack-n
 Supplied Su-57, town bus, passenger car pack, Aer Lingus A330 and Bulgaria Air A320 models provide the optimised aircraft and moving road vehicles. Only one compact car variant is exported from the pack and recoloured for efficient instancing.
 
 The supplied scanned plants and grass collection provides selected low-cost plant and grass meshes in `planting.glb`, used in office planters and promenade planting.
+
+## Additional department staff
+Nine distinct civilian models by Quaternius. Browser copies retain office idle/walk/interaction clips; unused combat clips and buffer data were removed. Runtime roughness is adjusted for office lighting.
+
+- Nitish: [Man](https://poly.pizza/m/HMnuH5geEG), CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/).
+- Ribika: [Woman Casual](https://poly.pizza/m/jpKRgGDxhk), CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/).
+- Nikita: [Suit](https://poly.pizza/m/sOUciDsoVV), CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/).
+- Sharath: [Business Man](https://poly.pizza/m/JFrLIKqvCH), CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/).
+- Sreshta: [Animated Woman](https://poly.pizza/m/qJ2gsTUBHL), CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/).
+- Preeti: [Animated Woman](https://poly.pizza/m/nIItLV9nxS), CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/).
+- Vishnuvardhan: [Man](https://poly.pizza/m/fjHyMd5Wxw), CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/).
+- Renjith: [Animated Woman](https://poly.pizza/m/9kF7eTDbhO), CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/).
+- Shambhu: [Worker](https://poly.pizza/m/Yg2bQZO6Hj), CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/).
+
+Source IDs and changes: `media/characters/staff/PROVENANCE.json`. Staff speech uses the existing local Kokoro engine, with a separate voice ID for each named staff member.

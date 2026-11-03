@@ -1,0 +1,52 @@
+import {guidanceFor} from './player-assist.js';
+import {operationPlan,operationsComplete} from './field-operations.js';
+import {floorForCase} from './building.js';
+import {dossiers} from './case-content.js';
+import {evidenceInsight} from './evidence-insights.js';
+export const STAFF=[
+ {id:'nitish',name:'Nitish',gender:'male',floor:47,role:'Endpoint technician',model:'HMnuH5geEG',voice:'am_echo',speed:1.02,x:-12,z:6,range:.65,pace:.75,pause:7,source:0,activity:'diagnostic rounds',
+ intro:'Show me the event that actually happened. A dashboard summary is where I start asking questions, not where I stop.',good:'That gives me a verified checkpoint. I can trace the next event without inventing the missing step.',bad:'The numbers still need explaining. I will preserve the original trace before we touch another setting.',guide:'Start with the source record on the active desk. Read the time, account and event separately.',lead:'Let us isolate the observed event. '},
+ {id:'ribika',name:'Ribika',gender:'female',floor:47,role:'Shift evidence coordinator',model:'jpKRgGDxhk',voice:'af_bella',speed:.98,x:12,z:-3,range:.3,pace:.55,pause:16,source:1,activity:'checking intake notes',
+ intro:'I keep the handover tidy. If two accounts disagree, both stay in the file until the source explains the difference.',good:'Your record is clear enough for the next person to follow. Keep the source beside the conclusion.',bad:'I am keeping that safeguard on the unresolved list. A confident sentence will not close it.',guide:'Check the evidence board, then compare the two accounts. The case journal keeps the questions we still need to verify.',lead:'Here is the intake detail I want kept in view. '},
+ {id:'nikita',name:'Nikita',gender:'female',floor:48,role:'Vendor assurance lead',model:'sOUciDsoVV',voice:'bf_isabella',speed:.96,x:-12,z:2,range:.45,pace:.65,pause:12,source:1,activity:'reviewing supplier records',
+ intro:'A supplier promise is a starting point. I want the reviewed scope, the named recipient and the acknowledgement.',good:'That keeps the assurance trail usable. I can ask the responsible team for evidence rather than another promise.',bad:'The arrangement still has a gap. I will record it against the responsible owner, not hide it in the contract folder.',guide:'Compare the proposed action with its source record. Keep the responsible owner and any missing acknowledgement visible.',lead:'From an assurance perspective, this is the record to examine. '},
+ {id:'sharath',name:'Sharath',gender:'male',floor:48,role:'Incident commander',model:'JFrLIKqvCH',voice:'bm_george',speed:.94,x:5.8,z:1.6,range:.55,pace:.9,pause:5,source:2,activity:'coordinating the response',important:true,
+ intro:'Ghost, you lead the data protection decision. I coordinate the response. Give me verified facts, a scoped request and the risk we still cannot close.',good:'That is a decision I can coordinate around. Keep the acknowledgement and the source trail ready for handover.',bad:'We do not hide an unsafe call. Preserve the record, name the unresolved risk, and tell me which safer action needs an owner.',guide:'Check your objective floor. Inspect all three records, compare the accounts, then use the active terminal. I need your reasoning before we move.',lead:'This is the unresolved detail I want in the incident brief. '},
+ {id:'sreshta',name:'Sreshta',gender:'female',floor:49,role:'Learning-service safeguarding lead',model:'qJ2gsTUBHL',voice:'af_sarah',speed:.95,x:-12,z:6,range:.5,pace:.6,pause:14,source:0,activity:'checking the learning station',
+ intro:'There is a person behind every account. I check what the service actually does before accepting the label on its feature.',good:'That keeps the person in view. I will document what the service did and which safeguard your call protected.',bad:'The feature label has not removed the harm. I will keep the affected account and the missing safeguard in the case notes.',guide:'Read what the first exhibit records, then compare it with the other two. A reassuring feature name is not a substitute for evidence.',lead:'Look at the actual behaviour recorded here. '},
+ {id:'preeti',name:'Preeti',gender:'female',floor:49,role:'Civic-service liaison',model:'nIItLV9nxS',voice:'bf_lily',speed:1,x:12,z:-3,range:.4,pace:.7,pause:11,source:2,activity:'preparing service responses',
+ intro:'I ask the question the applicant would ask: what do you need from me, why, and who will answer when something goes wrong?',good:'That is a response a person can act on. Keep the contact, the scope and the supporting record together.',bad:'The person still needs a usable answer. I will not mark the request resolved just because a ticket changed colour.',guide:'Check the request against the response being proposed. Use the journal to keep unanswered factual questions separate from your decision.',lead:'This is the service-facing record I would check next. '},
+ {id:'vishnuvardhan',name:'Vishnuvardhan',gender:'male',floor:50,role:'Records steward',model:'fjHyMd5Wxw',voice:'bm_daniel',speed:.95,x:-12,z:2,range:.35,pace:.5,pause:19,source:1,activity:'reconciling the records ledger',
+ intro:'An archive is not a disappearing act. I track which record remains, where it remains and what supports keeping it.',good:'That leaves a traceable record. I will keep the source, the decision and the remaining copy questions in separate columns.',bad:'The ledger still has an open line. Moving a record is not the same as proving what happened to it.',guide:'Check each record category and its source. Do not let one retention label stand in for the whole case.',lead:'The records ledger needs this distinction preserved. '},
+ {id:'renjith',name:'Renjith',gender:'female',floor:50,role:'Transfer assurance analyst',model:'9kF7eTDbhO',voice:'af_nicole',speed:.98,x:12,z:2,range:.7,pace:.8,pause:8,source:0,activity:'tracing the transfer map',
+ intro:'I follow the route one verified link at a time. A familiar provider name tells me far less than a source and destination record.',good:'That gives the route a defensible checkpoint. I can keep tracing the recipients without treating a label as proof.',bad:'There is still a missing link in the route. I will flag it instead of drawing an arrow through an assumption.',guide:'Follow the source identifiers, then check which destination or recipient facts are actually recorded. The active desk has the source bundle.',lead:'For the route map, this is the link we can examine. '},
+ {id:'shambhu',name:'Shambhu',gender:'male',floor:50,role:'Archive systems custodian',model:'Yg2bQZO6Hj',voice:'bm_lewis',speed:1.04,x:5.8,z:8.8,range:.6,pace:.65,pause:10,source:2,activity:'inspecting archive equipment',
+ intro:'I look after the equipment and its paper trail. If someone says the copy vanished, I would like to know which copy they checked.',good:'Good. The system record and the handover now tell the same story about that call.',bad:'That is another loose end for the morning team. I will preserve it properly; sweeping it under the server rack is not a control.',guide:'Check the last exhibit and its limits. Then return to the active terminal with the evidence you can actually defend.',lead:'Here is the equipment-side detail I do not want lost. '}
+];
+export const staffCaseIds=(profile,stories)=>stories.filter((_,i)=>profile.important||floorForCase(i)===profile.floor).map(s=>s.id);
+export function staffWorkState(profile,context={}){
+ if(context.caseIndex===undefined||(!profile.important&&floorForCase(context.caseIndex)!==profile.floor))return {reviewOnly:false,pace:1,label:profile.activity};
+ const states={
+  nitish:[context.records>0,'checking the captured endpoint trace',1.1],
+  ribika:[context.records<3,'reconciling the case intake',.8],
+  nikita:[context.caseId==='vendor'&&!context.hasHold,'checking supplier access scope',.8],
+  sharath:[!(context.pressure>0),'coordinating '+(context.pressure>0?'an active incident':'the evidence briefing'),1.2],
+  sreshta:[context.caseId==='schoolyard','reviewing the learning-service source',.7],
+  preeti:[context.caseId==='city-form'||context.caseId==='rights-desk','checking the service-request response',.75],
+  vishnuvardhan:[context.caseId==='memory-drawer','reconciling retention and refund records',.7],
+  renjith:[context.caseId!=='borderless-copy','tracing the migration route',1.05],
+  shambhu:[!(context.pressure>1),'checking the archive equipment trail',.95]
+ };const [reviewOnly,label,pace]=states[profile.id];return {reviewOnly,label,pace};
+}
+export function staffCaseLine(profile,caseId){const note=evidenceInsight(caseId,profile.source);return profile.lead+note.establishes+' '+note.verify;}
+export function staffConversation(profile,state,stories,playerId,collected,context={}){
+ const index=state.route[Math.min(Math.floor(state.turn/3),state.route.length-1)],story=stories[index],record=dossiers[story.id].clues[profile.source],found=collected.has(profile.source);
+ const ops=state.fieldOperations?.[index]||{witnesses:[],steps:[],finding:null},next=guidanceFor({currentFloor:context.currentFloor??floorForCase(index),targetFloor:floorForCase(index),near:context.near??false,openingCount:3,evidenceCount:collected.size,ops,complete:operationsComplete(ops,operationPlan(state,playerId,story.id))});
+ const entry=state.log.filter(e=>e.story===index&&e.results.some(r=>r.id===playerId)).at(-1),result=entry?.results.find(r=>r.id===playerId),scene=entry?story.scenes[entry.scene]:null;
+ return {caseTitle:story.title,topics:[
+ {id:'about',label:'Your role tonight',text:profile.intro,voice:'staff-'+profile.id+'-intro'},
+ {id:'case',label:'Check this case with me',text:found?record[0]+': '+staffCaseLine(profile,story.id):'In '+story.title+', inspect '+record[0]+' before we treat its contents as established. '+profile.guide,voice:found&&staffCaseIds(profile,stories).includes(story.id)?'staff-'+profile.id+'-'+story.id:'staff-'+profile.id+'-guide'},
+ {id:'last',label:'Your reaction to my last call',text:scene?(result.good?profile.good:profile.bad)+' Last decision: '+scene.tag+'. '+(result.good?scene.good:scene.effect):'We have not recorded a decision on this case yet. '+profile.intro,voice:'staff-'+profile.id+'-'+(scene?(result.good?'good':'bad'):'intro')},
+ {id:'next',label:profile.important?'Commander, what is our next move?':'What should I check next?',text:'Active case: floor '+floorForCase(index)+'. '+collected.size+'/3 records inspected. '+next.text,voice:'staff-'+profile.id+'-guide'}
+ ]};
+}

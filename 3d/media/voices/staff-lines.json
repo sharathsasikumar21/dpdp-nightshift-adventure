@@ -1,0 +1,522 @@
+[
+  {
+    "id": "staff-nitish-intro",
+    "group": "staff-nitish-intro",
+    "text": "Show me the event that actually happened. A dashboard summary is where I start asking questions, not where I stop.",
+    "speaker": "Nitish · Endpoint technician",
+    "voice": "am_echo",
+    "speed": 1.02
+  },
+  {
+    "id": "staff-nitish-good",
+    "group": "staff-nitish-good",
+    "text": "That gives me a verified checkpoint. I can trace the next event without inventing the missing step.",
+    "speaker": "Nitish · Endpoint technician",
+    "voice": "am_echo",
+    "speed": 1.02
+  },
+  {
+    "id": "staff-nitish-bad",
+    "group": "staff-nitish-bad",
+    "text": "The numbers still need explaining. I will preserve the original trace before we touch another setting.",
+    "speaker": "Nitish · Endpoint technician",
+    "voice": "am_echo",
+    "speed": 1.02
+  },
+  {
+    "id": "staff-nitish-guide",
+    "group": "staff-nitish-guide",
+    "text": "Start with the source record on the active desk. Read the time, account and event separately.",
+    "speaker": "Nitish · Endpoint technician",
+    "voice": "am_echo",
+    "speed": 1.02
+  },
+  {
+    "id": "staff-nitish-toggle",
+    "group": "staff-nitish-toggle",
+    "text": "Let us isolate the observed event. The recorded upload occurs before the permission-screen event. Can the upload, account and permission-screen version be matched?",
+    "speaker": "Nitish · Endpoint technician",
+    "voice": "am_echo",
+    "speed": 1.02
+  },
+  {
+    "id": "staff-nitish-permission",
+    "group": "staff-nitish-permission",
+    "text": "Let us isolate the observed event. The receipt records withdrawal from offers while distinguishing the core service. Which queued jobs and recipients received the updated preference?",
+    "speaker": "Nitish · Endpoint technician",
+    "voice": "am_echo",
+    "speed": 1.02
+  },
+  {
+    "id": "staff-nitish-rights-desk",
+    "group": "staff-nitish-rights-desk",
+    "text": "Let us isolate the observed event. The ticket asks for an account-specific processing summary. Which account-specific records and response history are available?",
+    "speaker": "Nitish · Endpoint technician",
+    "voice": "am_echo",
+    "speed": 1.02
+  },
+  {
+    "id": "staff-ribika-intro",
+    "group": "staff-ribika-intro",
+    "text": "I keep the handover tidy. If two accounts disagree, both stay in the file until the source explains the difference.",
+    "speaker": "Ribika · Shift evidence coordinator",
+    "voice": "af_bella",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-ribika-good",
+    "group": "staff-ribika-good",
+    "text": "Your record is clear enough for the next person to follow. Keep the source beside the conclusion.",
+    "speaker": "Ribika · Shift evidence coordinator",
+    "voice": "af_bella",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-ribika-bad",
+    "group": "staff-ribika-bad",
+    "text": "I am keeping that safeguard on the unresolved list. A confident sentence will not close it.",
+    "speaker": "Ribika · Shift evidence coordinator",
+    "voice": "af_bella",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-ribika-guide",
+    "group": "staff-ribika-guide",
+    "text": "Check the evidence board, then compare the two accounts. The case journal keeps the questions we still need to verify.",
+    "speaker": "Ribika · Shift evidence coordinator",
+    "voice": "af_bella",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-ribika-toggle",
+    "group": "staff-ribika-toggle",
+    "text": "Here is the intake detail I want kept in view. Marketing requested a promotional use of class-alert numbers. Which source records the purpose customers were originally shown?",
+    "speaker": "Ribika · Shift evidence coordinator",
+    "voice": "af_bella",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-ribika-permission",
+    "group": "staff-ribika-permission",
+    "text": "Here is the intake detail I want kept in view. The recording shows a one-tap entry and a much longer withdrawal route. Were other withdrawal paths available to this user at that time?",
+    "speaker": "Ribika · Shift evidence coordinator",
+    "voice": "af_bella",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-ribika-rights-desk",
+    "group": "staff-ribika-rights-desk",
+    "text": "Here is the intake detail I want kept in view. Credible evidence supports the name correction and no verification issue remains in this case. Which systems and recipients still hold the previous spelling?",
+    "speaker": "Ribika · Shift evidence coordinator",
+    "voice": "af_bella",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-nikita-intro",
+    "group": "staff-nikita-intro",
+    "text": "A supplier promise is a starting point. I want the reviewed scope, the named recipient and the acknowledgement.",
+    "speaker": "Nikita · Vendor assurance lead",
+    "voice": "bf_isabella",
+    "speed": 0.96
+  },
+  {
+    "id": "staff-nikita-good",
+    "group": "staff-nikita-good",
+    "text": "That keeps the assurance trail usable. I can ask the responsible team for evidence rather than another promise.",
+    "speaker": "Nikita · Vendor assurance lead",
+    "voice": "bf_isabella",
+    "speed": 0.96
+  },
+  {
+    "id": "staff-nikita-bad",
+    "group": "staff-nikita-bad",
+    "text": "The arrangement still has a gap. I will record it against the responsible owner, not hide it in the contract folder.",
+    "speaker": "Nikita · Vendor assurance lead",
+    "voice": "bf_isabella",
+    "speed": 0.96
+  },
+  {
+    "id": "staff-nikita-guide",
+    "group": "staff-nikita-guide",
+    "text": "Compare the proposed action with its source record. Keep the responsible owner and any missing acknowledgement visible.",
+    "speaker": "Nikita · Vendor assurance lead",
+    "voice": "bf_isabella",
+    "speed": 0.96
+  },
+  {
+    "id": "staff-nikita-vendor",
+    "group": "staff-nikita-vendor",
+    "text": "From an assurance perspective, this is the record to examine. The ticket proposes identifiable event access outside the reviewed arrangement. Do access logs show activation, use or onward disclosure?",
+    "speaker": "Nikita · Vendor assurance lead",
+    "voice": "bf_isabella",
+    "speed": 0.96
+  },
+  {
+    "id": "staff-nikita-breach",
+    "group": "staff-nikita-breach",
+    "text": "From an assurance perspective, this is the record to examine. The provider confirms exposure of company records without proof of completed notices. What acknowledgements or delivery records show who was told and when?",
+    "speaker": "Nikita · Vendor assurance lead",
+    "voice": "bf_isabella",
+    "speed": 0.96
+  },
+  {
+    "id": "staff-nikita-audit-trail",
+    "group": "staff-nikita-audit-trail",
+    "text": "From an assurance perspective, this is the record to examine. The attachment appears to contain another person’s unverified identity documents. What reliable evidence can establish who is making the request and for whom?",
+    "speaker": "Nikita · Vendor assurance lead",
+    "voice": "bf_isabella",
+    "speed": 0.96
+  },
+  {
+    "id": "staff-sharath-intro",
+    "group": "staff-sharath-intro",
+    "text": "Ghost, you lead the data protection decision. I coordinate the response. Give me verified facts, a scoped request and the risk we still cannot close.",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-good",
+    "group": "staff-sharath-good",
+    "text": "That is a decision I can coordinate around. Keep the acknowledgement and the source trail ready for handover.",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-bad",
+    "group": "staff-sharath-bad",
+    "text": "We do not hide an unsafe call. Preserve the record, name the unresolved risk, and tell me which safer action needs an owner.",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-guide",
+    "group": "staff-sharath-guide",
+    "text": "Check your objective floor. Inspect all three records, compare the accounts, then use the active terminal. I need your reasoning before we move.",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-toggle",
+    "group": "staff-sharath-toggle",
+    "text": "This is the unresolved detail I want in the incident brief. The proposed interface combines two purposes in one checkbox. Was this interface deployed, and which version did people see?",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-permission",
+    "group": "staff-sharath-permission",
+    "text": "This is the unresolved detail I want in the incident brief. The proposal includes a consent tool and an advertising-profiling use. What verified records describe the proposed operator and its data uses?",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-city-form",
+    "group": "staff-sharath-city-form",
+    "text": "This is the unresolved detail I want in the incident brief. The office’s request cites government status without naming its function or required records. Which documented function and record categories support this request?",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-schoolyard",
+    "group": "staff-sharath-schoolyard",
+    "text": "This is the unresolved detail I want in the incident brief. The recording shows a guardian unable to use the request form with assistive controls. Which accessible routes were actually available to this guardian?",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-vendor",
+    "group": "staff-sharath-vendor",
+    "text": "This is the unresolved detail I want in the incident brief. The thread records executives’ assumption about the contract. Which signed terms and operating records support the responsibilities claimed?",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-breach",
+    "group": "staff-sharath-breach",
+    "text": "This is the unresolved detail I want in the incident brief. The draft is held while the team awaits all forensic details. What does the incident timeline establish about discovery and known facts?",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-rights-desk",
+    "group": "staff-sharath-rights-desk",
+    "text": "This is the unresolved detail I want in the incident brief. The queue records an unanswered deletion request with no assigned grievance owner. What response history and ownership records exist across the available channels?",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-memory-drawer",
+    "group": "staff-sharath-memory-drawer",
+    "text": "This is the unresolved detail I want in the incident brief. The queued refund decision relies on contradictory attendee records. Which reliable source can reconcile the conflicting values before their use?",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-borderless-copy",
+    "group": "staff-sharath-borderless-copy",
+    "text": "This is the unresolved detail I want in the incident brief. The help page lists the cloud provider without an accountable business contact. Which responsible person can answer for the service’s processing?",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sharath-audit-trail",
+    "group": "staff-sharath-audit-trail",
+    "text": "This is the unresolved detail I want in the incident brief. The inventory shows an active broad export role for an intern needing ticket status. Which access and export logs show how the role was actually used?",
+    "speaker": "Sharath · Incident commander",
+    "voice": "bm_george",
+    "speed": 0.94
+  },
+  {
+    "id": "staff-sreshta-intro",
+    "group": "staff-sreshta-intro",
+    "text": "There is a person behind every account. I check what the service actually does before accepting the label on its feature.",
+    "speaker": "Sreshta · Learning-service safeguarding lead",
+    "voice": "af_sarah",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-sreshta-good",
+    "group": "staff-sreshta-good",
+    "text": "That keeps the person in view. I will document what the service did and which safeguard your call protected.",
+    "speaker": "Sreshta · Learning-service safeguarding lead",
+    "voice": "af_sarah",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-sreshta-bad",
+    "group": "staff-sreshta-bad",
+    "text": "The feature label has not removed the harm. I will keep the affected account and the missing safeguard in the case notes.",
+    "speaker": "Sreshta · Learning-service safeguarding lead",
+    "voice": "af_sarah",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-sreshta-guide",
+    "group": "staff-sreshta-guide",
+    "text": "Read what the first exhibit records, then compare it with the other two. A reassuring feature name is not a substitute for evidence.",
+    "speaker": "Sreshta · Learning-service safeguarding lead",
+    "voice": "af_sarah",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-sreshta-city-form",
+    "group": "staff-sreshta-city-form",
+    "text": "Look at the actual behaviour recorded here. The schema contains eligibility fields, contacts and browsing history. Which fields were actually collected, and what documented function uses each one?",
+    "speaker": "Sreshta · Learning-service safeguarding lead",
+    "voice": "af_sarah",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-sreshta-schoolyard",
+    "group": "staff-sreshta-schoolyard",
+    "text": "Look at the actual behaviour recorded here. The trace records learning events feeding an advertising profile. Which children, recipients and module versions appear in the original logs?",
+    "speaker": "Sreshta · Learning-service safeguarding lead",
+    "voice": "af_sarah",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-preeti-intro",
+    "group": "staff-preeti-intro",
+    "text": "I ask the question the applicant would ask: what do you need from me, why, and who will answer when something goes wrong?",
+    "speaker": "Preeti · Civic-service liaison",
+    "voice": "bf_lily",
+    "speed": 1
+  },
+  {
+    "id": "staff-preeti-good",
+    "group": "staff-preeti-good",
+    "text": "That is a response a person can act on. Keep the contact, the scope and the supporting record together.",
+    "speaker": "Preeti · Civic-service liaison",
+    "voice": "bf_lily",
+    "speed": 1
+  },
+  {
+    "id": "staff-preeti-bad",
+    "group": "staff-preeti-bad",
+    "text": "The person still needs a usable answer. I will not mark the request resolved just because a ticket changed colour.",
+    "speaker": "Preeti · Civic-service liaison",
+    "voice": "bf_lily",
+    "speed": 1
+  },
+  {
+    "id": "staff-preeti-guide",
+    "group": "staff-preeti-guide",
+    "text": "Check the request against the response being proposed. Use the journal to keep unanswered factual questions separate from your decision.",
+    "speaker": "Preeti · Civic-service liaison",
+    "voice": "bf_lily",
+    "speed": 1
+  },
+  {
+    "id": "staff-preeti-city-form",
+    "group": "staff-preeti-city-form",
+    "text": "This is the service-facing record I would check next. The office’s request cites government status without naming its function or required records. Which documented function and record categories support this request?",
+    "speaker": "Preeti · Civic-service liaison",
+    "voice": "bf_lily",
+    "speed": 1
+  },
+  {
+    "id": "staff-preeti-schoolyard",
+    "group": "staff-preeti-schoolyard",
+    "text": "This is the service-facing record I would check next. The recording shows a guardian unable to use the request form with assistive controls. Which accessible routes were actually available to this guardian?",
+    "speaker": "Preeti · Civic-service liaison",
+    "voice": "bf_lily",
+    "speed": 1
+  },
+  {
+    "id": "staff-vishnuvardhan-intro",
+    "group": "staff-vishnuvardhan-intro",
+    "text": "An archive is not a disappearing act. I track which record remains, where it remains and what supports keeping it.",
+    "speaker": "Vishnuvardhan · Records steward",
+    "voice": "bm_daniel",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-vishnuvardhan-good",
+    "group": "staff-vishnuvardhan-good",
+    "text": "That leaves a traceable record. I will keep the source, the decision and the remaining copy questions in separate columns.",
+    "speaker": "Vishnuvardhan · Records steward",
+    "voice": "bm_daniel",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-vishnuvardhan-bad",
+    "group": "staff-vishnuvardhan-bad",
+    "text": "The ledger still has an open line. Moving a record is not the same as proving what happened to it.",
+    "speaker": "Vishnuvardhan · Records steward",
+    "voice": "bm_daniel",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-vishnuvardhan-guide",
+    "group": "staff-vishnuvardhan-guide",
+    "text": "Check each record category and its source. Do not let one retention label stand in for the whole case.",
+    "speaker": "Vishnuvardhan · Records steward",
+    "voice": "bm_daniel",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-vishnuvardhan-memory-drawer",
+    "group": "staff-vishnuvardhan-memory-drawer",
+    "text": "The records ledger needs this distinction preserved. The review distinguishes dietary preferences from separately required processing records. Which record-specific retention duties and dates have actually been documented?",
+    "speaker": "Vishnuvardhan · Records steward",
+    "voice": "bm_daniel",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-vishnuvardhan-borderless-copy",
+    "group": "staff-vishnuvardhan-borderless-copy",
+    "text": "The records ledger needs this distinction preserved. The page is visible publicly but its publication history is unknown. Who published the personal data, and what source establishes that history?",
+    "speaker": "Vishnuvardhan · Records steward",
+    "voice": "bm_daniel",
+    "speed": 0.95
+  },
+  {
+    "id": "staff-renjith-intro",
+    "group": "staff-renjith-intro",
+    "text": "I follow the route one verified link at a time. A familiar provider name tells me far less than a source and destination record.",
+    "speaker": "Renjith · Transfer assurance analyst",
+    "voice": "af_nicole",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-renjith-good",
+    "group": "staff-renjith-good",
+    "text": "That gives the route a defensible checkpoint. I can keep tracing the recipients without treating a label as proof.",
+    "speaker": "Renjith · Transfer assurance analyst",
+    "voice": "af_nicole",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-renjith-bad",
+    "group": "staff-renjith-bad",
+    "text": "There is still a missing link in the route. I will flag it instead of drawing an arrow through an assumption.",
+    "speaker": "Renjith · Transfer assurance analyst",
+    "voice": "af_nicole",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-renjith-guide",
+    "group": "staff-renjith-guide",
+    "text": "Follow the source identifiers, then check which destination or recipient facts are actually recorded. The active desk has the source bundle.",
+    "speaker": "Renjith · Transfer assurance analyst",
+    "voice": "af_nicole",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-renjith-memory-drawer",
+    "group": "staff-renjith-memory-drawer",
+    "text": "For the route map, this is the link we can examine. The inventory lists staging profiles and processor copies after the event ended. Which processors, backups and source owners can confirm the remaining copies?",
+    "speaker": "Renjith · Transfer assurance analyst",
+    "voice": "af_nicole",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-renjith-borderless-copy",
+    "group": "staff-renjith-borderless-copy",
+    "text": "For the route map, this is the link we can examine. The migration plan lacks destination and restriction checks. Which destination, applicable directions and sector-specific requirements have been verified?",
+    "speaker": "Renjith · Transfer assurance analyst",
+    "voice": "af_nicole",
+    "speed": 0.98
+  },
+  {
+    "id": "staff-shambhu-intro",
+    "group": "staff-shambhu-intro",
+    "text": "I look after the equipment and its paper trail. If someone says the copy vanished, I would like to know which copy they checked.",
+    "speaker": "Shambhu · Archive systems custodian",
+    "voice": "bm_lewis",
+    "speed": 1.04
+  },
+  {
+    "id": "staff-shambhu-good",
+    "group": "staff-shambhu-good",
+    "text": "Good. The system record and the handover now tell the same story about that call.",
+    "speaker": "Shambhu · Archive systems custodian",
+    "voice": "bm_lewis",
+    "speed": 1.04
+  },
+  {
+    "id": "staff-shambhu-bad",
+    "group": "staff-shambhu-bad",
+    "text": "That is another loose end for the morning team. I will preserve it properly; sweeping it under the server rack is not a control.",
+    "speaker": "Shambhu · Archive systems custodian",
+    "voice": "bm_lewis",
+    "speed": 1.04
+  },
+  {
+    "id": "staff-shambhu-guide",
+    "group": "staff-shambhu-guide",
+    "text": "Check the last exhibit and its limits. Then return to the active terminal with the evidence you can actually defend.",
+    "speaker": "Shambhu · Archive systems custodian",
+    "voice": "bm_lewis",
+    "speed": 1.04
+  },
+  {
+    "id": "staff-shambhu-memory-drawer",
+    "group": "staff-shambhu-memory-drawer",
+    "text": "Here is the equipment-side detail I do not want lost. The queued refund decision relies on contradictory attendee records. Which reliable source can reconcile the conflicting values before their use?",
+    "speaker": "Shambhu · Archive systems custodian",
+    "voice": "bm_lewis",
+    "speed": 1.04
+  },
+  {
+    "id": "staff-shambhu-borderless-copy",
+    "group": "staff-shambhu-borderless-copy",
+    "text": "Here is the equipment-side detail I do not want lost. The help page lists the cloud provider without an accountable business contact. Which responsible person can answer for the service’s processing?",
+    "speaker": "Shambhu · Archive systems custodian",
+    "voice": "bm_lewis",
+    "speed": 1.04
+  }
+]

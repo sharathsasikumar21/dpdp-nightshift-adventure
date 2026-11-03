@@ -5,11 +5,11 @@ export function coverEndingSequence(){
  return ()=>cover.remove();
 }
 
-export async function playEndingSequence({signal,isCurrent=()=>true,reveal,ending,credits,cover=coverEndingSequence}){
+export async function playEndingSequence({signal,isCurrent=()=>true,reveal,ending,debrief,credits,cover=coverEndingSequence}){
  if(signal?.aborted||!isCurrent())return;
  const release=cover();
  try{
-  for(const stage of [reveal,ending,credits].filter(Boolean)){
+  for(const stage of [reveal,ending,debrief,credits].filter(Boolean)){
    if(signal?.aborted||!isCurrent())return;
    await stage();
   }

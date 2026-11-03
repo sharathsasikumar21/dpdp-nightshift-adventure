@@ -16,7 +16,7 @@
           "Explain location collection and partner promotions, then require one combined approval before enabling the location stream."
         ],
         "sourceId": "notice",
-        "plot": "PulseStep’s new nearby-classes feature requests location the moment the app opens. A tester flags that the permission appears before anyone sees what the location is for.",
+        "plot": "PulseStep’s nearby-classes release has already uploaded location. The device log places that upload eleven seconds before the permission-screen event; the team cannot show that the purpose was explained before collection.",
         "good": "The location stream waits for a meaningful choice. Mira keeps the release in staging.",
         "effect": "Location flows before users understand it. Mira finds coordinates in the release logs.",
         "evidence": "INTAKE / TOGGLE"
@@ -180,7 +180,7 @@
           "Confirm the original grant consent and requester identity before applying that consent to subsequent departmental requests."
         ],
         "sourceId": "legitimate",
-        "plot": "A public office sends a request for records needed to perform a function imposed by law. The request is broad and cites no specific function.",
+        "plot": "A public office requests records and claims it needs them for a statutory function. The broad request does not identify that function or explain which records it requires.",
         "good": "The office identifies the statutory function and conditions before processing.",
         "effect": "An official letter becomes an unlimited request. Government status cannot justify every use.",
         "evidence": "CLOSE THE LOOP"
@@ -490,7 +490,7 @@
       {
         "id": "accuracy",
         "tag": "Data quality",
-        "q": "Two credible records conflict and the lender’s decision job is about to run. Which plan addresses the unresolved accuracy risk before it affects the person?",
+        "q": "Two credible attendee records conflict and the refund decision job is about to run. Which plan addresses the unresolved accuracy risk before it affects the person?",
         "a": "Pause the decision and reconcile conflicting records, checking completeness, accuracy and consistency before resuming the assessment.",
         "why": "Where personal data is likely to be used to make a decision affecting a Data Principal or disclosed to another Data Fiduciary, the Data Fiduciary must ensure completeness, accuracy and consistency.",
         "law": "DPDP Act, 2023, s. 8(3)",
@@ -500,7 +500,7 @@
           "Ask the vendor to reconcile conflicting records, allowing queued decisions to proceed while confirmation remains outstanding."
         ],
         "sourceId": "accuracy",
-        "plot": "A lender finds contradictory profile records just before using them for a decision that affects a customer. The scoring job is queued.",
+        "plot": "The ticketing service finds contradictory attendee profiles just before using them to decide refund eligibility. Its decision job is queued.",
         "good": "Conflicting records are reconciled before a decision affecting the person.",
         "effect": "Contradictory data drives a consequential decision. The fastest record is not necessarily accurate.",
         "evidence": "CLOSE THE LOOP"

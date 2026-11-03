@@ -31,7 +31,7 @@ const notes={
  'memory-drawer':[
  ['The inventory lists staging profiles and processor copies after the event ended.','An inventory does not prove all copies have been found or establish each retention justification.','Which processors, backups and source owners can confirm the remaining copies?'],
  ['The review distinguishes dietary preferences from separately required processing records.','This review does not identify the retention requirements for every other record category.','Which record-specific retention duties and dates have actually been documented?'],
- ['The queued decision relies on contradictory customer records.','The contradiction alone does not identify which value is correct.','Which reliable source can reconcile the conflicting values before their use?']],
+ ['The queued refund decision relies on contradictory attendee records.','The contradiction alone does not identify which value is correct.','Which reliable source can reconcile the conflicting values before their use?']],
  'borderless-copy':[
  ['The migration plan lacks destination and restriction checks.','An unchecked plan does not establish that a transfer is either allowed or prohibited.','Which destination, applicable directions and sector-specific requirements have been verified?'],
  ['The page is visible publicly but its publication history is unknown.','Visibility alone does not identify who made the data public or why.','Who published the personal data, and what source establishes that history?'],

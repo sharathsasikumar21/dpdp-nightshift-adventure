@@ -21,6 +21,11 @@ test('caption names and lines follow the current voice and clear when playback s
  const clip={id:'named',src:'line.mp3',text:'Preserve the log.',speaker:'Mira'};
  const bank=new VoiceBank({clips:{mira:[clip]},Audio,onCaption:line=>shown.push(line)});await bank.play('mira');assert.equal(shown.at(-1),clip);audios[0].onended();assert.equal(shown.at(-1),null);
 });
+test('native playing events and the resolved play promise announce a caption only once',async()=>{
+ const shown=[];class Audio{play(){this.onplaying();return Promise.resolve();}pause(){}}
+ const clip={id:'one',src:'one.mp3',text:'A single caption.',speaker:'Nitish'};
+ const bank=new VoiceBank({clips:{one:[clip]},Audio,onCaption:c=>{if(c)shown.push(c);}});await bank.play('one');assert.deepEqual(shown,[clip]);bank.stop();
+});
 test('crew exchange plays replies only after the first speaker finishes and cancels on interruption',async()=>{
  const audios=[];class Audio{constructor(src){this.src=src;audios.push(this);}play(){return Promise.resolve();}pause(){}}
  const bank=new VoiceBank({clips:{first:[{id:'1',src:'1.mp3'}],reply:[{id:'2',src:'2.mp3'}]},Audio});
