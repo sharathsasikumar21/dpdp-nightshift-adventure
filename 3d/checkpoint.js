@@ -15,3 +15,5 @@ export function restoreCheckpoint(value,playerId,runId){
  copy.evidence=copy.evidence.map(([key,values])=>[key.startsWith(oldId+':')?runId+key.slice(oldId.length):key,values]);
  return copy;
 }
+
+export function checkpointMessage(saved,unavailable=false){if(unavailable)return 'CHECKPOINT UNAVAILABLE · Keep this tab open';return saved?'CHECKPOINT SAVED · Resume at case '+(Math.floor(saved.state.turn/3)+1)+' start':'NEXT CHECKPOINT · Complete the arrival clues';}
