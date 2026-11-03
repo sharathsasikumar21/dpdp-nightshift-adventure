@@ -1,3 +1,4 @@
+import {afterAsset} from './asset-priority.js';
 import * as T from './vendor/three.module.js';
 import {parseCharacterFBX,inPlaceClip,characterMaterials,hairMaterial} from './character-assets.js';
 let shadowTexture;
@@ -9,10 +10,10 @@ function source(name){if(!models.has(name))models.set(name,fetch(new URL(name,ba
 function texture(name,normal=false){if(!textures.has(name))textures.set(name,new T.TextureLoader().loadAsync(new URL(name,base).href).then(t=>{t.colorSpace=normal?T.NoColorSpace:T.SRGBColorSpace;t.anisotropy=2;progress();return t;}));return textures.get(name);}
 function cloneRig(source){const copy=source.clone(true),lookup=new Map();function map(a,b){lookup.set(a,b);for(let i=0;i<a.children.length;i++)map(a.children[i],b.children[i]);}map(source,copy);copy.traverse(o=>{if(!o.isSkinnedMesh)return;const original=[...lookup].find(([,v])=>v===o)?.[0];o.skeleton=original.skeleton.clone();o.skeleton.bones=original.skeleton.bones.map(b=>lookup.get(b));o.bind(o.skeleton,original.bindMatrix);});return copy;}
 
-export function createHuman({female=false,civilian=false,tint=0xffffff}={}){
+export function createHuman({female=false,civilian=false,tint=0xffffff,after}={}){
  const group=new T.Group();group.add(contactShadow());group.name=female?'Civilian colleague':'DPO civilian suit';let mixer=null,actions={},current='',desired='idle',clock=0,model=null,headBone=null,activity='idle',lowQuality=true,headOffset=0;
  const ready=(async()=>{
-  const prefix=female?'woman':'male';
+  await afterAsset(after,()=>{});const prefix=female?'woman':'male';
   const [original,body,bodyNormal,head,headNormal,hair,idle]=await Promise.all([
    source(female?'woman.fbx':'dpo.fbx'),texture(female?'woman-body.png':'male-body.png'),texture(prefix+'-body-normal.png',true),texture(prefix+'-head.png'),texture(prefix+'-head-normal.png',true),texture(prefix+'-hair.png'),source(female?'woman-idle.fbx':'idle.fbx')
   ]);

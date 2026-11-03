@@ -1,3 +1,4 @@
+import {afterAsset} from './asset-priority.js';
 import {addImportedTraffic} from './imported-traffic.js';
 import {addSuppliedStreets} from './supplied-streets.js';
 import {GLTFLoader} from './vendor/addons/loaders/GLTFLoader.js';
@@ -6,7 +7,7 @@ import {addGroundTraffic,coastalRoadPoint,ROAD_Y} from './city-traffic.js';
 import * as T from './vendor/three.module.js';
 
 // A fictional Mumbai-inspired coast, not a geographic reconstruction.
-export function buildMumbaiSkyline(scene){
+export function buildMumbaiSkyline(scene,{after}={}){
  let seed=14147;const random=()=>((seed=seed*16807%2147483647)/2147483647);
  const root=new T.Group();root.scale.z=-1;scene.add(root);const district=new T.Group();district.name='Fallback skyline';root.add(district);let buildingPhase=true;
  const concrete=['#4d4940','#3b4247','#565049','#313e49','#484942'].map(color=>new T.MeshStandardMaterial({color,roughness:.85}));
@@ -39,7 +40,7 @@ export function buildMumbaiSkyline(scene){
  // Continuous land meets the coastal road; buildings no longer stand on isolated slabs.
  const landShape=new T.Shape();roadPoints.forEach((p,i)=>i?landShape.lineTo(p.x,-p.z):landShape.moveTo(p.x,-p.z));landShape.lineTo(120,-200);landShape.lineTo(-120,-200);landShape.closePath();const landGeo=new T.ShapeGeometry(landShape);landGeo.rotateX(-Math.PI/2);const land=new T.Mesh(landGeo,new T.MeshStandardMaterial({color:'#1d2529',roughness:.98}));land.position.y=-37.1;root.add(land);
  const vertices=[],indices=[];for(let i=0;i<=60;i++){for(const lane of [-3.1,3.1]){const p=coastalRoadPoint(i/60,lane);vertices.push(p.x,ROAD_Y,p.z);}if(i<60){const n=i*2;indices.push(n,n+2,n+1,n+1,n+2,n+3);}}
- const roadGeo=new T.BufferGeometry();roadGeo.setAttribute('position',new T.Float32BufferAttribute(vertices,3));roadGeo.setIndex(indices);roadGeo.computeVertexNormals();const fallbackRoad=new T.Mesh(roadGeo,new T.MeshStandardMaterial({color:'#141c24',roughness:.55,metalness:.12,side:T.DoubleSide}));root.add(fallbackRoad);const streets=addSuppliedStreets(root,fallbackRoad);
+ const roadGeo=new T.BufferGeometry();roadGeo.setAttribute('position',new T.Float32BufferAttribute(vertices,3));roadGeo.setIndex(indices);roadGeo.computeVertexNormals();const fallbackRoad=new T.Mesh(roadGeo,new T.MeshStandardMaterial({color:'#141c24',roughness:.55,metalness:.12,side:T.DoubleSide}));root.add(fallbackRoad);const streets=addSuppliedStreets(root,fallbackRoad,{after});
  const warmLight=new T.MeshBasicMaterial({color:'#e7c58c'}),streetMetal=concrete[1];for(let i=0;i<=60;i+=5){const p=coastalRoadPoint(i/60,-3.8);box(p.x,ROAD_Y+1.6,p.z,.09,3.2,.09,streetMetal);box(p.x,ROAD_Y+3.2,p.z,.65,.08,.3,warmLight);}
  const stripe=new T.MeshBasicMaterial({color:'#ab9c76'});for(let i=0;i<60;i+=2){const p=coastalRoadPoint(i/60),dash=box(p.x,ROAD_Y+.015,p.z,.09,.018,1.3,stripe);dash.rotation.y=p.yaw;}
  const traffic=addGroundTraffic(root,24);
@@ -54,12 +55,12 @@ export function buildMumbaiSkyline(scene){
  for(const x of [-.5,.5]){box(x,-.65,0,.06,.06,1.8,dark,helicopter);box(x,-.45,0,.05,.4,.05,dark,helicopter);}
  const rotor=box(0,.65,0,3.8,.025,.12,dark,helicopter);box(-.6,0,0,.1,.1,.1,red,helicopter);box(.6,0,0,.1,.1,.1,green,helicopter);
  rotor.userData.dynamic=true;const staticMeshes=[];root.traverse(object=>{if(object.isMesh)staticMeshes.push(object);});batchStaticOffice({meshes:staticMeshes});
- const ready=new GLTFLoader().loadAsync(new URL('./media/city/office-night-skyline.glb',import.meta.url).href).then(asset=>{
+ const ready=afterAsset(after,()=>new GLTFLoader().loadAsync(new URL('./media/city/office-night-skyline.glb',import.meta.url).href)).then(asset=>{
   const model=asset.scene,bounds=new T.Box3().setFromObject(model),centre=bounds.getCenter(new T.Vector3()),scale=6;
   model.scale.setScalar(scale);model.position.set(-centre.x*scale,-38-bounds.min.y*scale,165-centre.z*scale);model.name='Supplied night city skyline';
   model.traverse(o=>{if(o.isMesh){o.castShadow=false;o.receiveShadow=false;}});root.add(model);district.visible=false;
  }).catch(error=>{console.warn('Supplied skyline unavailable; retaining the procedural city.',error);});
- const importedTraffic=addImportedTraffic(root,traffic,plane);
+ const importedTraffic=addImportedTraffic(root,traffic,plane,{after});
  let time=0;
  return {root,ready:Promise.all([ready,streets.ready,importedTraffic.ready]),update(dt,reduced){if(!reduced)time+=dt;beacon.material.color.setHex(reduced||Math.sin(time*1.8)>.4?0xe66b56:0x5e302c);traffic.update(dt,reduced);importedTraffic.update(time);plane.position.set(Math.sin(time*.009)*65,45,75+Math.cos(time*.009)*15);plane.rotation.y=-Math.PI/2;helicopter.position.set(-24+Math.sin(time*.025)*16,28,43+Math.cos(time*.025)*12);helicopter.rotation.y=time*.025;rotor.rotation.y=reduced?0:time*15;}};
 }

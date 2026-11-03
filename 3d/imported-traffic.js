@@ -1,3 +1,4 @@
+import {afterAsset} from './asset-priority.js';
 import * as T from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/addons/loaders/GLTFLoader.js';
 import {mergeGeometries} from './vendor/addons/utils/BufferGeometryUtils.js';
@@ -13,15 +14,15 @@ function normalise(scene,length,ground=false){
  scene.updateMatrixWorld(true);if(ground){const points=[],v=new T.Vector3();scene.traverse(o=>{if(!o.isMesh)return;const p=o.geometry.attributes.position,step=Math.max(1,Math.floor(p.count/500));for(let i=0;i<p.count;i+=step){v.fromBufferAttribute(p,i).applyMatrix4(o.matrixWorld);points.push({x:v.x,z:v.z});}});scene.rotation.y-=principalGroundYaw(points);scene.updateMatrixWorld(true);}let box=new T.Box3().setFromObject(scene),size=box.getSize(new T.Vector3());if(size.x>size.z){scene.rotation.y+=Math.PI/2;scene.updateMatrixWorld(true);box.setFromObject(scene);size=box.getSize(new T.Vector3());}
  const centre=box.getCenter(new T.Vector3()),scale=length/size.z,offset=new T.Matrix4().makeTranslation(-centre.x*scale,-box.min.y*scale,-centre.z*scale),matrix=offset.multiply(new T.Matrix4().makeScale(scale,scale,scale));return matrix;
 }
-export function addImportedTraffic(root,fallback,legacyPlane){
+export function addImportedTraffic(root,fallback,legacyPlane,{after}={}){
  const loader=new GLTFLoader(),fleets=[],aircraft=[],dummy=new T.Object3D();let lastTime=0;
- async function fleet(file,slots,length){const asset=await loader.loadAsync(new URL('./media/city/'+file,import.meta.url).href),normal=normalise(asset.scene,length,true),groups=new Map();
+ async function fleet(file,slots,length){const asset=await afterAsset(after,()=>loader.loadAsync(new URL('./media/city/'+file,import.meta.url).href)),normal=normalise(asset.scene,length,true),groups=new Map();
   asset.scene.traverse(o=>{if(!o.isMesh)return;const material=o.material,geometry=o.geometry.clone().applyMatrix4(new T.Matrix4().multiplyMatrices(normal,o.matrixWorld));for(const key of Object.keys(geometry.attributes))if(!['position','normal','uv'].includes(key))geometry.deleteAttribute(key);if(!geometry.attributes.uv)geometry.setAttribute('uv',new T.BufferAttribute(new Float32Array(geometry.attributes.position.count*2),2));const key=material.uuid;if(!groups.has(key))groups.set(key,{material,geometries:[]});groups.get(key).geometries.push(geometry.index?geometry.toNonIndexed():geometry);});
   const meshes=[];for(const {material,geometries} of groups.values()){const geometry=mergeGeometries(geometries),mesh=new T.InstancedMesh(geometry,material,slots.length);mesh.instanceMatrix.setUsage(T.DynamicDrawUsage);mesh.frustumCulled=false;root.add(mesh);meshes.push(mesh);if(file==='car.glb'&&/body/i.test(material.name))slots.forEach((_,i)=>mesh.setColorAt(i,new T.Color(['#d4d2c8','#687780','#514b4b','#b8bec3'][i%4])));}
   fleets.push({slots,meshes});update(lastTime);return meshes;
  }
  const ground=Promise.all([fleet('car.glb',CAR_SLOTS,4.2),fleet('bus.glb',BUS_SLOTS,9)]).then(()=>fallback.meshes.forEach(m=>m.visible=false)).catch(error=>console.warn('Available traffic retained.',error));
- const sky=Promise.all(['a330.glb','a320.glb','su57.glb'].map(async(file,index)=>{const asset=await loader.loadAsync(new URL('./media/city/'+file,import.meta.url).href),model=asset.scene,normal=normalise(model,[34,30,13][index]);const holder=new T.Group();model.applyMatrix4(normal);model.rotation.y+=Math.PI/2;holder.add(model);root.add(holder);aircraft[index]=holder;model.traverse(o=>{if(o.isMesh){o.castShadow=false;o.receiveShadow=false;}});})).then(()=>{legacyPlane.visible=false;update(lastTime);}).catch(error=>console.warn('Available aircraft retained.',error));
+ const sky=Promise.all(['a330.glb','a320.glb','su57.glb'].map(async(file,index)=>{const asset=await afterAsset(after,()=>loader.loadAsync(new URL('./media/city/'+file,import.meta.url).href)),model=asset.scene,normal=normalise(model,[34,30,13][index]);const holder=new T.Group();model.applyMatrix4(normal);model.rotation.y+=Math.PI/2;holder.add(model);root.add(holder);aircraft[index]=holder;model.traverse(o=>{if(o.isMesh){o.castShadow=false;o.receiveShadow=false;}});})).then(()=>{legacyPlane.visible=false;update(lastTime);}).catch(error=>console.warn('Available aircraft retained.',error));
  function update(time){lastTime=time;for(const {slots,meshes} of fleets){slots.forEach((slot,i)=>{const p=trafficPosition(slot,time);dummy.position.set(p.x,ROAD_Y+.01,p.z);dummy.rotation.set(0,p.yaw,0);dummy.updateMatrix();meshes.forEach(mesh=>mesh.setMatrixAt(i,dummy.matrix));});meshes.forEach(mesh=>mesh.instanceMatrix.needsUpdate=true);}
   aircraft.forEach((model,i)=>{const p=flightPosition(i,time);model.visible=p.visible;model.position.set(p.x,p.y,p.z);});
  }

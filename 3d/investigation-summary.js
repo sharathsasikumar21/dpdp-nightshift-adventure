@@ -1,0 +1,8 @@
+import {caseLink} from './mystery.js';
+export function investigationSummary(report){
+ return {title:'One route. The people behind every record.',
+ opening:report.openingCount===3?'The arrival records separated the original door event from its delayed dashboard display. A badge was a lead, not proof of who authorised the export.':'The arrival trail was not fully examined. Keep its unresolved facts separate from the evidence in each case.',
+ cases:report.cases.map(c=>{const decisions=report.decisions.filter(d=>d.story===c.title),link=caseLink(c.id);return {title:c.title,floor:c.floor,link:link.body,sources:c.sources||[],result:c.correct+'/'+c.decisions+' defensible calls',effects:decisions.map(d=>({topic:d.topic,text:d.effect,good:d.good})),followUp:decisions.filter(d=>!d.good).map(d=>({topic:d.topic,next:d.next,requested:d.correction==='requested'}))};}),
+ closing:report.followUp.length?report.followUp.length+' decisions left safeguards unresolved. The next shift must verify the recorded corrective actions; a requested follow-up is not proof that the risk has been removed.':'Every recorded decision was defensible. Preserve the evidence and verify the documented controls during handover.'};
+}
+export function investigationSummaryLines(report){const s=investigationSummary(report);return ['CONNECTED INVESTIGATION',s.opening,...s.cases.flatMap(c=>['FLOOR '+c.floor+' · '+c.title,c.link,'Examined sources: '+(c.sources.join(' · ')||'None recorded'),c.result,...c.effects.map(e=>e.topic+': '+e.text),...c.followUp.map(f=>'Open safeguard · '+f.topic+': '+f.next+(f.requested?' · Follow-up requested; not confirmed complete.':'')),'']),s.closing];}

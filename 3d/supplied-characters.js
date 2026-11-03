@@ -1,9 +1,10 @@
+import {afterAsset} from './asset-priority.js';
 import * as T from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/addons/loaders/GLTFLoader.js';
 const key=name=>name.replace(/[^a-z0-9]/gi,'').toLowerCase();
-export function createSuppliedCharacter(file,{height=1.7,animate=false}={}){
+export function createSuppliedCharacter(file,{height=1.7,animate=false,after}={}){
  const group=new T.Group(),bones=new Map();let mixer=null,model=null;
- const ready=new GLTFLoader().loadAsync(new URL('./media/characters/'+file,import.meta.url).href).then(asset=>{
+ const ready=afterAsset(after,()=>new GLTFLoader().loadAsync(new URL('./media/characters/'+file,import.meta.url).href)).then(asset=>{
   model=asset.scene;model.traverse(o=>{if(o.isBone)bones.set(key(o.name),o);});
   const bounds=new T.Box3().setFromObject(model),size=bounds.getSize(new T.Vector3()),centre=bounds.getCenter(new T.Vector3()),scale=height/size.y;
   model.scale.setScalar(scale);model.position.set(-centre.x*scale,-bounds.min.y*scale,-centre.z*scale);
