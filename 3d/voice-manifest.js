@@ -300,6 +300,86 @@ export const VOICE_CLIPS={
       "speaker": "Leena \u00b7 Privacy counsel"
     }
   ],
+  "assist-floor": [
+    {
+      "id": "assist-floor",
+      "src": "media/voices/assist-floor.mp3?v=777378230386",
+      "text": "I need the lift. My objective shows the case floor. I can select it on the cabin panel or use Lift and Floors.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
+  "assist-desk": [
+    {
+      "id": "assist-desk",
+      "src": "media/voices/assist-desk.mp3?v=473c536f98d3",
+      "text": "I need the active case table. Follow the yellow marker. Navigate to Case in Field Tools can take me straight there.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
+  "assist-arrival": [
+    {
+      "id": "assist-arrival",
+      "src": "media/voices/assist-arrival.mp3?v=8aa167a98016",
+      "text": "First, the arrival leads. The badge, access log and witness account. Read all three, then continue to the case.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
+  "assist-evidence": [
+    {
+      "id": "assist-evidence",
+      "src": "media/voices/assist-evidence.mp3?v=a324a3c856d9",
+      "text": "I still have case records to inspect. Open Evidence Board, read every exhibit, then compare what was requested, approved and recorded.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
+  "assist-read": [
+    {
+      "id": "assist-read",
+      "src": "media/voices/assist-read.mp3?v=eaf0300bc33b",
+      "text": "Back to All Evidence keeps me on the board. I can inspect the other records, compare them, then return to the active terminal.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
+  "assist-accounts": [
+    {
+      "id": "assist-accounts",
+      "src": "media/voices/assist-accounts.mp3?v=e98513541398",
+      "text": "I need both accounts and their source records before recording a finding. Read first. Decide second.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
+  "assist-comparison": [
+    {
+      "id": "assist-comparison",
+      "src": "media/voices/assist-comparison.mp3?v=026181042fe8",
+      "text": "Which account does the source record support? I need to separate the assumption from what the evidence establishes.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
+  "assist-operations": [
+    {
+      "id": "assist-operations",
+      "src": "media/voices/assist-operations.mp3?v=18f66fd3cef9",
+      "text": "Next, the enabled containment action. Preserve the records, trace the route, then coordinate the scoped hold. No need to rush this part.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
+  "assist-terminal": [
+    {
+      "id": "assist-terminal",
+      "src": "media/voices/assist-terminal.mp3?v=8e0ee39b67e6",
+      "text": "All three records are collected. Time to use the active terminal, finish the case operations and open the decision briefing.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
+  "assist-question": [
+    {
+      "id": "assist-question",
+      "src": "media/voices/assist-question.mp3?v=489c6d6d199c",
+      "text": "Preparation is complete. I can open the active terminal and start the question when I am ready. The timed call allows fifty seconds.",
+      "speaker": "Simon Ghost Riley \u00b7 DPO"
+    }
+  ],
   "rage-mira": [
     {
       "id": "rage-mira-banter-1",

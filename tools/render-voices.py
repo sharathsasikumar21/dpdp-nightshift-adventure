@@ -53,6 +53,16 @@ LINES = {
  'terminal-banter-2': ('terminal', 'Four options. Somehow, guessing still feels like a fifth.'),
  'warning-banter-1': ('warning', 'Bold choice. The audit log disagrees. Check the evidence before the next call.'),
  'warning-banter-2': ('warning', 'The evidence called. It wants a second opinion. Preserve the records and verify the facts.'),
+ 'assist-floor': ('assist-floor', 'I need the lift. My objective shows the case floor. I can select it on the cabin panel or use Lift and Floors.'),
+ 'assist-desk': ('assist-desk', 'I need the active case table. Follow the yellow marker. Navigate to Case in Field Tools can take me straight there.'),
+ 'assist-arrival': ('assist-arrival', 'First, the arrival leads. The badge, access log and witness account. Read all three, then continue to the case.'),
+ 'assist-evidence': ('assist-evidence', 'I still have case records to inspect. Open Evidence Board, read every exhibit, then compare what was requested, approved and recorded.'),
+ 'assist-read': ('assist-read', 'Back to All Evidence keeps me on the board. I can inspect the other records, compare them, then return to the active terminal.'),
+ 'assist-accounts': ('assist-accounts', 'I need both accounts and their source records before recording a finding. Read first. Decide second.'),
+ 'assist-comparison': ('assist-comparison', 'Which account does the source record support? I need to separate the assumption from what the evidence establishes.'),
+ 'assist-operations': ('assist-operations', 'Next, the enabled containment action. Preserve the records, trace the route, then coordinate the scoped hold. No need to rush this part.'),
+ 'assist-terminal': ('assist-terminal', 'All three records are collected. Time to use the active terminal, finish the case operations and open the decision briefing.'),
+ 'assist-question': ('assist-question', 'Preparation is complete. I can open the active terminal and start the question when I am ready. The timed call allows fifty seconds.'),
  'rage-mira-banter-1': ('rage-mira', 'Bold choice. Were the records just decoration?'),
  'rage-mira-banter-2': ('rage-mira', 'You read the warning and chose the plot twist. Impressive.'),
  'rage-arjun-banter-1': ('rage-arjun', 'That was not a strategy. That was a breach with confidence.'),
@@ -79,7 +89,7 @@ LINES = {
 DPO_GROUPS={'evidence','terminal','coffee','keepsake','warning','pet-dpo','pet-found','walk'}
 
 def speaker_for(group):
- if group in DPO_GROUPS:return 'Simon Ghost Riley · DPO'
+ if group in DPO_GROUPS or group.startswith('assist-'):return 'Simon Ghost Riley · DPO'
  if group in ('mira','radio-mira','radio-analyst','pet-mira','chikku-found-alert','rage-mira'):return 'Mira · Incident analyst'
  if group in ('arjun','radio-arjun','radio-security','pet-arjun','rage-arjun'):return 'Arjun · Security engineer'
  if group in ('leena','radio-leena','radio-counsel','pet-leena','rage-leena'):return 'Leena · Privacy counsel'
@@ -94,7 +104,7 @@ def main():
  for story in json.loads(Path('3d/stories.json').read_text(encoding='utf-8')):
   LINES['story-'+story['id']]=('story-'+story['id'],story['brief'])
  for name,(group,text) in LINES.items():
-  voice='am_adam' if group in DPO_GROUPS else 'am_michael' if group in ('arjun','radio-arjun','radio-security','pet-arjun','rage-arjun') else 'bf_emma' if group in ('leena','radio-leena','radio-counsel','pet-leena','rage-leena') else 'af_heart'
+  voice='am_adam' if group in DPO_GROUPS or group.startswith('assist-') else 'am_michael' if group in ('arjun','radio-arjun','radio-security','pet-arjun','rage-arjun') else 'bf_emma' if group in ('leena','radio-leena','radio-counsel','pet-leena','rage-leena') else 'af_heart'
   lang='en-gb' if voice.startswith('b') else 'en-us';target=out/(name+'.mp3')
   if args.only and name not in args.only:continue
   if args.reuse_existing and target.exists():duration=sf.info(target).duration

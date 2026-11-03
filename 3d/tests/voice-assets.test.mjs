@@ -27,3 +27,8 @@ test('wrong-call NPC roasts have distinct character voices and respect banter fi
  const metadata=JSON.parse(fs.readFileSync(new URL('../media/voices/voice-lines.json',import.meta.url),'utf8'));
  for(const [role,voice] of [['mira','af_heart'],['arjun','am_michael'],['leena','bf_emma']]){const clips=VOICE_CLIPS['rage-'+role];assert.equal(clips.length,2);for(const c of clips){assert.ok(c.id.includes('-banter-'));assert.equal(metadata[c.id].voice,voice);}}
 });
+
+test('all context-aware assist lines are recorded in the DPO voice and remain outside banter',()=>{
+ const metadata=JSON.parse(fs.readFileSync(new URL('../media/voices/voice-lines.json',import.meta.url),'utf8'));
+ for(const name of ['floor','desk','arrival','evidence','read','accounts','comparison','operations','terminal','question']){const clip=VOICE_CLIPS['assist-'+name]?.[0];assert.ok(clip,name);assert.equal(metadata[clip.id].voice,'am_adam');assert.equal(clip.speaker,'Simon Ghost Riley · DPO');assert.ok(!clip.id.includes('-banter-'));}
+});
