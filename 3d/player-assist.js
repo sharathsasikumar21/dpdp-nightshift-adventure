@@ -8,7 +8,7 @@ export function guidanceFor({currentFloor,targetFloor,near=false,openingCount=0,
  if(!complete)return {key:'terminal',text:'All three case records are collected. Look at the active terminal and press E. Complete its case operations, then open the decision briefing.'};
  return {key:'question',text:'Your case preparation is complete. Interact with the active terminal. Start the question only when ready; timed decisions allow 50 seconds.'};
 }
-export function createStuckDetector({now=Date.now,delay=55000,cooldown=90000}={}){
+export function createStuckDetector({now=Date.now,delay=25000,cooldown=90000}={}){
  let key=null,since=now(),last=-Infinity,count=0;
  return {reset(){key=null;since=now();last=-Infinity;count=0;},update(signature,allowed=true){const t=now();if(signature!==key){key=signature;since=t;count=0;return false;}if(!allowed){since=t;return false;}if(t-since<delay||t-last<cooldown||count>=2)return false;last=t;since=t;count++;return true;}};
 }

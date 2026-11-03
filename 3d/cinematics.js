@@ -1,7 +1,8 @@
+import {ENDING_WRITING,endingWords} from './ending-writing.js';
 import {CINEMATIC_ASSETS} from './cinematic-assets.js';
 
 export function preloadCinematics(kinds,{signal}={}){
- const videos=kinds.map(kind=>{const video=document.createElement('video');video.preload='auto';video.muted=true;video.src=CINEMATIC_ASSETS[kind].video;video.load();return video;});
+ const videos=kinds.map(kind=>{const video=document.createElement('video');video.preload='auto';video.muted=true;video.src=new URL(CINEMATIC_ASSETS[kind].video,import.meta.url).href;video.load();return video;});
  let released=false;function release(){if(released)return;released=true;signal?.removeEventListener('abort',release);for(const video of videos){video.pause();video.removeAttribute('src');video.load();}}
  signal?.addEventListener('abort',release,{once:true});if(signal?.aborted)release();return release;
 }
@@ -14,15 +15,15 @@ export function playCinematic(kind,{muted=true,onStart=()=>{},onFinish=()=>{},si
     'good-ending':{title:'Heroic ending: city protected',heading:'HEROIC ENDING',skip:'ENDING',status:'80% or more correct · City protected',description:'A shield rises over the city at dawn. You held the line. The city wakes safer. Privacy Sentinel. Trust defended.'},
     'bad-ending':{title:'Scary ending: trust went dark',heading:'DARK ENDING',skip:'ENDING',status:'Below 80% correct · Review your calls',description:'A red surveillance eye looms over a dark city. The leak did not stop. Trust went dark. The night is not over. Review your calls. Come back ready.'}
   };
-  const film=films[kind],asset=CINEMATIC_ASSETS[kind];
+  const film=films[kind],source=CINEMATIC_ASSETS[kind],asset=source?{...source,video:new URL(source.video,import.meta.url).href,poster:new URL(source.poster,import.meta.url).href}:null;
   if(!film||!asset||signal?.aborted)return Promise.resolve('aborted');
   return new Promise(resolve=>{
     const previous=document.activeElement,reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const dialog=document.createElement('dialog');dialog.className='cinema'+(kind==='credits'?' film-credits':'');dialog.setAttribute('aria-label',film.title);dialog.dataset.frame='loading';
-    dialog.innerHTML=`<div class="cinema-stage"><img class="cinema-poster" src="${asset.poster}" alt="" ${reduced?'':'hidden'}><video playsinline preload="auto" aria-label="${film.description}"></video><div class="cinema-top"><span>N / ${film.heading}</span><button class="small cinema-skip">SKIP ${film.skip} →</button></div><div class="cinema-bottom"><button class="small cinema-play">PLAY FILM</button><span class="cinema-status" role="status">${reduced?'Play this film or skip to continue.':'Loading film…'}</span><button class="small cinema-sound">${muted?'ENABLE SOUND':'MUTE FILM'}</button></div><div class="cinema-progress" aria-hidden="true"><i></i></div></div>`;
+    dialog.innerHTML=`<div class="cinema-stage"><img class="cinema-poster" src="${asset.poster}" alt="" ${reduced?'':'hidden'}><video playsinline preload="auto" aria-label="${film.description}"></video><div class="cinema-top"><span>N / ${film.heading}</span><button class="small cinema-skip">SKIP ${film.skip} →</button></div><div class="cinema-bottom"><button class="small cinema-play">PLAY FILM</button><span class="cinema-status" role="status">${reduced?'Play this film or skip to continue.':'Loading film…'}</span><button class="small cinema-sound">${muted?'ENABLE SOUND':'MUTE FILM'}</button></div>${ENDING_WRITING[kind]?'<section class="ending-writing" aria-label="'+ENDING_WRITING[kind].body+'"><h2>'+ENDING_WRITING[kind].title+'</h2><p class="ending-words" aria-hidden="true"></p></section>':''}<div class="cinema-progress" aria-hidden="true"><i></i></div></div>`;
     const video=dialog.querySelector('video'),poster=dialog.querySelector('.cinema-poster'),play=dialog.querySelector('.cinema-play'),status=dialog.querySelector('.cinema-status'),audio=dialog.querySelector('.cinema-sound');
     let done=false,watchdog,frameRequest=null;
-    const cutoff=Math.min(15,asset.duration);
+    const cutoff=Math.min(15,asset.duration);const writing=dialog.querySelector('.ending-words');function updateWriting(){if(writing)writing.textContent=endingWords(kind,video.currentTime,reduced).body;}updateWriting();
     function finish(reason='ended'){
       if(done)return;done=true;clearTimeout(watchdog);signal?.removeEventListener('abort',abort);
       // Hide and detach before resetting src. A source reset can display the
@@ -35,7 +36,7 @@ export function playCinematic(kind,{muted=true,onStart=()=>{},onFinish=()=>{},si
       try{onFinish(reason);if(previous?.isConnected)previous.focus({preventScroll:true});}finally{resolve(reason);}
     }
     const abort=()=>finish('aborted');
-    function showFrame(){if(done)return;dialog.dataset.frame='ready';poster.hidden=true;}
+    function showFrame(){if(done)return;dialog.dataset.frame='ready';poster.hidden=true;updateWriting();}
     function decodedFrame(){
       if(done||dialog.dataset.frame==='ready'||frameRequest!==null)return;
       if(video.requestVideoFrameCallback)frameRequest=video.requestVideoFrameCallback(()=>{frameRequest=null;showFrame();});
@@ -55,7 +56,7 @@ export function playCinematic(kind,{muted=true,onStart=()=>{},onFinish=()=>{},si
     video.onwaiting=()=>{if(!done){arm(45000);status.textContent='Buffering film…';}};
     video.onplaying=()=>{if(!done){decodedFrame();arm(Math.max(4000,(cutoff-video.currentTime+3)*1000));status.textContent=film.status;}};
     video.onloadeddata=()=>{if(!video.paused)decodedFrame();};
-    video.ontimeupdate=()=>{if(done)return;dialog.querySelector('.cinema-progress i').style.transform=`scaleX(${Math.min(1,video.currentTime/cutoff)})`;if(video.currentTime>=cutoff)finish('ended');};
+    video.ontimeupdate=()=>{if(done)return;updateWriting();dialog.querySelector('.cinema-progress i').style.transform=`scaleX(${Math.min(1,video.currentTime/cutoff)})`;if(video.currentTime>=cutoff)finish('ended');};
     document.body.append(dialog);dialog.showModal();onStart();dialog.querySelector('.cinema-skip').focus();
     if(!reduced)start();
   });

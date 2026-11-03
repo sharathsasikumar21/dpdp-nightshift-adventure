@@ -1,0 +1,6 @@
+export function decisionPins(state,turn=state.turn){state.evidencePins??={};return state.evidencePins[turn]??=[];}
+export function toggleDecisionPin(state,index,collected){if(!Number.isInteger(index)||index<0||index>2||!collected.has(index))return false;const pins=decisionPins(state),at=pins.indexOf(index);if(at<0)pins.push(index);else pins.splice(at,1);return true;}
+export const IMPACT_AUDIENCE={toggle:'People whose location is collected',permission:'People who withdrew promotional permission','city-form':'Grant applicants',schoolyard:'Children and their guardians',vendor:'Customers whose records reach vendors',breach:'People whose records are exposed','rights-desk':'People exercising their data rights','memory-drawer':'Former event attendees','borderless-copy':'People whose data is transferred or reused','audit-trail':'People relying on provable consent and limited access'};
+export function missedDecisions(state,id){return state.log.filter(e=>!e.results.find(r=>r.id===id)?.good);}
+export function saveDecisionNote(state,turn,value){state.decisionNotes??={};state.decisionNotes[turn]=String(value).slice(0,400);}
+export function requestCorrection(state,entry){state.corrections??={};return state.corrections[entry.turn]??={status:'requested',note:'Review the missed safeguard, preserve the evidence and coordinate the safer action with the responsible team.'};}
