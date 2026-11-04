@@ -37,3 +37,10 @@ export function advance(s,id){
   if(s.phase==='break'){s.phase='explore';s.rev++;return true;}
   s.turn++;s.phase=s.turn>=Math.min(MAX_DECISIONS,s.route.length*3)?'end':s.turn%3===0?'break':'explore';s.rev++;return true;
 }
+
+// Preparation belongs to the case. Its remaining decisions open directly after review.
+export function continueCase(s,id,now,duration=50000){
+  if(s.phase!=='review'||s.players.length!==1||!advance(s,id))return false;
+  if(s.phase==='explore'&&s.turn%3!==0)openTurn(s,now,duration);
+  return true;
+}
